@@ -80,19 +80,23 @@ The privacy policy says: the app collects no data; this website uses no cookies 
 - **DNS lives outside this repo.** A/AAAA records for `kabynyt.com` need to point at GitHub Pages (`185.199.108.153` / `109` / `110` / `111` for A; the IPv6 set similarly). The `www` subdomain should `CNAME` to `gregyuzik.github.io`. GitHub Pages will issue a Let's Encrypt cert automatically once DNS resolves.
 - **`.nojekyll` must exist** or GitHub Pages skips any path starting with `_`. Don't delete it.
 - **Don't hand-edit `sitemap.xml` lastmod blindly** — set it to the date the page actually changed. Stale lastmods are an SEO antipattern.
-- **App icon sync:** the iOS app now ships its icon as an iOS 26 Icon Composer bundle at `/Users/greg/git/Kabynyt/KabynytiOS/AppIcon.icon/` (the old `Assets.xcassets/AppIcon.appiconset` path is gone). To re-render the site icon and regenerate the favicon set when the app's icon changes:
+- **App icon sync:** the iOS app ships its icon as an iOS 26 Icon Composer bundle at `/Users/greg/git/Kabynyt/KabynytiOS/AppIcon.icon/` (the old `Assets.xcassets/AppIcon.appiconset` path is gone). The website icon is a deliberate aurora-themed variant — it does NOT match the solid-indigo iOS app icon. It uses the same white cabinet silhouette over a green / cyan / indigo aurora mesh, echoing the in-app AuroraCanvas. To regenerate:
 
   ```sh
-  # 1. Composite the white cabinet over an indigo gradient that approximates
-  #    Icon Composer's automatic-gradient on display-p3:0.28,0.10,0.68.
-  #    Top-left ~30% lighter, bottom-right ~15% darker.
-  magick \
-    \( -size 1024x1024 gradient:'#6E48D5'-'#3814A0' \) \
+  # 1. Aurora-mesh background (Shepards interpolation between control points)
+  #    emerald top-left, cyan top-right, indigo bottom.
+  magick -size 1024x1024 xc:'#0f1230' \
+    -sparse-color Shepards '
+      200,200 #4dd6a0
+      720,260 #4d9dd6
+      80,900  #2a1a55
+      950,900 #1a0e3a
+      512,512 #1f3070
+    ' \
     \( /Users/greg/git/Kabynyt/KabynytiOS/AppIcon.icon/Assets/cabinet.png \
        -resize 620x620 \
-       -channel A -evaluate multiply 0.92 +channel \
+       -channel A -evaluate multiply 0.95 +channel \
     \) -gravity center -compose Over -composite \
-    -define png:compression-level=9 \
     assets/AppIcon.png
 
   # 2. Generate the favicon set from the new 1024x1024 source.
@@ -105,5 +109,5 @@ The privacy policy says: the app collects no data; this website uses no cookies 
   magick assets/favicon-16.png assets/favicon-32.png assets/favicon-48.png favicon.ico
   ```
 
-  If `icon.json`'s `automatic-gradient` seed color changes (currently `display-p3:0.28,0.10,0.68` indigo), retune the gradient endpoints in step 1 to match. Commit `assets/AppIcon.png`, `assets/favicon-*.png`, and `favicon.ico` together.
+  If the cabinet silhouette changes (different shape, not just color), use the new `cabinet.png` path. If the aurora palette changes in the app, retune the Shepards control points so the icon stays in sync visually. Commit `assets/AppIcon.png`, `assets/favicon-*.png`, and `favicon.ico` together.
 - **Theme color in `<meta name="theme-color">` is split into dark/light variants** matching `styles.css`. If you change the page background, update both meta tags too.

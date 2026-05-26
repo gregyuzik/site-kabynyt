@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
     <title>Privacy &middot; Kabynyt</title>
     <meta name="description" content="Kabynyt's privacy policy. The short version: your collection stays on your devices.">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -34,9 +34,9 @@
 <a href="#main" class="skip-link">Skip to content</a>
 
 <header class="nav-wrap">
-    <nav class="nav-bar" aria-label="Primary">
+    <nav class="glass nav-bar" aria-label="Primary">
         <a href="/" class="nav-brand">
-            <img src="/assets/AppIcon.png" alt="" class="nav-icon" width="32" height="32">
+            <img src="/assets/AppIcon.png" alt="" class="nav-icon" width="28" height="28">
             <span>Kabynyt</span>
         </a>
         <div class="nav-links">
@@ -48,42 +48,71 @@
 </header>
 
 <main id="main">
-<section class="doc-hero">
-    <h1><span class="accent">Privacy</span></h1>
-    <p>Last updated: 2026-05-26</p>
+
+<!-- Header -->
+<section class="section" style="padding-top:8rem">
+    <div class="wrap tc">
+        <h1 class="sec-title fade-up"><em>Privacy</em></h1>
+        <p class="hero-sub fade-up" style="--i:1">Your collection stays on your devices. Last updated 2026-05-26.</p>
+    </div>
 </section>
 
-<section class="doc-section">
-    <h2>The short version</h2>
-    <p>Your collection stays on your devices. Kabynyt does not collect, transmit, or sell your data. There are no third-party trackers in the app.</p>
+<hr class="divider" aria-hidden="true">
 
-    <h2>What stays on-device</h2>
-    <p>Every item you add &mdash; photos, notes, prices, metadata &mdash; is stored in SwiftData on your iPhone or iPad. If you have iCloud enabled, it syncs through your private CloudKit container to your other iOS devices. Apple cannot read this data; Kabynyt cannot read this data; nobody but you can read this data.</p>
+<section class="section">
+    <div class="wrap">
+        <div class="legal-content fade-up">
+            <div class="glass legal-card">
+                <h2>The short version</h2>
+                <p>Your collection stays on your devices. Kabynyt does not collect, transmit, or sell your data. There are no third-party trackers in the app.</p>
+            </div>
 
-    <h2>AI photo identification</h2>
-    <p>When you ask Kabynyt to identify a collectible from a photo, the photo is sent to Google's Gemini 3.5 Flash model for analysis. Kabynyt does not see this traffic &mdash; the request goes from your device directly to Google with the Gemini API key bundled in the app (or your own key, if you supplied one in Settings). Google's privacy policy governs how Gemini processes the request. Photos are not retained by Kabynyt and are not used to train any model.</p>
+            <div class="glass legal-card">
+                <h2>What stays on-device</h2>
+                <p>Every item you add &mdash; photos, notes, prices, metadata &mdash; is stored in SwiftData on your iPhone or iPad. If you have iCloud enabled, it syncs through your private CloudKit container to your other iOS devices. Apple cannot read this data; Kabynyt cannot read this data; nobody but you can read this data.</p>
+            </div>
 
-    <h2>Barcode lookups</h2>
-    <p>When you scan a barcode, the barcode value is sent to Google's Gemini 3.5 Flash model for a deep lookup that returns title, manufacturer, year, and market price range in one request. No identifying information about you or your device is sent &mdash; only the barcode digits.</p>
+            <div class="glass legal-card">
+                <h2>AI photo identification</h2>
+                <p>When you ask Kabynyt to identify a collectible from a photo, the photo is sent to Google's Gemini 3.5 Flash model for analysis. Kabynyt does not see this traffic &mdash; the request goes from your device directly to Google with the Gemini API key bundled in the app (or your own key, if you supplied one in Settings). Google's privacy policy governs how Gemini processes the request. Photos are not retained by Kabynyt and are not used to train any model.</p>
+            </div>
 
-    <h2>Catalog enrichment</h2>
-    <p>To fill in titles, covers, and metadata after a barcode scan or CSV import, Kabynyt queries public catalogs: the iTunes Search API (movies, TV, music, podcasts), Open Library (books), MusicBrainz and Cover Art Archive (music), Discogs (vinyl), and Wikipedia (general entries). Only the title, identifier, or barcode being looked up is sent &mdash; never your collection, your other items, or anything that identifies you.</p>
+            <div class="glass legal-card">
+                <h2>Barcode lookups</h2>
+                <p>When you scan a barcode, the barcode value is sent to Google's Gemini 3.5 Flash model for a deep lookup that returns title, manufacturer, year, and market price range in one request. No identifying information about you or your device is sent &mdash; only the barcode digits.</p>
+            </div>
 
-    <h2>This website</h2>
-    <p>This website (kabynyt.com) is a static site, hosted on GitHub Pages and proxied through Cloudflare. It does not set cookies and loads no third-party scripts. Cloudflare and GitHub each maintain standard request logs (IP, user agent, page requested) per their own privacy policies; Cloudflare may also report aggregate page-load metrics through its built-in Web Analytics.</p>
+            <div class="glass legal-card">
+                <h2>Catalog enrichment</h2>
+                <p>To fill in titles, covers, and metadata after a barcode scan or CSV import, Kabynyt queries public catalogs: the iTunes Search API (movies, TV, music, podcasts), Open Library (books), MusicBrainz and Cover Art Archive (music), Discogs (vinyl), and Wikipedia (general entries). Only the title, identifier, or barcode being looked up is sent &mdash; never your collection, your other items, or anything that identifies you.</p>
+            </div>
 
-    <h2>Contact</h2>
-    <p>Questions? <a href="mailto:support@kabynyt.com">support@kabynyt.com</a></p>
+            <div class="glass legal-card">
+                <h2>This website</h2>
+                <p>This website (kabynyt.com) is a static site, hosted on GitHub Pages and proxied through Cloudflare. It does not set cookies and loads no third-party scripts. Cloudflare and GitHub each maintain standard request logs (IP, user agent, page requested) per their own privacy policies; Cloudflare may also report aggregate page-load metrics through its built-in Web Analytics.</p>
+            </div>
+
+            <div class="glass legal-card">
+                <h2>Contact</h2>
+                <p>Questions? <a href="mailto:support@kabynyt.com">support@kabynyt.com</a></p>
+            </div>
+        </div>
+    </div>
 </section>
+
 </main>
 
-<footer>
-    <span>&copy; 2026 Kabynyt</span>
-    <nav aria-label="Footer">
-        <a href="/support.html">Support</a>
-        <a href="/privacy.html">Privacy</a>
-    </nav>
+<footer class="foot">
+    <div class="wrap tc">
+        <div class="foot-links">
+            <a href="/">Home</a>
+            <a href="/support.html">Support</a>
+            <a href="/privacy.html">Privacy</a>
+        </div>
+        <p class="foot-copy">&copy; 2026 Kabynyt. All rights reserved.</p>
+    </div>
 </footer>
 
+<script src="/reveal.js"></script>
 </body>
 </html>

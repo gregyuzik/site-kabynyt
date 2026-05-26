@@ -20,8 +20,7 @@ site-kabynyt/
 ├── .nojekyll         # Disables Jekyll so paths starting with `_` work
 ├── assets/
 │   ├── AppIcon.png       # Re-rendered from KabynytiOS/AppIcon.icon/ — see "App icon sync" below
-│   ├── favicon-*.png     # 16/32/48/180/192/512 — generated from AppIcon.png via sips
-│   └── screenshots/      # Framed device screenshots for the showcase section
+│   └── favicon-*.png     # 16/32/48/180/192/512 — generated from AppIcon.png via sips
 ├── favicon.ico           # 16+32+48 multi-resolution ICO, generated from the favicon-*.png set
 ├── .github/
 │   ├── workflows/    # codeql, gitleaks, deploy-pages
@@ -62,7 +61,7 @@ Kabynyt is iOS-only as of this writing (iPhone and iPad). The marketing copy ref
 - **HTML**: 4-space indent, lowercase tags, double-quoted attributes. Lang attribute on every `<html>` element (currently always `en`).
 - **CSS**: Custom properties live in `:root`. Avoid `!important` except in the reduced-motion override. One stylesheet, no preprocessor.
 - **JS**: None yet. If we add any, keep it small, no frameworks, no `eval` / `new Function`, must be CSP-safe.
-- **Images**: PNG for the app icon (sync from `/Users/greg/git/Kabynyt/KabynytiOS/Assets.xcassets/AppIcon.appiconset/AppIcon.png`). WebP for any screenshots / hero imagery added later.
+- **Images**: PNG for the app icon (re-rendered from the simulator screenshot of `/Users/greg/git/Kabynyt/KabynytiOS/AppIcon.icon/` — see the "App icon sync" gotcha for the full capture flow). WebP for any future hero imagery; keep PNGs run through `oxipng -o max --strip safe` before committing.
 
 ## Security
 
@@ -77,7 +76,10 @@ The privacy policy says: the app collects no data; this website uses no cookies 
 ## Common gotchas
 
 - **CNAME goes in repo root, not a subdir.** GitHub Pages reads it from `/CNAME` to determine the custom domain. Don't move it.
-- **DNS lives outside this repo.** A/AAAA records for `kabynyt.com` need to point at GitHub Pages (`185.199.108.153` / `109` / `110` / `111` for A; the IPv6 set similarly). The `www` subdomain should `CNAME` to `gregyuzik.github.io`. GitHub Pages will issue a Let's Encrypt cert automatically once DNS resolves.
+- **DNS + TLS live outside this repo, and traffic flows through Cloudflare.** `kabynyt.com` is proxied (orange cloud) — `dig kabynyt.com` returns Cloudflare anycast IPs (e.g. `104.21.x.x` / `172.67.x.x`), not the GitHub Pages `185.199.108.x` set. Cloudflare terminates TLS at the edge; the origin is GitHub Pages (served by Fastly behind the scenes). Implications:
+  - **HTTP-header security policies (HSTS, `Strict-Transport-Security`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, `Content-Security-Policy` with `frame-ancestors` / `form-action` / `report-uri`)** must be configured in the Cloudflare dashboard via SSL/TLS settings + Transform Rules. They cannot be set via `<meta http-equiv>`.
+  - **Cloudflare features that auto-inject content** (Web Analytics, Rocket Loader, Auto Minify, Email Address Obfuscation) will fight the in-page CSP. The strict `script-src 'self'` blocks Web Analytics' `beacon.min.js`, but the attempt happens and the request flows through Cloudflare regardless. If you enable any of these, also update `privacy.html` to disclose them.
+  - GitHub Pages **still issues the origin certificate** that Cloudflare validates the origin connection against. Don't disable Pages' Let's Encrypt cert.
 - **`.nojekyll` must exist** or GitHub Pages skips any path starting with `_`. Don't delete it.
 - **Don't hand-edit `sitemap.xml` lastmod blindly** — set it to the date the page actually changed. Stale lastmods are an SEO antipattern.
 - **App icon sync:** the iOS app ships its icon as an iOS 26 Icon Composer bundle at `/Users/greg/git/Kabynyt/KabynytiOS/AppIcon.icon/` (the old `Assets.xcassets/AppIcon.appiconset` path is gone). The website icon must be the **actual iOS-rendered output** of that bundle — Icon Composer applies a Liquid Glass effect (translucency, refraction, automatic-gradient) at runtime that no static magick composite can fully replicate. The only reliable way to capture it is to screenshot the rendered icon from a booted simulator's home screen:

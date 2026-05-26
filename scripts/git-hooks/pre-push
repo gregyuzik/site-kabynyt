@@ -13,6 +13,17 @@ set -eu
 top=$(git rev-parse --show-toplevel)
 cd "$top"
 
+# Sanity-check required binaries up front. The validators below redirect
+# stderr to /dev/null to suppress libxml2's chatter, which also masks the
+# "command not found" message — so a missing tool would silently pass
+# the hook. Fail loudly here instead.
+for bin in xmllint python3; do
+    if ! command -v "$bin" >/dev/null 2>&1; then
+        echo "pre-push: required binary '$bin' not found in PATH"
+        exit 1
+    fi
+done
+
 # 1. HTML well-formedness. xmllint is shipped with macOS by default.
 fail=0
 for f in *.html; do

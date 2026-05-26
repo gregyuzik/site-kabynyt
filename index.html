@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
     <title>Kabynyt &middot; Universal Collectibles Tracker</title>
-    <meta name="description" content="Catalog anything — trading cards, books, movies, wine, LEGO, watches, coins — in one app. AI photo identification, barcode scanning, on-device privacy.">
+    <meta name="description" content="Catalog anything — trading cards, books, movies, wine, LEGO, watches, coins — in one app. AI photo identification, barcode scanning, iCloud sync across your devices.">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta name="theme-color" content="#0a0712" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#f5efe6" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f0a1f" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#fbf6ec" media="(prefers-color-scheme: light)">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kabynyt.com/">
     <meta property="og:title" content="Kabynyt &middot; Universal Collectibles Tracker">
-    <meta property="og:description" content="Catalog anything — trading cards, books, movies, wine, LEGO, watches, coins — in one app. AI photo identification, barcode scanning, on-device privacy.">
+    <meta property="og:description" content="Catalog anything — trading cards, books, movies, wine, LEGO, watches, coins — in one app. AI photo identification, barcode scanning, iCloud sync across your devices.">
     <meta property="og:image" content="https://kabynyt.com/assets/AppIcon.png">
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
@@ -22,8 +22,11 @@
     <meta name="twitter:image" content="https://kabynyt.com/assets/AppIcon.png">
     <link rel="canonical" href="https://kabynyt.com/">
 
-    <link rel="icon" type="image/png" href="/assets/AppIcon.png">
-    <link rel="apple-touch-icon" href="/assets/AppIcon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png">
     <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="/styles.css">
 
@@ -55,6 +58,7 @@
         </a>
         <div class="nav-links">
             <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
             <a href="/support.html">Support</a>
         </div>
     </nav>
@@ -63,60 +67,40 @@
 <main id="main">
 
 <section class="hero">
-    <img src="/assets/AppIcon.png" alt="Kabynyt app icon" class="hero-icon" width="120" height="120">
+    <div class="hero-icon-wrap">
+        <img src="/assets/AppIcon.png" alt="Kabynyt app icon" class="hero-icon" width="140" height="140">
+    </div>
     <h1>Catalog <span class="accent">anything</span>.</h1>
     <p class="hero-sub">Trading cards, books, movies, wine, LEGO, watches, coins — keep every collection in one app. AI photo identification and barcode scanning do the data entry for you.</p>
-    <p class="hero-sub" style="font-size:1rem;margin-top:8px">Free to download and use. Smart Add identification is free for the first five tries, then $0.99 a month if you keep going.</p>
     <div class="cta-row">
         <a href="#" class="cta-primary" aria-label="Download on the App Store (coming soon)">Coming to the App Store</a>
         <a href="#features" class="cta-secondary">See features</a>
     </div>
+    <p class="hero-meta">Free to download &middot; Smart Add is 5 free, then $0.99 / month</p>
 </section>
 
-<section class="section">
-    <h2>41 categories, one inventory</h2>
-    <p class="section-sub">Each category understands its own field set — books get an ISBN, wine gets a vintage, LEGO gets a set number — so the data you capture actually matches the thing you collect.</p>
-    <div class="categories" aria-label="Supported collectible categories">
-        <span class="category-chip">Movies</span>
-        <span class="category-chip">TV Shows</span>
-        <span class="category-chip">Books</span>
-        <span class="category-chip">Comic Books</span>
-        <span class="category-chip">Video Games</span>
-        <span class="category-chip">Music</span>
-        <span class="category-chip">Vinyl Records</span>
-        <span class="category-chip">Trading Cards — Sports</span>
-        <span class="category-chip">Trading Cards — TCG</span>
-        <span class="category-chip">LEGO</span>
-        <span class="category-chip">Funko Pops</span>
-        <span class="category-chip">Board Games</span>
-        <span class="category-chip">Wine</span>
-        <span class="category-chip">Spirits</span>
-        <span class="category-chip">Coins</span>
-        <span class="category-chip">Watches</span>
-        <span class="category-chip">Sneakers</span>
-        <span class="category-chip">Cameras</span>
-        <span class="category-chip">Art</span>
-        <span class="category-chip">Jewelry</span>
-        <span class="category-chip">Antiques</span>
-        <span class="category-chip">&hellip; and 20 more</span>
+<section class="showcase" aria-label="Today tab screenshot">
+    <div class="showcase-frame">
+        <img src="/assets/screenshots/today-framed.png" alt="Kabynyt's Today tab on iPhone, showing date-aware picks and live sync status over the app's animated aurora canvas" width="1350" height="2760">
     </div>
 </section>
 
 <section class="section" id="features">
-    <h2>Five ways to add an item</h2>
-    <p class="section-sub">Whichever on-ramp you choose, results flow through one merged-result pipeline so fields fill themselves.</p>
+    <span class="section-eyebrow">What it does</span>
+    <h2>Made for the way you actually collect</h2>
+    <p class="section-sub">A home tab that knows the date, five ways to add an item, CloudKit sync across your devices &mdash; all native to iOS 26.</p>
     <div class="features">
         <div class="feature">
             <h3>Today, at a glance</h3>
-            <p>The home tab surfaces date-aware picks — Halloween in October, the holidays in December — alongside Recently Added, Pick of the Day, and the live sync status. The collection greets you instead of waiting.</p>
+            <p>The home tab surfaces date-aware picks &mdash; Halloween in October, the holidays in December &mdash; alongside Recently Added, Pick of the Day, and the live sync status. The collection greets you instead of waiting.</p>
         </div>
         <div class="feature">
             <h3>Scan a barcode</h3>
-            <p>ISBN, UPC, EAN. One Gemini 3.5 Flash deep-lookup returns title, manufacturer, year, market price range, and the right category — in a single round trip.</p>
+            <p>ISBN, UPC, EAN. One Gemini 3.5 Flash deep-lookup returns title, manufacturer, year, market price range, and the right category &mdash; in a single round trip.</p>
         </div>
         <div class="feature">
             <h3>Identify a photo</h3>
-            <p>Snap a photo of a collectible. Gemini 3.5 Flash reads packaging text, sets, edition, year — and fills the form for you.</p>
+            <p>Snap a photo of a collectible. Gemini 3.5 Flash reads packaging text, sets, edition, year &mdash; and fills the form for you.</p>
         </div>
         <div class="feature">
             <h3>Search by name</h3>
@@ -133,6 +117,67 @@
         <div class="feature">
             <h3>iCloud sync</h3>
             <p>Built for iPhone and iPad. CloudKit keeps every device in sync without you thinking about it.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <span class="section-eyebrow">Categories</span>
+    <h2>41 ways to think about your stuff</h2>
+    <p class="section-sub">Each category understands its own field set &mdash; books get an ISBN, wine gets a vintage, LEGO gets a set number &mdash; so the data you capture actually matches the thing you collect.</p>
+    <div class="categories" aria-label="Supported collectible categories">
+        <span class="category-chip">Movies</span>
+        <span class="category-chip">TV Shows</span>
+        <span class="category-chip">Books</span>
+        <span class="category-chip">Comic Books</span>
+        <span class="category-chip">Video Games</span>
+        <span class="category-chip">Music</span>
+        <span class="category-chip">Vinyl Records</span>
+        <span class="category-chip">Trading Cards &mdash; Sports</span>
+        <span class="category-chip">Trading Cards &mdash; TCG</span>
+        <span class="category-chip">LEGO</span>
+        <span class="category-chip">Funko Pops</span>
+        <span class="category-chip">Board Games</span>
+        <span class="category-chip">Wine</span>
+        <span class="category-chip">Spirits</span>
+        <span class="category-chip">Coins</span>
+        <span class="category-chip">Watches</span>
+        <span class="category-chip">Sneakers</span>
+        <span class="category-chip">Cameras</span>
+        <span class="category-chip">Art</span>
+        <span class="category-chip">Jewelry</span>
+        <span class="category-chip">Antiques</span>
+        <span class="category-chip">&hellip; and 20 more</span>
+    </div>
+</section>
+
+<section class="section" id="pricing">
+    <span class="section-eyebrow">Pricing</span>
+    <h2>Free to start. $0.99 if you keep going.</h2>
+    <p class="section-sub">Catalog as much as you want by hand, forever, at no cost. The AI-powered identification is the only paid surface &mdash; and you get the first five for free.</p>
+    <div class="pricing-grid">
+        <div class="pricing-card">
+            <span class="pricing-title">Free forever</span>
+            <span class="pricing-price">$0</span>
+            <ul class="pricing-list">
+                <li>Unlimited manual entry</li>
+                <li>All 41 categories</li>
+                <li>Photos and notes</li>
+                <li>iCloud sync across iPhone + iPad</li>
+                <li>CSV import (Goodreads, Letterboxd)</li>
+                <li>Backup and restore</li>
+            </ul>
+        </div>
+        <div class="pricing-card pricing-card--featured">
+            <span class="pricing-title">Smart Add</span>
+            <span class="pricing-price">$0.99 / month</span>
+            <ul class="pricing-list">
+                <li>Photo identification (Gemini 3.5 Flash)</li>
+                <li>Barcode deep-lookup</li>
+                <li>Title search via iTunes</li>
+                <li>Cover-art fetch on imports</li>
+                <li>First 5 identifications free</li>
+            </ul>
         </div>
     </div>
 </section>

@@ -7,10 +7,14 @@
     <title>Support &middot; Kabynyt</title>
     <meta name="description" content="Get help with Kabynyt. Contact the developer directly.">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta name="theme-color" content="#0a0712" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#f5efe6" media="(prefers-color-scheme: light)">
-    <link rel="icon" type="image/png" href="/assets/AppIcon.png">
-    <link rel="apple-touch-icon" href="/assets/AppIcon.png">
+    <meta name="theme-color" content="#0f0a1f" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#fbf6ec" media="(prefers-color-scheme: light)">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png">
     <link rel="canonical" href="https://kabynyt.com/support.html">
     <link rel="stylesheet" href="/styles.css">
 </head>
@@ -25,49 +29,51 @@
             <span>Kabynyt</span>
         </a>
         <div class="nav-links">
+            <a href="/#features">Features</a>
+            <a href="/#pricing">Pricing</a>
             <a href="/privacy.html">Privacy</a>
         </div>
     </nav>
 </header>
 
 <main id="main">
-<section class="hero" style="text-align:left;padding:64px 0 32px">
-    <h1 style="font-size:clamp(2rem,4.5vw,3rem)">Support</h1>
-    <p class="hero-sub" style="margin:0">Help with Kabynyt — email is the fastest path.</p>
+<section class="doc-hero">
+    <h1><span class="accent">Support</span></h1>
+    <p>Help with Kabynyt &mdash; email is the fastest path.</p>
 </section>
 
-<section class="section" style="max-width:760px">
-    <h2 style="text-align:left">Contact</h2>
-    <p style="color:var(--text-2);margin-bottom:24px">Email <a href="mailto:gregyuzik@icloud.com?subject=Kabynyt%20Support" style="color:var(--accent)">gregyuzik@icloud.com</a> with the device you're on (iPhone or iPad), the version of Kabynyt (Settings &rarr; About), and what you saw.</p>
+<section class="doc-section">
+    <h2>Contact</h2>
+    <p>Email <a href="mailto:gregyuzik@icloud.com?subject=Kabynyt%20Support">gregyuzik@icloud.com</a> with the device you're on (iPhone or iPad), the version of Kabynyt (Settings &rarr; About), and what you saw.</p>
 
-    <h2 style="text-align:left;margin-top:32px">Common questions</h2>
+    <h2>Common questions</h2>
 
-    <div class="feature" style="margin-bottom:14px">
+    <div class="faq-card">
         <h3>How do I import an existing collection?</h3>
         <p>Settings &rarr; Import &rarr; pick a CSV. Kabynyt asks you to map your columns to its fields the first time; it remembers the mapping for subsequent imports.</p>
     </div>
 
-    <div class="feature" style="margin-bottom:14px">
+    <div class="faq-card">
         <h3>Does barcode scanning need internet?</h3>
-        <p>Yes — barcode scans send the barcode digits to Google's Gemini 3.5 Flash for a deep lookup that returns title, manufacturer, year, and price range. Scanning still works offline, but you'll get the barcode only, not the title or cover.</p>
+        <p>Yes &mdash; barcode scans send the barcode digits to Google's Gemini 3.5 Flash for a deep lookup that returns title, manufacturer, year, and price range. Scanning still works offline, but you'll get the barcode only, not the title or cover.</p>
     </div>
 
-    <div class="feature" style="margin-bottom:14px">
+    <div class="faq-card">
         <h3>Does AI photo identification need internet?</h3>
-        <p>Yes — Kabynyt sends the photo to Google's Gemini 3.5 Flash for identification. You can supply your own Gemini API key in Settings, or use the bundled key (limited to 5 free identifications, then $0.99/month).</p>
+        <p>Yes &mdash; Kabynyt sends the photo to Google's Gemini 3.5 Flash for identification. You can supply your own Gemini API key in Settings, or use the bundled key (limited to 5 free identifications, then $0.99/month).</p>
     </div>
 
-    <div class="feature" style="margin-bottom:14px">
+    <div class="faq-card">
         <h3>How do I back up my collection?</h3>
         <p>iCloud sync is automatic if enabled. Settings &rarr; Backup also exports a JSON snapshot you can save anywhere.</p>
     </div>
 
-    <div class="feature" style="margin-bottom:14px">
+    <div class="faq-card">
         <h3>Is Kabynyt free?</h3>
-        <p>The app is free to download and use indefinitely. Smart Add — the AI-powered photo identification and barcode deep-lookup — is free for the first five identifications, then $0.99 a month if you'd like more. Everything you've already added stays yours either way.</p>
+        <p>The app is free to download and use indefinitely. Smart Add &mdash; the AI-powered photo identification and barcode deep-lookup &mdash; is free for the first five identifications, then $0.99 a month if you'd like more. Everything you've already added stays yours either way.</p>
     </div>
 
-    <div class="feature">
+    <div class="faq-card">
         <h3>I deleted something by accident</h3>
         <p>Settings &rarr; Trash. Deleted items live for 30 days before they're purged.</p>
     </div>

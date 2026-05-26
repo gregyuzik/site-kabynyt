@@ -7,10 +7,14 @@
     <title>Privacy &middot; Kabynyt</title>
     <meta name="description" content="Kabynyt's privacy policy. The short version: your collection stays on your devices.">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta name="theme-color" content="#0a0712" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#f5efe6" media="(prefers-color-scheme: light)">
-    <link rel="icon" type="image/png" href="/assets/AppIcon.png">
-    <link rel="apple-touch-icon" href="/assets/AppIcon.png">
+    <meta name="theme-color" content="#0f0a1f" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#fbf6ec" media="(prefers-color-scheme: light)">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png">
     <link rel="canonical" href="https://kabynyt.com/privacy.html">
     <link rel="stylesheet" href="/styles.css">
 </head>
@@ -25,35 +29,37 @@
             <span>Kabynyt</span>
         </a>
         <div class="nav-links">
+            <a href="/#features">Features</a>
+            <a href="/#pricing">Pricing</a>
             <a href="/support.html">Support</a>
         </div>
     </nav>
 </header>
 
 <main id="main">
-<section class="hero" style="text-align:left;padding:64px 0 32px">
-    <h1 style="font-size:clamp(2rem,4.5vw,3rem)">Privacy</h1>
-    <p class="hero-sub" style="margin:0">Last updated: 2026-05-26</p>
+<section class="doc-hero">
+    <h1><span class="accent">Privacy</span></h1>
+    <p>Last updated: 2026-05-26</p>
 </section>
 
-<section class="section" style="max-width:760px">
-    <h2 style="text-align:left">The short version</h2>
-    <p style="color:var(--text-2);margin-bottom:18px">Your collection stays on your devices. Kabynyt does not collect, transmit, or sell your data. There are no third-party trackers in the app.</p>
+<section class="doc-section">
+    <h2>The short version</h2>
+    <p>Your collection stays on your devices. Kabynyt does not collect, transmit, or sell your data. There are no third-party trackers in the app.</p>
 
-    <h2 style="text-align:left;margin-top:32px">What stays on-device</h2>
-    <p style="color:var(--text-2);margin-bottom:18px">Every item you add — photos, notes, prices, metadata — is stored in SwiftData on your iPhone or iPad. If you have iCloud enabled, it syncs through your private CloudKit container to your other iOS devices. Apple cannot read this data; Kabynyt cannot read this data; nobody but you can read this data.</p>
+    <h2>What stays on-device</h2>
+    <p>Every item you add &mdash; photos, notes, prices, metadata &mdash; is stored in SwiftData on your iPhone or iPad. If you have iCloud enabled, it syncs through your private CloudKit container to your other iOS devices. Apple cannot read this data; Kabynyt cannot read this data; nobody but you can read this data.</p>
 
-    <h2 style="text-align:left;margin-top:32px">AI photo identification</h2>
-    <p style="color:var(--text-2);margin-bottom:18px">When you ask Kabynyt to identify a collectible from a photo, the photo is sent to Google's Gemini 3.5 Flash model for analysis. Kabynyt does not see this traffic — the request goes from your device directly to Google with the Gemini API key bundled in the app (or your own key, if you supplied one in Settings). Google's privacy policy governs how Gemini processes the request. Photos are not retained by Kabynyt and are not used to train any model.</p>
+    <h2>AI photo identification</h2>
+    <p>When you ask Kabynyt to identify a collectible from a photo, the photo is sent to Google's Gemini 3.5 Flash model for analysis. Kabynyt does not see this traffic &mdash; the request goes from your device directly to Google with the Gemini API key bundled in the app (or your own key, if you supplied one in Settings). Google's privacy policy governs how Gemini processes the request. Photos are not retained by Kabynyt and are not used to train any model.</p>
 
-    <h2 style="text-align:left;margin-top:32px">Barcode lookups</h2>
-    <p style="color:var(--text-2);margin-bottom:18px">When you scan a barcode, the barcode value is sent to Google's Gemini 3.5 Flash model for a deep lookup that returns title, manufacturer, year, and market price range in one request. No identifying information about you or your device is sent — only the barcode digits.</p>
+    <h2>Barcode lookups</h2>
+    <p>When you scan a barcode, the barcode value is sent to Google's Gemini 3.5 Flash model for a deep lookup that returns title, manufacturer, year, and market price range in one request. No identifying information about you or your device is sent &mdash; only the barcode digits.</p>
 
-    <h2 style="text-align:left;margin-top:32px">This website</h2>
-    <p style="color:var(--text-2);margin-bottom:18px">This website (kabynyt.com) is a static site hosted on GitHub Pages. It does not use cookies and does not run any analytics. Standard web server logs (IP, user agent, page requested) are collected by GitHub on its standard retention schedule.</p>
+    <h2>This website</h2>
+    <p>This website (kabynyt.com) is a static site hosted on GitHub Pages. It does not use cookies and does not run any analytics. Standard web server logs (IP, user agent, page requested) are collected by GitHub on its standard retention schedule.</p>
 
-    <h2 style="text-align:left;margin-top:32px">Contact</h2>
-    <p style="color:var(--text-2)">Questions? <a href="mailto:gregyuzik@icloud.com" style="color:var(--accent)">gregyuzik@icloud.com</a></p>
+    <h2>Contact</h2>
+    <p>Questions? <a href="mailto:gregyuzik@icloud.com">gregyuzik@icloud.com</a></p>
 </section>
 </main>
 

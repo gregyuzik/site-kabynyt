@@ -80,34 +80,49 @@ The privacy policy says: the app collects no data; this website uses no cookies 
 - **DNS lives outside this repo.** A/AAAA records for `kabynyt.com` need to point at GitHub Pages (`185.199.108.153` / `109` / `110` / `111` for A; the IPv6 set similarly). The `www` subdomain should `CNAME` to `gregyuzik.github.io`. GitHub Pages will issue a Let's Encrypt cert automatically once DNS resolves.
 - **`.nojekyll` must exist** or GitHub Pages skips any path starting with `_`. Don't delete it.
 - **Don't hand-edit `sitemap.xml` lastmod blindly** — set it to the date the page actually changed. Stale lastmods are an SEO antipattern.
-- **App icon sync:** the iOS app ships its icon as an iOS 26 Icon Composer bundle at `/Users/greg/git/Kabynyt/KabynytiOS/AppIcon.icon/` (the old `Assets.xcassets/AppIcon.appiconset` path is gone). The website icon is a deliberate aurora-themed variant — it does NOT match the solid-indigo iOS app icon. It uses the same white cabinet silhouette over a green / cyan / indigo aurora mesh, echoing the in-app AuroraCanvas. To regenerate:
+- **App icon sync:** the iOS app ships its icon as an iOS 26 Icon Composer bundle at `/Users/greg/git/Kabynyt/KabynytiOS/AppIcon.icon/` (the old `Assets.xcassets/AppIcon.appiconset` path is gone). The website icon must be the **actual iOS-rendered output** of that bundle — Icon Composer applies a Liquid Glass effect (translucency, refraction, automatic-gradient) at runtime that no static magick composite can fully replicate. The only reliable way to capture it is to screenshot the rendered icon from a booted simulator's home screen:
 
   ```sh
-  # 1. Aurora-mesh background (Shepards interpolation between control points)
-  #    emerald top-left, cyan top-right, indigo bottom.
-  magick -size 1024x1024 xc:'#0f1230' \
-    -sparse-color Shepards '
-      200,200 #4dd6a0
-      720,260 #4d9dd6
-      80,900  #2a1a55
-      950,900 #1a0e3a
-      512,512 #1f3070
-    ' \
-    \( /Users/greg/git/Kabynyt/KabynytiOS/AppIcon.icon/Assets/cabinet.png \
-       -resize 620x620 \
-       -channel A -evaluate multiply 0.95 +channel \
-    \) -gravity center -compose Over -composite \
-    assets/AppIcon.png
+  # 1. Build + install Kabynyt on the canonical iOS 26 simulator.
+  cd /Users/greg/git/Kabynyt
+  [ -d Kabynyt.xcodeproj ] || xcodegen generate
+  xcodebuild -scheme KabynytiOS \
+    -destination 'platform=iOS Simulator,name=iPhone 17 Pro' \
+    -derivedDataPath /tmp/kabynyt-build build
+  APP=$(find /tmp/kabynyt-build -name 'Kabynyt.app' -type d | head -1)
+  xcrun simctl boot "iPhone 17 Pro" 2>/dev/null
+  xcrun simctl install booted "$APP"
 
-  # 2. Generate the favicon set from the new 1024x1024 source.
-  sips -z 16 16   assets/AppIcon.png --out assets/favicon-16.png
-  sips -z 32 32   assets/AppIcon.png --out assets/favicon-32.png
-  sips -z 48 48   assets/AppIcon.png --out assets/favicon-48.png
-  sips -z 180 180 assets/AppIcon.png --out assets/favicon-180.png
-  sips -z 192 192 assets/AppIcon.png --out assets/favicon-192.png
-  sips -z 512 512 assets/AppIcon.png --out assets/favicon-512.png
+  # 2. Send the sim to the home screen and screenshot it.
+  xcrun simctl terminate booted com.legend.kabynyt 2>/dev/null
+  sleep 1
+  mkdir -p /tmp/icon-work
+  xcrun simctl io booted screenshot /tmp/icon-work/springboard.png
+
+  # 3. Find the Kabynyt icon's 180x180 region in the screenshot — coordinates
+  #    depend on the home-screen layout. Crop a 200x200 area near where the
+  #    icon sits, inspect visually, then tighten to 180x180 at the exact
+  #    top-left of the icon. (For the current home-screen layout the icon
+  #    was at +382+880, but that will drift as new apps install.)
+  magick /tmp/icon-work/springboard.png -crop 180x180+382+880 /tmp/icon-work/icon-raw.png
+
+  # 4. Mask the iOS continuous-corner squircle (radius ≈ 22.5% of icon size)
+  #    so the corners are transparent rather than carrying home-screen
+  #    wallpaper bleed, then Lanczos-upscale to 1024×1024.
+  cd /Users/greg/git/site-kabynyt
+  magick -size 180x180 xc:none -fill white \
+    -draw "roundrectangle 0,0 179,179 41,41" /tmp/icon-work/mask.png
+  magick /tmp/icon-work/icon-raw.png /tmp/icon-work/mask.png \
+    -compose DstIn -composite /tmp/icon-work/icon-rounded.png
+  magick /tmp/icon-work/icon-rounded.png -filter Lanczos \
+    -resize 1024x1024 assets/AppIcon.png
+
+  # 5. Regenerate the favicon set from the new 1024×1024 source.
+  for s in 16 32 48 180 192 512; do
+    sips -z $s $s assets/AppIcon.png --out assets/favicon-$s.png
+  done
   magick assets/favicon-16.png assets/favicon-32.png assets/favicon-48.png favicon.ico
   ```
 
-  If the cabinet silhouette changes (different shape, not just color), use the new `cabinet.png` path. If the aurora palette changes in the app, retune the Shepards control points so the icon stays in sync visually. Commit `assets/AppIcon.png`, `assets/favicon-*.png`, and `favicon.ico` together.
+  The 180×180 native capture is the highest resolution iOS exposes for the rendered icon — the upscale to 1024 will be soft. The .app bundle also ships a legacy `AppIcon60x60@2x.png` at 120×120 as a fallback, but it's not higher quality. Commit `assets/AppIcon.png`, `assets/favicon-*.png`, and `favicon.ico` together.
 - **Theme color in `<meta name="theme-color">` is split into dark/light variants** matching `styles.css`. If you change the page background, update both meta tags too.

@@ -1,0 +1,65 @@
+#!/bin/sh
+# Per-repo pre-push hook for site-kabynyt.
+#
+# Validates that every HTML file in the repo root is well-formed enough
+# to be served by GitHub Pages. Catches mis-typed tags, unclosed quotes,
+# and broken CSP meta tags before they ship.
+#
+# Dispatched by the global pre-push hook (~/.config/git/hooks/pre-push).
+# Bypass with `git push --no-verify` only if you understand why.
+
+set -eu
+
+top=$(git rev-parse --show-toplevel)
+cd "$top"
+
+# 1. HTML well-formedness. xmllint is shipped with macOS by default.
+fail=0
+for f in *.html; do
+    [ -f "$f" ] || continue
+    if ! xmllint --html --noout "$f" 2>/dev/null; then
+        # --html mode is lenient; try the strict pass and report human-readable
+        # diagnostics if it fails. Tags being unclosed in <p>/<img>/<br> is fine
+        # under --html, so we only fail on actual structural breaks.
+        echo "pre-push: $f failed HTML validation"
+        xmllint --html --noout "$f" || true
+        fail=1
+    fi
+done
+
+# 2. Sitemap is valid XML.
+if [ -f sitemap.xml ]; then
+    if ! xmllint --noout sitemap.xml 2>/dev/null; then
+        echo "pre-push: sitemap.xml is not valid XML"
+        xmllint --noout sitemap.xml || true
+        fail=1
+    fi
+fi
+
+# 3. CNAME has exactly one line, no whitespace surprises.
+if [ -f CNAME ]; then
+    lines=$(wc -l < CNAME | tr -d ' ')
+    # Allow 0 or 1 trailing newlines but no multi-line content.
+    if [ "$lines" -gt 1 ]; then
+        echo "pre-push: CNAME has $lines newlines — GitHub Pages reads only the first line"
+        fail=1
+    fi
+fi
+
+# 4. manifest.json parses as JSON.
+if [ -f manifest.json ]; then
+    if ! python3 -c "import json,sys; json.load(open('manifest.json'))" 2>/dev/null; then
+        echo "pre-push: manifest.json is not valid JSON"
+        python3 -c "import json,sys; json.load(open('manifest.json'))" || true
+        fail=1
+    fi
+fi
+
+if [ "$fail" -ne 0 ]; then
+    echo
+    echo "pre-push: validation failed — fix issues above and try again,"
+    echo "          or bypass with 'git push --no-verify' if you really mean it."
+    exit 1
+fi
+
+exit 0

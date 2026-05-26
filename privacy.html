@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
     <title>Privacy &middot; Kabynyt</title>
     <meta name="description" content="Kabynyt's privacy policy. The short version: your collection stays on your devices.">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta name="theme-color" content="#0f0a1f" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#0a0712" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#fbf6ec" media="(prefers-color-scheme: light)">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kabynyt.com/privacy.html">
+    <meta property="og:title" content="Privacy &middot; Kabynyt">
+    <meta property="og:description" content="Kabynyt's privacy policy. The short version: your collection stays on your devices.">
+    <meta property="og:image" content="https://kabynyt.com/assets/AppIcon.png">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Privacy &middot; Kabynyt">
+    <meta name="twitter:description" content="Kabynyt's privacy policy. The short version: your collection stays on your devices.">
+    <meta name="twitter:image" content="https://kabynyt.com/assets/AppIcon.png">
 
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
@@ -55,8 +66,11 @@
     <h2>Barcode lookups</h2>
     <p>When you scan a barcode, the barcode value is sent to Google's Gemini 3.5 Flash model for a deep lookup that returns title, manufacturer, year, and market price range in one request. No identifying information about you or your device is sent &mdash; only the barcode digits.</p>
 
+    <h2>Catalog enrichment</h2>
+    <p>To fill in titles, covers, and metadata after a barcode scan or CSV import, Kabynyt queries public catalogs: the iTunes Search API (movies, TV, music, podcasts), Open Library (books), MusicBrainz and Cover Art Archive (music), Discogs (vinyl), and Wikipedia (general entries). Only the title, identifier, or barcode being looked up is sent &mdash; never your collection, your other items, or anything that identifies you.</p>
+
     <h2>This website</h2>
-    <p>This website (kabynyt.com) is a static site hosted on GitHub Pages. It does not use cookies and does not run any analytics. Standard web server logs (IP, user agent, page requested) are collected by GitHub on its standard retention schedule.</p>
+    <p>This website (kabynyt.com) is a static site, hosted on GitHub Pages and proxied through Cloudflare. It does not set cookies and loads no third-party scripts. Cloudflare and GitHub each maintain standard request logs (IP, user agent, page requested) per their own privacy policies; Cloudflare may also report aggregate page-load metrics through its built-in Web Analytics.</p>
 
     <h2>Contact</h2>
     <p>Questions? <a href="mailto:support@kabynyt.com">support@kabynyt.com</a></p>

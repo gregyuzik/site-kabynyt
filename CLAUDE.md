@@ -19,7 +19,10 @@ site-kabynyt/
 ├── CNAME             # `kabynyt.com`
 ├── .nojekyll         # Disables Jekyll so paths starting with `_` work
 ├── assets/
-│   └── AppIcon.png   # Synced from the Kabynyt app's asset catalog
+│   ├── AppIcon.png       # Re-rendered from KabynytiOS/AppIcon.icon/ — see "App icon sync" below
+│   ├── favicon-*.png     # 16/32/48/180/192/512 — generated from AppIcon.png via sips
+│   └── screenshots/      # Framed device screenshots for the showcase section
+├── favicon.ico           # 16+32+48 multi-resolution ICO, generated from the favicon-*.png set
 ├── .github/
 │   ├── workflows/    # codeql, gitleaks, deploy-pages
 │   ├── dependabot.yml
@@ -77,5 +80,30 @@ The privacy policy says: the app collects no data; this website uses no cookies 
 - **DNS lives outside this repo.** A/AAAA records for `kabynyt.com` need to point at GitHub Pages (`185.199.108.153` / `109` / `110` / `111` for A; the IPv6 set similarly). The `www` subdomain should `CNAME` to `gregyuzik.github.io`. GitHub Pages will issue a Let's Encrypt cert automatically once DNS resolves.
 - **`.nojekyll` must exist** or GitHub Pages skips any path starting with `_`. Don't delete it.
 - **Don't hand-edit `sitemap.xml` lastmod blindly** — set it to the date the page actually changed. Stale lastmods are an SEO antipattern.
-- **App icon sync:** when the iOS app's icon changes, `cp /Users/greg/git/Kabynyt/KabynytiOS/Assets.xcassets/AppIcon.appiconset/AppIcon.png assets/AppIcon.png` and commit. There's no automation for this yet.
+- **App icon sync:** the iOS app now ships its icon as an iOS 26 Icon Composer bundle at `/Users/greg/git/Kabynyt/KabynytiOS/AppIcon.icon/` (the old `Assets.xcassets/AppIcon.appiconset` path is gone). To re-render the site icon and regenerate the favicon set when the app's icon changes:
+
+  ```sh
+  # 1. Composite the white cabinet over an indigo gradient that approximates
+  #    Icon Composer's automatic-gradient on display-p3:0.28,0.10,0.68.
+  #    Top-left ~30% lighter, bottom-right ~15% darker.
+  magick \
+    \( -size 1024x1024 gradient:'#6E48D5'-'#3814A0' \) \
+    \( /Users/greg/git/Kabynyt/KabynytiOS/AppIcon.icon/Assets/cabinet.png \
+       -resize 620x620 \
+       -channel A -evaluate multiply 0.92 +channel \
+    \) -gravity center -compose Over -composite \
+    -define png:compression-level=9 \
+    assets/AppIcon.png
+
+  # 2. Generate the favicon set from the new 1024x1024 source.
+  sips -z 16 16   assets/AppIcon.png --out assets/favicon-16.png
+  sips -z 32 32   assets/AppIcon.png --out assets/favicon-32.png
+  sips -z 48 48   assets/AppIcon.png --out assets/favicon-48.png
+  sips -z 180 180 assets/AppIcon.png --out assets/favicon-180.png
+  sips -z 192 192 assets/AppIcon.png --out assets/favicon-192.png
+  sips -z 512 512 assets/AppIcon.png --out assets/favicon-512.png
+  magick assets/favicon-16.png assets/favicon-32.png assets/favicon-48.png favicon.ico
+  ```
+
+  If `icon.json`'s `automatic-gradient` seed color changes (currently `display-p3:0.28,0.10,0.68` indigo), retune the gradient endpoints in step 1 to match. Commit `assets/AppIcon.png`, `assets/favicon-*.png`, and `favicon.ico` together.
 - **Theme color in `<meta name="theme-color">` is split into dark/light variants** matching `styles.css`. If you change the page background, update both meta tags too.

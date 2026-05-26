@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
     <title>Page Not Found &middot; Kabynyt</title>
     <meta name="description" content="The page you're looking for doesn't exist. Return to Kabynyt's homepage.">
     <meta name="robots" content="noindex">
@@ -30,9 +30,9 @@
 <a href="#main" class="skip-link">Skip to content</a>
 
 <header class="nav-wrap">
-    <nav class="nav-bar" aria-label="Primary">
+    <nav class="glass nav-bar" aria-label="Primary">
         <a href="/" class="nav-brand">
-            <img src="/assets/AppIcon.png" alt="" class="nav-icon" width="32" height="32">
+            <img src="/assets/AppIcon.png" alt="" class="nav-icon" width="28" height="28">
             <span>Kabynyt</span>
         </a>
         <div class="nav-links">
@@ -42,23 +42,32 @@
 </header>
 
 <main id="main">
-<section class="hero">
-    <h1>Page not <span class="accent">found</span>.</h1>
-    <p class="hero-sub">The page you're looking for doesn't exist or has been moved.</p>
-    <div class="cta-row">
-        <a href="/" class="cta-primary">Back to Kabynyt</a>
-        <a href="/support.html" class="cta-secondary">Need help?</a>
+<section class="hero" aria-labelledby="nf-title">
+    <div class="hero-inner">
+        <div class="hero-icon-wrap fade-up" style="width:120px;height:120px;color:var(--accent-glow);display:flex;align-items:center;justify-content:center" aria-hidden="true">
+            <svg viewBox="0 0 256 256" style="width:96px;height:96px"><use href="/assets/icons.svg#compass"/></svg>
+        </div>
+        <h1 id="nf-title" class="fade-up" style="--i:1">Page not <span class="accent">found</span>.</h1>
+        <p class="hero-sub fade-up" style="--i:2">The page you're looking for doesn't exist or has been moved.</p>
+        <div class="cta-row fade-up" style="--i:3">
+            <a href="/" class="cta-primary">Back to Kabynyt</a>
+            <a href="/support.html" class="cta-secondary">Need help?</a>
+        </div>
     </div>
 </section>
 </main>
 
-<footer>
-    <span>&copy; 2026 Kabynyt</span>
-    <nav aria-label="Footer">
-        <a href="/support.html">Support</a>
-        <a href="/privacy.html">Privacy</a>
-    </nav>
+<footer class="foot">
+    <div class="wrap tc">
+        <div class="foot-links">
+            <a href="/">Home</a>
+            <a href="/support.html">Support</a>
+            <a href="/privacy.html">Privacy</a>
+        </div>
+        <p class="foot-copy">&copy; 2026 Kabynyt. All rights reserved.</p>
+    </div>
 </footer>
 
+<script src="/reveal.js"></script>
 </body>
 </html>

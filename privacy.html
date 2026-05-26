@@ -44,10 +44,10 @@
     <p style="color:var(--text-2);margin-bottom:18px">Every item you add — photos, notes, prices, metadata — is stored in SwiftData on your iPhone or iPad. If you have iCloud enabled, it syncs through your private CloudKit container to your other iOS devices. Apple cannot read this data; Kabynyt cannot read this data; nobody but you can read this data.</p>
 
     <h2 style="text-align:left;margin-top:32px">AI photo identification</h2>
-    <p style="color:var(--text-2);margin-bottom:18px">When you ask Kabynyt to identify a collectible from a photo, the photo is processed by Apple Intelligence on the Neural Engine of your iPhone or iPad. No image data is sent to a server. If you choose to supply a Gemini API key in Settings as a fallback, photos are sent to Google's Gemini API — only when you trigger it, and only with the key you provide. Kabynyt does not see this traffic.</p>
+    <p style="color:var(--text-2);margin-bottom:18px">When you ask Kabynyt to identify a collectible from a photo, the photo is sent to Google's Gemini 3.5 Flash model for analysis. Kabynyt does not see this traffic — the request goes from your device directly to Google with the Gemini API key bundled in the app (or your own key, if you supplied one in Settings). Google's privacy policy governs how Gemini processes the request. Photos are not retained by Kabynyt and are not used to train any model.</p>
 
     <h2 style="text-align:left;margin-top:32px">Barcode lookups</h2>
-    <p style="color:var(--text-2);margin-bottom:18px">When you scan a barcode, Kabynyt queries free public catalogs (Open Library, Apple iTunes, MusicBrainz, Open Food Facts, Wikidata, UPCitemdb) for descriptive metadata. These queries contain only the barcode, no identifying information.</p>
+    <p style="color:var(--text-2);margin-bottom:18px">When you scan a barcode, the barcode value is sent to Google's Gemini 3.5 Flash model for a deep lookup that returns title, manufacturer, year, and market price range in one request. No identifying information about you or your device is sent — only the barcode digits.</p>
 
     <h2 style="text-align:left;margin-top:32px">This website</h2>
     <p style="color:var(--text-2);margin-bottom:18px">This website (kabynyt.com) is a static site hosted on GitHub Pages. It does not use cookies and does not run any analytics. Standard web server logs (IP, user agent, page requested) are collected by GitHub on its standard retention schedule.</p>

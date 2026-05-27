@@ -17,8 +17,8 @@
     --text-1:#fff;
     --text-2:rgba(255,255,255,.78);
     --text-3:rgba(255,255,255,.55);
-    --accent-color:#5ac8fa;
-    --accent-warm:#ffcc00;
+    --accent-color:#5be0a8;
+    --accent-warm:#7d7bfa;
     --radius:20px;
     --radius-lg:28px;
     --ease:cubic-bezier(.16,1,.3,1);
@@ -37,10 +37,10 @@
    safe-area insets uniformly. Layered gradient gives the hero a soft
    sky halo that fades into flat navy by ~70vh. */
 html{
-    background:#0a1838;
+    background:#0e1a18;
     background:
-        radial-gradient(ellipse 1100px 720px at 50% -10%, #1a2f6e 0%, transparent 60%),
-        #0a1838;
+        radial-gradient(ellipse 1200px 760px at 50% -8%, #1f6048 0%, transparent 55%),
+        linear-gradient(180deg, #0a2a1f 0%, #0e2236 42%, #161349 100%);
 }
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
@@ -64,8 +64,10 @@ body::before{
     inset:0;
     pointer-events:none;
     background:
-        radial-gradient(circle 600px at 18% 88%, rgba(90,200,250,.08) 0%, transparent 70%),
-        radial-gradient(circle 500px at 88% 36%, rgba(212,165,40,.05) 0%, transparent 70%);
+        radial-gradient(ellipse 1100px 600px at 50% 5%, rgba(52,199,89,.22) 0%, transparent 65%),
+        radial-gradient(ellipse 700px 500px at 18% 38%, rgba(77,219,168,.10) 0%, transparent 70%),
+        radial-gradient(ellipse 800px 700px at 82% 70%, rgba(88,86,214,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 1100px 500px at 50% 100%, rgba(125,123,250,.22) 0%, transparent 70%);
     z-index:0;
 }
 /* Noise overlay — breaks 8-bit gradient banding in the radial washes. Inline
@@ -179,12 +181,12 @@ body > *{position:relative;z-index:1}
 .hero-inner{max-width:680px}
 .hero-icon{
     width:128px;height:128px;border-radius:30px;
-    /* Dual bloom — cyan dominant with a gold halo underneath so the brand's
-       cyan+amber pair reads as intentional from the hero, not just pricing. */
+    /* Dual bloom — aurora green dominant with an indigo halo underneath so the
+       page's green→indigo palette reads as intentional from the hero down. */
     box-shadow:
         0 30px 80px rgba(0,0,0,.45),
-        0 0 110px rgba(90,200,250,.34),
-        0 0 180px rgba(255,204,0,.14),
+        0 0 110px rgba(52,199,89,.34),
+        0 0 180px rgba(125,123,250,.18),
         0 0 0 1px rgba(255,255,255,.06);
     margin-bottom:2rem;
 }
@@ -199,8 +201,9 @@ body > *{position:relative;z-index:1}
     padding-bottom:.1em;
     text-wrap:balance;
     font-feature-settings:"kern","liga","ss01";
-    /* Gradient text wash — cooler at top, warmer at bottom for the gold tie-in. */
-    background:linear-gradient(170deg,#fff 0%,#cfe2ff 55%,#ffe8a8 100%);
+    /* Gradient text wash — aurora green at mid, indigo at the tail so the title
+       carries the same green→indigo arc as the page canvas. */
+    background:linear-gradient(170deg,#fff 0%,#b8eed4 55%,#c8c4ff 100%);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
@@ -240,7 +243,7 @@ body > *{position:relative;z-index:1}
 .divider,hr.divider{
     width:100%;max-width:220px;height:1px;
     margin:0 auto;border:0;
-    background:linear-gradient(90deg,transparent,rgba(90,200,250,.65),rgba(255,204,0,.5),transparent);
+    background:linear-gradient(90deg,transparent,rgba(52,199,89,.65),rgba(125,123,250,.55),transparent);
     opacity:.9;
     position:relative;
 }
@@ -249,8 +252,8 @@ body > *{position:relative;z-index:1}
     position:absolute;left:50%;top:50%;
     width:7px;height:7px;border-radius:50%;
     transform:translate(-50%,-50%);
-    background:radial-gradient(circle,#fff 0%,rgba(90,200,250,.9) 55%,rgba(90,200,250,0) 100%);
-    box-shadow:0 0 14px rgba(90,200,250,.7),0 0 28px rgba(255,204,0,.25);
+    background:radial-gradient(circle,#fff 0%,rgba(91,224,168,.9) 55%,rgba(91,224,168,0) 100%);
+    box-shadow:0 0 14px rgba(52,199,89,.7),0 0 28px rgba(125,123,250,.3);
 }
 
 /* ── Section title (editorial eyebrow + serif headline) ── */
@@ -318,10 +321,11 @@ h1.sec-title{
     border-radius:var(--radius-lg);
     text-align:center;
     /* Dual background-clip paints a subtle gradient frame: a translucent
-       fill over padding-box, a blue→gold sheen over border-box. */
+       fill over padding-box, a mint→indigo sheen over border-box that mirrors
+       the page canvas's green-to-indigo arc. */
     background:
         linear-gradient(rgba(255,255,255,.05),rgba(255,255,255,.02)) padding-box,
-        linear-gradient(135deg,rgba(90,200,250,.45),rgba(255,255,255,.06) 35%,rgba(255,255,255,.06) 65%,rgba(212,165,40,.4)) border-box;
+        linear-gradient(135deg,rgba(52,199,89,.45),rgba(255,255,255,.06) 35%,rgba(255,255,255,.06) 65%,rgba(125,123,250,.5)) border-box;
     border:1px solid transparent;
     box-shadow:0 30px 80px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
 }
@@ -649,40 +653,41 @@ h1.sec-title{
         --text-1:#241a0c;
         --text-2:rgba(36,26,12,.74);
         --text-3:rgba(36,26,12,.52);
-        --accent-color:#0068cc;
-        --accent-warm:#b8791a;
+        --accent-color:#0e7a52;
+        --accent-warm:#4a47b3;
     }
-    /* Warm paper-white base with cyan→warm aurora gradient. The warmth ties
-       the page palette to the pricing card's gold frame; cyan halo at top
-       keeps the hero's blue identity. */
+    /* Warm paper-white base with mint→indigo aurora gradient. The mint halo
+       at top mirrors dark-mode's aurora green; the indigo wash at the bottom
+       mirrors the dark-mode indigo finish. Pricing card stays gold for the
+       premium-tier contrast moment. */
     html{
         background:#f3ecde;
         background:
-            radial-gradient(ellipse 1200px 780px at 50% -10%, #dfe8f5 0%, transparent 62%),
-            radial-gradient(ellipse 900px 600px at 85% 30%, #fbeecc 0%, transparent 70%),
+            radial-gradient(ellipse 1200px 780px at 50% -10%, #d6efde 0%, transparent 62%),
+            radial-gradient(ellipse 900px 600px at 50% 100%, #dfdcf6 0%, transparent 65%),
             #f3ecde;
     }
     body::before{
         background:
-            radial-gradient(circle 700px at 15% 85%, rgba(0,104,204,.14) 0%, transparent 70%),
-            radial-gradient(circle 560px at 85% 32%, rgba(184,121,26,.14) 0%, transparent 70%);
+            radial-gradient(circle 720px at 50% 8%, rgba(14,122,82,.14) 0%, transparent 70%),
+            radial-gradient(circle 620px at 50% 96%, rgba(74,71,179,.14) 0%, transparent 70%);
     }
     .hero h1,h1.sec-title{
-        background:linear-gradient(170deg,#241a0c 0%,#2e4b82 55%,#8a5a12 100%);
+        background:linear-gradient(170deg,#102018 0%,#1e6346 55%,#2a217d 100%);
         -webkit-background-clip:text;background-clip:text;
         -webkit-text-fill-color:transparent;color:transparent;
     }
-    .sec-title{color:#241a0c}
-    .sec-title em{color:#2e4b82}
-    .sec-eyebrow{color:rgba(36,26,12,.58)}
-    .sec-eyebrow .num{color:#2e4b82}
-    .sec-eyebrow::before,.sec-eyebrow::after{background:linear-gradient(90deg,transparent,rgba(46,75,130,.5),transparent)}
+    .sec-title{color:#102018}
+    .sec-title em{color:#1e6346}
+    .sec-eyebrow{color:rgba(16,32,24,.58)}
+    .sec-eyebrow .num{color:#1e6346}
+    .sec-eyebrow::before,.sec-eyebrow::after{background:linear-gradient(90deg,transparent,rgba(14,122,82,.5),transparent)}
     .hero-icon{
         box-shadow:
-            0 24px 64px rgba(36,26,12,.18),
-            0 0 110px rgba(0,104,204,.18),
-            0 0 180px rgba(184,121,26,.16),
-            0 0 0 1px rgba(36,26,12,.05);
+            0 24px 64px rgba(16,32,24,.18),
+            0 0 110px rgba(14,122,82,.20),
+            0 0 180px rgba(74,71,179,.18),
+            0 0 0 1px rgba(16,32,24,.05);
     }
     .nav-bar{background:rgba(255,249,235,.6);border:1px solid rgba(60,40,10,.1);box-shadow:0 10px 40px rgba(36,26,12,.1), inset 0 1px 0 rgba(255,255,255,.7)}
     .nav-bar:hover{background:rgba(255,249,235,.78)}
@@ -702,18 +707,18 @@ h1.sec-title{
     .cta-panel{
         background:
             linear-gradient(rgba(255,253,245,.72),rgba(255,249,235,.52)) padding-box,
-            linear-gradient(135deg,rgba(0,104,204,.4),rgba(60,40,10,.05) 35%,rgba(60,40,10,.05) 65%,rgba(184,121,26,.4)) border-box;
-        box-shadow:0 30px 80px rgba(60,40,10,.12), inset 0 1px 0 rgba(255,255,255,.6);
+            linear-gradient(135deg,rgba(14,122,82,.4),rgba(16,32,24,.05) 35%,rgba(16,32,24,.05) 65%,rgba(74,71,179,.4)) border-box;
+        box-shadow:0 30px 80px rgba(16,32,24,.12), inset 0 1px 0 rgba(255,255,255,.6);
     }
     .feature-card:hover, .card:hover{
         box-shadow:0 16px 40px rgba(60,40,10,.12), 0 0 60px -20px var(--card-accent);
     }
-    .divider,hr.divider{background:linear-gradient(90deg,transparent,rgba(0,104,204,.5),rgba(184,121,26,.5),transparent);opacity:.8}
+    .divider,hr.divider{background:linear-gradient(90deg,transparent,rgba(14,122,82,.5),rgba(74,71,179,.5),transparent);opacity:.8}
     .divider::after{
-        background:radial-gradient(circle,#fff 0%,rgba(0,104,204,.9) 55%,rgba(0,104,204,0) 100%);
-        box-shadow:0 0 14px rgba(0,104,204,.55),0 0 28px rgba(184,121,26,.3);
+        background:radial-gradient(circle,#fff 0%,rgba(14,122,82,.9) 55%,rgba(14,122,82,0) 100%);
+        box-shadow:0 0 14px rgba(14,122,82,.55),0 0 28px rgba(74,71,179,.3);
     }
-    .bottom-cta h2 em{color:#0068cc}
+    .bottom-cta h2 em{color:#0e7a52}
     .step-n{background:rgba(0,122,255,.12);color:#007aff;border:1px solid rgba(0,122,255,.25);box-shadow:0 0 24px rgba(0,122,255,.12)}
     .glass-btn{background:var(--text-1);color:#fff}
     .glass-btn:hover{box-shadow:0 8px 30px rgba(0,0,0,.12)}

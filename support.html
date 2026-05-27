@@ -5,30 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
     <title>Support &middot; Kabynyt</title>
-    <meta name="description" content="Get help with Kabynyt. Contact the developer directly.">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta name="theme-color" content="#0a0712" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#fbf6ec" media="(prefers-color-scheme: light)">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kabynyt.com/support.html">
-    <meta property="og:title" content="Support &middot; Kabynyt">
-    <meta property="og:description" content="Get help with Kabynyt. Contact the developer directly.">
-    <meta property="og:image" content="https://kabynyt.com/assets/AppIcon.png">
-    <meta property="og:locale" content="en_US">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Support &middot; Kabynyt">
-    <meta name="twitter:description" content="Get help with Kabynyt. Contact the developer directly.">
-    <meta name="twitter:image" content="https://kabynyt.com/assets/AppIcon.png">
-
+    <meta name="description" content="Get help with Kabynyt. How to import a CSV, scan a barcode, identify a collectible by photo, back up to iCloud, and more.">
+    <link rel="canonical" href="https://kabynyt.com/support.html">
+    <meta name="theme-color" content="#0a1838" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f3ecde" media="(prefers-color-scheme: light)">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png">
-    <link rel="canonical" href="https://kabynyt.com/support.html">
-    <link rel="stylesheet" href="/styles.css">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kabynyt.com/support.html">
+    <meta property="og:title" content="Support &middot; Kabynyt">
+    <meta property="og:description" content="Get help with Kabynyt. How to import a CSV, scan a barcode, identify a collectible by photo, back up to iCloud, and more.">
+    <meta property="og:image" content="https://kabynyt.com/assets/AppIcon.png">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Support &middot; Kabynyt">
+    <meta name="twitter:description" content="Get help with Kabynyt.">
+    <meta name="twitter:image" content="https://kabynyt.com/assets/AppIcon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
+    <link rel="stylesheet" href="/styles.css?v=1">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -38,10 +37,18 @@
         "mainEntity": [
             {
                 "@type": "Question",
+                "name": "How do I add my first collectible?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Tap the + button. The camera opens straight to capture so you can shoot the item. Smart Add runs Identify on the photo and pre-fills the form before you tap save. You can also paste a title, scan a barcode, or type the details by hand."
+                }
+            },
+            {
+                "@type": "Question",
                 "name": "How do I import an existing collection?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Settings → Import → pick Goodreads (books), Letterboxd (movies), or Discogs (vinyl), then pick the CSV file. Each format expects the exporter's stock columns — nothing to configure."
+                    "text": "Settings → Import → pick Goodreads (books), Letterboxd (movies), or Discogs (vinyl), then pick the CSV file. Each format expects the exporter's stock columns — nothing to configure. Covers back-fill automatically from iTunes, Open Library, MusicBrainz, Discogs, and Wikipedia."
                 }
             },
             {
@@ -49,7 +56,7 @@
                 "name": "Does barcode scanning need internet?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes — barcode scans send the barcode digits to Google's Gemini 3.5 Flash for a deep lookup that returns title, manufacturer, year, and price range. Scanning still works offline, but you'll get the barcode only, not the title or cover."
+                    "text": "Yes — barcode scans send the digits to Google's Gemini 3.5 Flash for a deep lookup that returns title, manufacturer, year, and price range. Scanning still works offline, but you'll get the barcode digits only, not the title or cover."
                 }
             },
             {
@@ -57,7 +64,7 @@
                 "name": "Does AI photo identification need internet?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes — Kabynyt sends the photo to Google's Gemini 3.5 Flash for identification. You can supply your own Gemini API key in Settings, or use the bundled key (limited to 5 free identifications, then $0.99/month)."
+                    "text": "Yes — Kabynyt sends the photo to Google's Gemini 3.5 Flash for identification. You can supply your own Gemini API key in Settings, or use the bundled key (free for the first 5 identifications, then $0.99/month for unlimited Smart Add)."
                 }
             },
             {
@@ -65,7 +72,7 @@
                 "name": "How do I back up my collection?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "iCloud sync is automatic if enabled. Settings → Backup & Restore also exports a JSON snapshot you can save anywhere."
+                    "text": "iCloud sync is automatic when iCloud is enabled — every iPhone and iPad signed into the same Apple ID stays in sync through your private CloudKit container. Settings → Backup & Restore also exports a JSON snapshot you can save anywhere."
                 }
             },
             {
@@ -73,7 +80,15 @@
                 "name": "Is Kabynyt free?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "The app is free to download and use indefinitely. Smart Add — the AI-powered photo identification and barcode deep-lookup — is free for the first five identifications, then $0.99 a month if you'd like more. Everything you've already added stays yours either way."
+                    "text": "The app is free to download. All 41 categories, unlimited manual entry, photos, notes, CSV import, and iCloud sync are free forever. Smart Add — the AI-powered photo identification and barcode deep-lookup — is free for the first five identifications, then $0.99 a month for unlimited use. Cancel anytime."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What devices does Kabynyt work on?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Kabynyt is a native iOS 26 app for iPhone and iPad. Your collection syncs through iCloud across every device signed into the same Apple ID."
                 }
             },
             {
@@ -81,7 +96,15 @@
                 "name": "I deleted something by accident",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Settings → Recently Deleted. Items live there for 30 days before they're purged."
+                    "text": "Settings → Recently Deleted. Items live there for 30 days before they're purged. Tap an item to restore it to your collection."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why isn't iCloud sync working?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Make sure iCloud Drive is enabled for Kabynyt in Settings → Apple ID → iCloud. Ensure you're signed into the same Apple ID on every device. The home tab shows a live sync status — pull to refresh if it's stuck."
                 }
             }
         ]
@@ -95,85 +118,175 @@
 <header class="nav-wrap">
     <nav class="glass nav-bar" aria-label="Primary">
         <a href="/" class="nav-brand">
-            <img src="/assets/AppIcon.png" alt="" class="nav-icon" width="28" height="28">
+            <img src="/assets/AppIcon.png" alt="Kabynyt" class="nav-icon" width="28" height="28">
             <span>Kabynyt</span>
         </a>
         <div class="nav-links">
-            <a href="/#features">Features</a>
-            <a href="/#pricing">Pricing</a>
+            <a href="/#pricing" data-icon="crown">Smart Add</a>
             <a href="/support.html" aria-current="page">Support</a>
         </div>
     </nav>
 </header>
 
 <main id="main">
-
 <!-- Header -->
-<section class="section" style="padding-top:8rem">
+<section class="section" style="padding-top:7rem">
     <div class="wrap tc">
-        <h1 class="sec-title fade-up">How can we <em>help?</em></h1>
-        <p class="hero-sub fade-up" style="--i:1">Email is the fastest path. Common questions are below.</p>
+        <h1 class="sec-title fade-up">How can we help?</h1>
+        <p class="hero-sub fade-up">Find answers below, or email <a href="mailto:support@kabynyt.com" style="color:var(--accent-color)">support@kabynyt.com</a>.</p>
     </div>
 </section>
 
-<hr class="divider" aria-hidden="true">
-
-<!-- FAQ -->
-<section class="section" aria-labelledby="faq-title">
+<!-- FAQ Grid -->
+<section class="section">
     <div class="wrap">
-        <div class="sec-head fade-up">
-            <span class="sec-eyebrow">FAQ</span>
-            <h2 id="faq-title" class="sec-title">Common questions</h2>
-        </div>
+        <h2 class="sec-title fade-up" style="font-size:clamp(1.5rem,3vw,2rem)">Frequently Asked Questions</h2>
         <div class="faq-grid-2 fade-up">
             <div class="glass card">
-                <span class="card-ico" style="--c:#007aff;--bg:rgba(0,122,255,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#upload-simple"/></svg></span>
-                <h3>How do I import an existing collection?</h3>
-                <p>Settings &rarr; Import &rarr; pick Goodreads (books), Letterboxd (movies), or Discogs (vinyl), then pick the CSV file. Each format expects the exporter's stock columns &mdash; nothing to configure.</p>
+                <span class="card-ico" style="--c:#ff453a;--bg:rgba(255,69,58,.12)" aria-hidden="true">📸</span>
+                <h3>How do I add my first collectible?</h3>
+                <p>Tap the &laquo;+&raquo; button. The camera opens straight to capture so you can shoot the item. Smart Add runs Identify on the photo and pre-fills the form before you tap save. You can also paste a title, scan a barcode, or type the details by hand.</p>
             </div>
             <div class="glass card">
-                <span class="card-ico" style="--c:#34c759;--bg:rgba(52,199,89,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#wifi-high"/></svg></span>
+                <span class="card-ico" style="--c:#007aff;--bg:rgba(0,122,255,.12)" aria-hidden="true">📥</span>
+                <h3>How do I import a collection?</h3>
+                <p>Settings &rarr; Import &rarr; pick Goodreads (books), Letterboxd (movies), or Discogs (vinyl), then pick the CSV file. Each format expects the exporter's stock columns &mdash; nothing to configure. Covers back-fill automatically.</p>
+            </div>
+            <div class="glass card">
+                <span class="card-ico" style="--c:#34c759;--bg:rgba(52,199,89,.12)" aria-hidden="true">📊</span>
                 <h3>Does barcode scanning need internet?</h3>
-                <p>Yes &mdash; barcode scans send the digits to Google's Gemini 3.5 Flash for a deep lookup that returns title, manufacturer, year, and price range. Scanning still works offline, but you'll get the barcode only, not the title or cover.</p>
+                <p>Yes &mdash; barcode scans send the digits to Google's Gemini 3.5 Flash for a deep lookup that returns title, manufacturer, year, and price range. Scanning still works offline, but you'll get the barcode digits only, not the title or cover.</p>
             </div>
             <div class="glass card">
-                <span class="card-ico" style="--c:#af52de;--bg:rgba(175,82,222,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#magic-wand"/></svg></span>
+                <span class="card-ico" style="--c:#af52de;--bg:rgba(175,82,222,.12)" aria-hidden="true">✨</span>
                 <h3>Does AI photo identification need internet?</h3>
-                <p>Yes &mdash; Kabynyt sends the photo to Google's Gemini 3.5 Flash for identification. You can supply your own Gemini API key in Settings, or use the bundled key (limited to 5 free identifications, then $0.99/month).</p>
+                <p>Yes &mdash; Kabynyt sends the photo to Google's Gemini 3.5 Flash for identification. You can supply your own Gemini API key in Settings, or use the bundled key (free for 5 identifications, then $0.99/month).</p>
             </div>
             <div class="glass card">
-                <span class="card-ico" style="--c:#4ddba8;--bg:rgba(77,219,168,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#floppy-disk"/></svg></span>
+                <span class="card-ico" style="--c:#5ac8fa;--bg:rgba(90,200,250,.12)" aria-hidden="true">☁️</span>
                 <h3>How do I back up my collection?</h3>
-                <p>iCloud sync is automatic if enabled. Settings &rarr; Backup &amp; Restore also exports a JSON snapshot you can save anywhere.</p>
+                <p>iCloud sync is automatic when iCloud is enabled &mdash; every iPhone and iPad signed into the same Apple ID stays in sync through your private CloudKit container. Settings &rarr; Backup &amp; Restore also exports a JSON snapshot you can save anywhere.</p>
             </div>
             <div class="glass card">
-                <span class="card-ico" style="--c:#f4b942;--bg:rgba(244,185,66,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#currency-circle-dollar"/></svg></span>
+                <span class="card-ico" style="--c:#ffcc00;--bg:rgba(255,204,0,.12)" aria-hidden="true">💰</span>
                 <h3>Is Kabynyt free?</h3>
-                <p>The app is free to download and use indefinitely. Smart Add &mdash; the AI-powered photo identification and barcode deep-lookup &mdash; is free for the first five identifications, then $0.99 a month if you'd like more. Everything you've already added stays yours either way.</p>
+                <p>The app is free to download. All 41 categories, unlimited manual entry, photos, notes, CSV import, and iCloud sync are free forever. Smart Add is free for 5 identifications, then $0.99 a month for unlimited use. Cancel anytime.</p>
             </div>
             <div class="glass card">
-                <span class="card-ico" style="--c:#ff453a;--bg:rgba(255,69,58,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#trash-simple"/></svg></span>
+                <span class="card-ico" style="--c:#5ac8fa;--bg:rgba(90,200,250,.12)" aria-hidden="true">🔎</span>
+                <h3>Can I search for digital media without a barcode?</h3>
+                <p>Yes &mdash; tap Search by name in the + menu and type a title. Kabynyt returns up to fifteen matches from iTunes (movies, TV, music, podcasts). Pick one and the form pre-fills.</p>
+            </div>
+            <div class="glass card">
+                <span class="card-ico" style="--c:#a2845e;--bg:rgba(162,132,94,.12)" aria-hidden="true">🎨</span>
+                <h3>Where do covers and metadata come from?</h3>
+                <p>iTunes for movies/TV/music/podcasts, Open Library for books, MusicBrainz and Cover Art Archive for music, Discogs for vinyl, and Wikipedia for general entries. Only the title, identifier, or barcode is sent &mdash; never your collection.</p>
+            </div>
+            <div class="glass card">
+                <span class="card-ico" style="--c:#5856d6;--bg:rgba(88,86,214,.12)" aria-hidden="true">🔍</span>
+                <h3>How do filters and sorting work?</h3>
+                <p>Filter by status (owned, wishlist, loaned, retired), photo presence, rating, or price; sort by date added, title, value, or rating. Filters apply across every category at once, or pin to one.</p>
+            </div>
+            <div class="glass card">
+                <span class="card-ico" style="--c:#af52de;--bg:rgba(175,82,222,.12)" aria-hidden="true">🏷️</span>
+                <h3>What's the difference between tags and subcategories?</h3>
+                <p>A category is one of 41 types Kabynyt knows the schema for (Books, Wine, LEGO, &hellip;). A subcategory is a free-form sub-bucket inside a category (&ldquo;Pok&eacute;mon&rdquo; inside Trading Cards). A tag is any label you want, free-form, used across categories.</p>
+            </div>
+            <div class="glass card">
+                <span class="card-ico" style="--c:#ff2d55;--bg:rgba(255,45,85,.12)" aria-hidden="true">❤️</span>
+                <h3>How do wishlist and loans work?</h3>
+                <p>Mark any item as wishlist instead of owned to track what you want. Lend something? Tap Loaned and log who has it &mdash; the home tab surfaces overdue loans so you remember to ask for them back.</p>
+            </div>
+            <div class="glass card">
+                <span class="card-ico" style="--c:#636366;--bg:rgba(99,99,102,.12)" aria-hidden="true">🗑️</span>
                 <h3>I deleted something by accident</h3>
-                <p>Settings &rarr; Recently Deleted. Items live there for 30 days before they're purged.</p>
+                <p>Settings &rarr; Recently Deleted. Items wait 30 days before they're purged. Tap an item to restore it to your collection exactly as it was.</p>
             </div>
         </div>
     </div>
 </section>
 
-<hr class="divider" aria-hidden="true">
+<!-- Getting Started -->
+<section class="section">
+    <div class="wrap">
+        <h2 class="sec-title fade-up" style="font-size:clamp(1.5rem,3vw,2rem)">Getting Started</h2>
+        <div class="glass steps fade-up">
+            <div class="step">
+                <span class="step-n">1</span>
+                <div><h3>Open the + menu</h3><p>The big &laquo;+&raquo; button in the tab bar opens five ways to add: camera, barcode, search, type, or import.</p></div>
+            </div>
+            <span class="step-div"></span>
+            <div class="step">
+                <span class="step-n">2</span>
+                <div><h3>Capture or look it up</h3><p>Shoot a photo for Smart Add, scan a barcode, type a title for iTunes, or hand-enter what you know.</p></div>
+            </div>
+            <span class="step-div"></span>
+            <div class="step">
+                <span class="step-n">3</span>
+                <div><h3>Review the pre-fill</h3><p>Title, category, cover, year, and price come back filled in &mdash; tweak anything before saving.</p></div>
+            </div>
+            <span class="step-div"></span>
+            <div class="step">
+                <span class="step-n">4</span>
+                <div><h3>Browse, sort, and filter</h3><p>Open any category, mix filters and sorts, or jump to the home tab for Pick of the Day and Recently Added.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tips -->
+<section class="section">
+    <div class="wrap">
+        <h2 class="sec-title fade-up" style="font-size:clamp(1.5rem,3vw,2rem)">Tips &amp; Tricks</h2>
+        <div class="faq-grid-2 fade-up">
+            <div class="glass card"><span class="card-ico" style="--c:#ffcc00;--bg:rgba(255,204,0,.12)" aria-hidden="true">⚡</span><h3>Bring your own Gemini key</h3><p>Settings &rarr; Smart Add &rarr; paste your key. Bypass the 5-identification limit and pay Google directly per request.</p></div>
+            <div class="glass card"><span class="card-ico" style="--c:#5ac8fa;--bg:rgba(90,200,250,.12)" aria-hidden="true">🔎</span><h3>iTunes search beats typing</h3><p>For movies, TV, music, and podcasts, search by title returns covers and metadata in one tap.</p></div>
+            <div class="glass card"><span class="card-ico" style="--c:#af52de;--bg:rgba(175,82,222,.12)" aria-hidden="true">🏷️</span><h3>Use subcategories generously</h3><p>&ldquo;Pok&eacute;mon&rdquo; inside Trading Cards, &ldquo;Hot Wheels&rdquo; inside Toys &mdash; sub-buckets keep large categories navigable.</p></div>
+            <div class="glass card"><span class="card-ico" style="--c:#a2845e;--bg:rgba(162,132,94,.12)" aria-hidden="true">🎨</span><h3>Run cover-art fetch after imports</h3><p>CSV imports leave covers blank if the source didn't include them &mdash; the cover-art pass back-fills overnight.</p></div>
+            <div class="glass card"><span class="card-ico" style="--c:#5ac8fa;--bg:rgba(90,200,250,.12)" aria-hidden="true">☁️</span><h3>Enable iCloud early</h3><p>Turn on iCloud sync before you add hundreds of items, so the first sync is small and fast.</p></div>
+            <div class="glass card"><span class="card-ico" style="--c:#ff2d55;--bg:rgba(255,45,85,.12)" aria-hidden="true">❤️</span><h3>Use wishlist for hunts</h3><p>Mark items as wishlist while browsing &mdash; the home tab surfaces wishlists you haven't acted on.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Subscription -->
+<section class="section">
+    <div class="wrap tc">
+        <div class="glass price-card fade-up">
+            <div class="price-head">
+                <span class="price-badge">Smart Add</span>
+                <p style="margin-top:.5rem;font-size:.95rem;color:var(--text-2)">Try the first 5 identifications free, no sign-up. After that, $0.99 a month for unlimited Smart Add. Cancel anytime.</p>
+            </div>
+            <div class="price-foot">
+                <p style="font-size:.85rem;color:var(--text-3)">Manage in Settings &rarr; Apple ID &rarr; Subscriptions. Tap &ldquo;Restore Purchases&rdquo; in Kabynyt Settings to reactivate.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Troubleshooting -->
+<section class="section">
+    <div class="wrap">
+        <h2 class="sec-title fade-up" style="font-size:clamp(1.5rem,3vw,2rem)">Troubleshooting</h2>
+        <div class="glass fade-up" style="border-radius:var(--radius);padding:1rem 2rem">
+            <details class="troubleshoot-item"><summary>iCloud sync isn't working</summary><div class="troubleshoot-answer">Make sure iCloud Drive is enabled for Kabynyt in Settings &rarr; Apple ID &rarr; iCloud. Ensure you're signed into the same Apple ID on every device. The home tab shows a live sync status; pull to refresh if it's stuck.</div></details>
+            <details class="troubleshoot-item"><summary>Smart Add says &ldquo;limit reached&rdquo;</summary><div class="troubleshoot-answer">You've used the 5 bundled identifications. Either subscribe for $0.99/month in Settings, or paste your own Gemini API key in Settings &rarr; Smart Add and pay Google directly per request.</div></details>
+            <details class="troubleshoot-item"><summary>Photo identification picked the wrong item</summary><div class="troubleshoot-answer">Re-shoot in better light against a contrasting background &mdash; AI vision works best on clean shots. You can also edit the pre-filled form before tapping save, or fall back to barcode scan or title search.</div></details>
+            <details class="troubleshoot-item"><summary>Barcode scan returned the wrong title</summary><div class="troubleshoot-answer">Barcode databases sometimes ship the same UPC across re-issues. Tap the title to edit it, or use Search by name to find the right edition.</div></details>
+            <details class="troubleshoot-item"><summary>CSV import failed</summary><div class="troubleshoot-answer">Use the unmodified export from Goodreads, Letterboxd, or Discogs &mdash; Kabynyt expects the stock columns. If you edited the file, undo the changes or re-export.</div></details>
+            <details class="troubleshoot-item"><summary>Cover art didn't load on import</summary><div class="troubleshoot-answer">The back-fill runs on a background pass after import &mdash; give it a few minutes on a good connection. Pull to refresh on the category to re-trigger.</div></details>
+            <details class="troubleshoot-item"><summary>Subscription not recognized</summary><div class="troubleshoot-answer">Settings &rarr; Smart Add &rarr; Restore Purchases. Make sure you're signed in with the Apple ID used to subscribe.</div></details>
+            <details class="troubleshoot-item"><summary>I deleted an item; how do I get it back?</summary><div class="troubleshoot-answer">Settings &rarr; Recently Deleted. Items wait 30 days before they're purged. Tap an item to restore it.</div></details>
+        </div>
+    </div>
+</section>
 
 <!-- Contact -->
 <section class="section">
     <div class="wrap tc fade-up">
-        <span class="sec-eyebrow">Contact</span>
-        <h2 class="sec-title" style="font-size:clamp(1.6rem,3.2vw,2.2rem)">Still need help?</h2>
-        <p style="color:var(--text-2);margin:0 auto 1.75rem;max-width:520px">Send the device you're on (iPhone or iPad), the version of Kabynyt (Settings &rarr; About), and a quick note about what you saw.</p>
-        <a href="mailto:gregyuzik@icloud.com?subject=Kabynyt%20Support" class="glass-btn">
-            <span style="display:inline-flex;align-items:center;gap:.6rem">
-                <svg viewBox="0 0 256 256" style="width:18px;height:18px"><use href="/assets/icons.svg#envelope"/></svg>
-                gregyuzik@icloud.com
-            </span>
-        </a>
+        <h2 class="sec-title" style="font-size:clamp(1.5rem,3vw,2rem)">Still need help?</h2>
+        <p style="color:var(--text-2);margin-bottom:1.5rem">Email is the fastest path. Include your device (iPhone or iPad), Kabynyt version (Settings &rarr; About), and a quick note about what you saw.</p>
+        <a href="mailto:support@kabynyt.com?subject=Kabynyt%20Support" class="glass-btn" data-icon="envelope">support@kabynyt.com</a>
     </div>
 </section>
 
@@ -190,6 +303,7 @@
     </div>
 </footer>
 
-<script src="/reveal.js"></script>
+<script src="/reveal.js?v=1"></script>
+<script src="/icons.js?v=1"></script>
 </body>
 </html>

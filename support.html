@@ -104,7 +104,7 @@
                 "name": "Why isn't iCloud sync working?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Make sure iCloud Drive is enabled for Kabynyt in Settings → Apple ID → iCloud. Ensure you're signed into the same Apple ID on every device. The home tab shows a live sync status — pull to refresh if it's stuck."
+                    "text": "Make sure iCloud Drive is enabled for Kabynyt in Settings → Apple ID → iCloud. Ensure you're signed into the same Apple ID on every device. Pull to refresh on any list if a recent edit hasn't propagated."
                 }
             }
         ]
@@ -175,7 +175,7 @@
             <div class="glass card">
                 <span class="card-ico" style="--c:#5ac8fa;--bg:rgba(90,200,250,.12)" aria-hidden="true">🔎</span>
                 <h3>Can I search for digital media without a barcode?</h3>
-                <p>Yes &mdash; tap Search by name in the + menu and type a title. Kabynyt returns up to fifteen matches from iTunes (movies, TV, music, podcasts). Pick one and the form pre-fills.</p>
+                <p>Yes &mdash; tap Search by name and type a title. Kabynyt routes the search to the right catalog by category: iTunes for movies, TV, and magazines; Discogs and MusicBrainz for vinyl and music; Open Library for books and comics; Wikipedia for video games and the long tail. If the catalogs miss, an AI fallback runs to catch the rest. Pick a result and the form pre-fills.</p>
             </div>
             <div class="glass card">
                 <span class="card-ico" style="--c:#a2845e;--bg:rgba(162,132,94,.12)" aria-hidden="true">🎨</span>
@@ -269,7 +269,7 @@
     <div class="wrap">
         <h2 class="sec-title fade-up" style="font-size:clamp(1.5rem,3vw,2rem)">Troubleshooting</h2>
         <div class="glass fade-up" style="border-radius:var(--radius);padding:1rem 2rem">
-            <details class="troubleshoot-item"><summary>iCloud sync isn't working</summary><div class="troubleshoot-answer">Make sure iCloud Drive is enabled for Kabynyt in Settings &rarr; Apple ID &rarr; iCloud. Ensure you're signed into the same Apple ID on every device. The home tab shows a live sync status; pull to refresh if it's stuck.</div></details>
+            <details class="troubleshoot-item"><summary>iCloud sync isn't working</summary><div class="troubleshoot-answer">Make sure iCloud Drive is enabled for Kabynyt in Settings &rarr; Apple ID &rarr; iCloud. Ensure you're signed into the same Apple ID on every device. Pull to refresh on any list if a recent edit hasn't propagated.</div></details>
             <details class="troubleshoot-item"><summary>Kabynyt+ says &ldquo;limit reached&rdquo;</summary><div class="troubleshoot-answer">You've used the 5 bundled identifications. Either subscribe for $0.99/month in Settings, or paste your own API key in Settings &rarr; Kabynyt+ and pay the provider directly per request.</div></details>
             <details class="troubleshoot-item"><summary>Photo identification picked the wrong item</summary><div class="troubleshoot-answer">Re-shoot in better light against a contrasting background &mdash; AI vision works best on clean shots. You can also edit the pre-filled form before tapping save, or fall back to barcode scan or title search.</div></details>
             <details class="troubleshoot-item"><summary>Barcode scan returned the wrong title</summary><div class="troubleshoot-answer">Barcode databases sometimes ship the same UPC across re-issues. Tap the title to edit it, or use Search by name to find the right edition.</div></details>

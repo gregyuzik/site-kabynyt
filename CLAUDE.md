@@ -73,17 +73,6 @@ Kabynyt is iOS-only as of this writing (iPhone and iPad). The marketing copy ref
 
 The privacy policy says: the app collects no data; this website uses no cookies and no analytics. Both must remain true. If you add an analytics service, **update `privacy.html` and the CSP in the same PR**, and document the change in this file.
 
-## 2026 Visual Modernization
-The site underwent a full visual modernization in May 2026 (PRs #22–#25). Key changes:
-- New design token system (spacing, type, motion, layered glass/halo)
-- Moderate evolution of the Aurora Glass language (more breathing room, stronger editorial hierarchy, tasteful motion primitives)
-- Hero now uses the real App Store badge
-- Highlights, features, and categories are dramatically tighter and more curated
-- Support and privacy pages gained in-page navigation and scannability improvements
-- All work stayed pure static HTML/CSS, strict CSP, no screenshots (deferred to post-launch phase)
-
-Future visual work (especially real device screenshots) must follow the same rigorous simulator-first discipline as the app icon sync process.
-
 ## Common gotchas
 
 - **CNAME goes in repo root, not a subdir.** GitHub Pages reads it from `/CNAME` to determine the custom domain. Don't move it.

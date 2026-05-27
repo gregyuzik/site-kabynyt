@@ -1,16 +1,15 @@
 /* ═══════════════════════════════════════════
-   Kabynyt — Deepened Aurora Glass (2026)
-   Evolved from the original Aurora Glass foundation.
-   Dark navy + green→indigo aurora canvas. Pure gradients, one
-   backdrop-filter (nav only), excellent iOS Safari scroll.
-   Expanded token system, container queries, refined layering,
-   and disciplined motion primitives for a modern product site.
+   KLOSYT — Aurora Glass
+   Dark navy base + one static gradient halo at the top and a single
+   fixed aurora wash behind content. Pure gradients (no filter:blur,
+   no animation) — GPU-cheap and safe for iOS Safari scroll. Only the
+   nav uses backdrop-filter; stacking many was what broke iOS
+   compositor in PR #62/#63.
    ═══════════════════════════════════════════ */
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 
 :root{
-    /* ═════════════ Existing semantic tokens (preserved for compatibility) ═════════════ */
     --panel:rgba(255,255,255,.045);
     --panel-hover:rgba(255,255,255,.085);
     --border:rgba(255,255,255,.1);
@@ -23,54 +22,14 @@
     --radius:20px;
     --radius-lg:28px;
     --ease:cubic-bezier(.16,1,.3,1);
+    /* SF Pro Display for marketing-scale titles so the site reads as a
+       first-party extension of the app (which uses San Francisco throughout).
+       `-apple-system` and `BlinkMacSystemFont` resolve to SF on every Apple
+       device; `system-ui` catches Linux/Windows system UIs; generic sans-serif
+       is the final fallback. Display gets heavier weights and tighter
+       tracking applied at the rule level. */
     --font-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,"Segoe UI",sans-serif;
     --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
-
-    /* ═════════════ Modern design tokens (2026 refresh — moderate evolution) ═════════════ */
-    /* Spacing scale (t-shirt + numeric). Used for consistent rhythm across sections. */
-    --space-1:0.5rem;
-    --space-2:0.75rem;
-    --space-3:1rem;
-    --space-4:1.5rem;
-    --space-5:2rem;
-    --space-6:3rem;
-    --space-7:4rem;
-
-    /* Type scale (clamped for fluid responsive). */
-    --text-xs:clamp(0.75rem,1vw,0.82rem);
-    --text-sm:clamp(0.82rem,1.1vw,0.9rem);
-    --text-base:clamp(0.95rem,1.3vw,1rem);
-    --text-lg:clamp(1.05rem,1.6vw,1.15rem);
-    --text-xl:clamp(1.25rem,2.2vw,1.5rem);
-    --text-2xl:clamp(1.6rem,3vw,2rem);
-    --text-3xl:clamp(2rem,4.2vw,3rem);
-    --text-4xl:clamp(2.6rem,6vw,4rem);
-
-    /* Refined radius scale. */
-    --radius-sm:14px;
-    --radius-md:20px;   /* matches original --radius */
-    --radius-lg:28px;   /* matches original */
-    --radius-xl:36px;
-
-    /* Motion tokens (tasteful & purposeful, heavily reduced-motion safe). */
-    --motion-duration-fast:180ms;
-    --motion-duration-base:280ms;
-    --motion-duration-slow:420ms;
-    --motion-ease: cubic-bezier(.16,1,.3,1);
-    --motion-ease-out:cubic-bezier(.23,1,.32,1);
-
-    /* Layered glass & halo tokens (moderate material evolution). */
-    --glass-bg:linear-gradient(rgba(255,255,255,.05),rgba(255,255,255,.02));
-    --glass-border:1px solid var(--border);
-    --glass-highlight:inset 0 1px 0 rgba(255,255,255,.06);
-    --halo-soft:0 16px 40px rgba(0,0,0,.28), 0 0 50px -20px var(--card-accent, rgba(255,255,255,.22));
-    --halo-strong:0 30px 80px rgba(0,0,0,.35), 0 0 120px -20px var(--card-accent, rgba(255,255,255,.22));
-
-    /* Semantic accent roles (new in this refresh, used on support/legal). */
-    --accent-success:#34c759;
-    --accent-info:#5ac8fa;
-    --accent-warning:#ffcc00;
-
     color-scheme:dark light;
 }
 
@@ -174,10 +133,10 @@ body > *{position:relative;z-index:1}
 /* ── Layout ── */
 .wrap{
     width:100%;max-width:1440px;margin:0 auto;
-    padding-left:max(var(--space-4),4vw,env(safe-area-inset-left));
-    padding-right:max(var(--space-4),4vw,env(safe-area-inset-right));
+    padding-left:max(1.5rem,4vw,env(safe-area-inset-left));
+    padding-right:max(1.5rem,4vw,env(safe-area-inset-right));
 }
-.section{padding:var(--space-7) 0}
+.section{padding:5rem 0}
 .tc{text-align:center}
 
 /* ── Nav ──
@@ -330,7 +289,7 @@ body > *{position:relative;z-index:1}
 /* ── Section title (editorial eyebrow + serif headline) ── */
 .sec-head{
     text-align:center;
-    margin:0 auto var(--space-6);
+    margin:0 auto 3rem;
     max-width:680px;
     padding:0 1rem;
 }
@@ -356,12 +315,12 @@ body > *{position:relative;z-index:1}
 }
 .sec-title{
     font-family:var(--font-display);
-    font-size:var(--text-3xl);
+    font-size:clamp(2rem,4.5vw,3.2rem);
     font-weight:700;letter-spacing:-.035em;line-height:1.1;
     text-wrap:balance;
     color:var(--text-1);
     text-align:center;
-    margin:0 auto var(--space-5);
+    margin:0 auto 2.5rem;
     padding-bottom:.08em;
     font-feature-settings:"kern","liga","ss01";
 }
@@ -388,14 +347,17 @@ h1.sec-title{
 .bottom-cta{padding:5rem 0 6rem}
 .cta-panel{
     max-width:640px;margin:0 auto;
-    padding:var(--space-6) var(--space-5);
+    padding:3.5rem 2.5rem;
     border-radius:var(--radius-lg);
     text-align:center;
+    /* Dual background-clip paints a subtle gradient frame: a translucent
+       fill over padding-box, a mint→indigo sheen over border-box that mirrors
+       the page canvas's green-to-indigo arc. */
     background:
-        var(--glass-bg) padding-box,
+        linear-gradient(rgba(255,255,255,.05),rgba(255,255,255,.02)) padding-box,
         linear-gradient(135deg,rgba(52,199,89,.45),rgba(255,255,255,.06) 35%,rgba(255,255,255,.06) 65%,rgba(110,72,214,.55)) border-box;
     border:1px solid transparent;
-    box-shadow:var(--halo-strong);
+    box-shadow:0 30px 80px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
 }
 .bottom-cta h2{
     font-family:var(--font-display);
@@ -411,10 +373,12 @@ h1.sec-title{
     margin:0 auto 2rem;max-width:480px;
 }
 
-/* Legacy override kept for safety during token migration — will be removed in a follow-up pass */
+/* ── Section title (layout override — sizing + tracking come from the
+   detailed rule above; this block just re-centers and restates size so
+   cascade order is predictable) ── */
 .sec-title{
-    text-align:center;margin-bottom:var(--space-6);
-    font-size:var(--text-3xl);
+    text-align:center;margin-bottom:3.5rem;
+    font-size:clamp(2rem,4.5vw,3rem);
     font-weight:700;letter-spacing:-.035em;line-height:1.1;
 }
 
@@ -433,23 +397,29 @@ h1.sec-title{
 }
 .whats-new-grid{
     display:grid;grid-template-columns:repeat(2,1fr);
-    gap:var(--space-3);max-width:1100px;margin:0 auto;
+    gap:.85rem;max-width:1100px;margin:0 auto;
 }
-@container (min-width: 900px){
+@media(min-width:900px){
     .whats-new-grid{grid-template-columns:repeat(4,1fr)}
 }
 .wn-card{
-    padding:var(--space-4) var(--space-4);border-radius:var(--radius-md);
-    display:flex;flex-direction:column;gap:var(--space-2);
+    padding:1.3rem 1.15rem;border-radius:var(--radius);
+    display:flex;flex-direction:column;gap:.55rem;
+    /* justify-content:center so a short description (e.g. "Share Tab" at
+       15 words) doesn't leave empty space below while its row neighbors
+       — which stretch the card to match row height — run twice as long. */
     justify-content:center;
     --card-accent:var(--c, rgba(255,255,255,.22));
-    transition:background var(--motion-duration-base) var(--motion-ease),border-color var(--motion-duration-base) var(--motion-ease),transform var(--motion-duration-base) var(--motion-ease),box-shadow var(--motion-duration-base) var(--motion-ease);
+    transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);
 }
 .wn-card:hover{
     background:var(--panel-hover);
     border-color:var(--border-hover);
+    /* Matches .feature-card:hover translateY(-4px) — consistency when the
+       eye travels between the two card grids stacked directly above and
+       below each other. */
     transform:translateY(-4px);
-    box-shadow:var(--halo-soft);
+    box-shadow:0 16px 40px rgba(0,0,0,.28), 0 0 50px -20px var(--card-accent);
 }
 .wn-icon{font-size:1.55rem;line-height:1;color:var(--c)}
 .wn-card h3{font-size:1rem;font-weight:700;letter-spacing:-.01em}
@@ -458,25 +428,25 @@ h1.sec-title{
 /* ── Features grid ── */
 .features-grid{
     display:grid;grid-template-columns:repeat(2,1fr);
-    gap:var(--space-4);max-width:960px;margin:0 auto;
+    gap:1rem;max-width:960px;margin:0 auto;
 }
-@container (min-width: 720px){
-    .features-grid{grid-template-columns:repeat(3,1fr)}
-}
-@container (min-width: 1100px){
+@media(min-width:1100px){
     .features-grid{grid-template-columns:repeat(4,1fr);max-width:1280px}
 }
 .feature-card{
-    display:flex;gap:var(--space-4);align-items:flex-start;
-    padding:var(--space-5);border-radius:var(--radius-md);
+    display:flex;gap:1.1rem;align-items:flex-start;
+    padding:1.5rem;border-radius:var(--radius);
+    /* Per-card accent pulled from the inline `--c` the card already sets
+       on its icon span; falls back to neutral if absent. */
     --card-accent:var(--c, rgba(255,255,255,.22));
-    transition:background var(--motion-duration-base) var(--motion-ease),border-color var(--motion-duration-base) var(--motion-ease),transform var(--motion-duration-base) var(--motion-ease),box-shadow var(--motion-duration-base) var(--motion-ease);
+    transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);
 }
 .feature-card:hover{
     background:var(--panel-hover);
     border-color:var(--border-hover);
     transform:translateY(-4px);
-    box-shadow:var(--halo-strong);
+    /* Colored halo matches the icon hue on each card. */
+    box-shadow:0 20px 50px rgba(0,0,0,.3), 0 0 60px -20px var(--card-accent);
 }
 .feature-icon{
     width:48px;height:48px;border-radius:14px;flex-shrink:0;
@@ -523,11 +493,14 @@ h1.sec-title{
     max-width:520px;width:100%;margin:0 auto;
     border-radius:var(--radius-lg);overflow:hidden;
     background:
-        var(--glass-bg) padding-box,
+        linear-gradient(rgba(255,255,255,.06),rgba(255,255,255,.03)) padding-box,
         linear-gradient(135deg,rgba(255,204,0,.55),rgba(255,149,0,.2) 30%,rgba(255,255,255,.08) 60%,rgba(255,204,0,.4)) border-box;
     border:1px solid transparent;
-    box-shadow:var(--halo-strong);
-    transition:transform var(--motion-duration-base) var(--motion-ease),box-shadow var(--motion-duration-base) var(--motion-ease);
+    /* Second shadow acts as a wide amber halo without needing a wrapper. */
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35),
+        0 0 120px -20px rgba(255,204,0,.18);
+    transition:transform .3s var(--ease),box-shadow .3s var(--ease);
 }
 .price-card:hover{
     transform:translateY(-3px);
@@ -667,36 +640,36 @@ h1.sec-title{
 
 /* ── Responsive ── */
 @media(max-width:768px){
-    .section{padding:var(--space-6) 0}
-    .steps{flex-direction:column;padding:var(--space-5);gap:0}
-    .step{padding:var(--space-3) 0}
+    .section{padding:3.5rem 0}
+    .steps{flex-direction:column;padding:2rem;gap:0}
+    .step{padding:1rem 0}
     .step-div{width:100%;height:1px;align-self:stretch}
-    .features-grid{grid-template-columns:1fr;gap:var(--space-3)}
-    .whats-new-grid{grid-template-columns:1fr;gap:var(--space-2)}
+    .features-grid{grid-template-columns:1fr;gap:.85rem}
+    .whats-new-grid{grid-template-columns:1fr;gap:.7rem}
     .faq-grid-2{grid-template-columns:1fr}
-    .legal-card{padding:var(--space-4)}
-    .bottom-cta{padding:var(--space-6) 0 var(--space-7)}
-    .cta-panel{padding:var(--space-5) var(--space-4)}
+    .legal-card{padding:1.5rem}
+    .bottom-cta{padding:4rem 0 5rem}
+    .cta-panel{padding:2.5rem 1.75rem}
     .nav-bar{width:94%;padding:0 1rem;height:48px}
     .nav-links{gap:.6rem}
     .nav-links a{font-size:.82rem}
 }
 @media(max-width:480px){
     .hero h1{font-size:2.4rem}
-    .hero-icon{width:104px;height:104px;border-radius:var(--radius-sm);margin-bottom:var(--space-4)}
+    .hero-icon{width:104px;height:104px;border-radius:24px;margin-bottom:1.5rem}
     .nav-brand span{font-size:.9rem}
     .nav-icon{height:24px;width:24px}
     .nav-bar{border-radius:22px;height:48px}
     .nav-links{gap:.4rem}
     .nav-links a{padding:0 8px}
-    .wrap{padding-left:max(var(--space-3),env(safe-area-inset-left));padding-right:max(var(--space-3),env(safe-area-inset-right))}
-    .feature-card{padding:var(--space-4);gap:var(--space-3)}
+    .wrap{padding-left:max(1rem,env(safe-area-inset-left));padding-right:max(1rem,env(safe-area-inset-right))}
+    .feature-card{padding:1.25rem;gap:.9rem}
     .feature-icon{width:42px;height:42px}
-    .card{padding:var(--space-4)}
-    .section{padding:var(--space-5) 0}
-    .price-card{border-radius:var(--radius-sm)}
+    .card{padding:1.5rem}
+    .section{padding:2.5rem 0}
+    .price-card{border-radius:20px}
     .price-num{font-size:2.8rem}
-    .cta-panel{padding:var(--space-4) var(--space-3);border-radius:var(--radius-sm)}
+    .cta-panel{padding:2rem 1.25rem;border-radius:20px}
     .divider{max-width:80px}
 }
 
@@ -828,25 +801,8 @@ h1.sec-title{
 span.glass-btn{cursor:default}
 span.glass-btn:hover{transform:none;box-shadow:none}
 
-/* ── Tasteful motion primitives (moderate evolution, reduced-motion safe) ── */
-.glass-lift{
-    transition:transform var(--motion-duration-base) var(--motion-ease),box-shadow var(--motion-duration-base) var(--motion-ease);
-}
-.glass-lift:hover{
-    transform:translateY(-3px);
-    box-shadow:var(--halo-soft);
-}
-
-.subtle-parallax{
-    transition:transform var(--motion-duration-slow) var(--motion-ease-out);
-}
-@media(prefers-reduced-motion:no-preference){
-    .subtle-parallax{transform:translateY(0)}
-}
-
 /* ── Reduced motion ── */
 @media(prefers-reduced-motion:reduce){
     .fade-up{opacity:1;transform:none;transition:none}
-    .feature-card,.card,.price-card,.badge-link,.glass-btn,.nav-bar,.cta-panel,.category-chip,.glass-lift,.subtle-parallax{transition:none;transform:none}
-    .glass-lift:hover{transform:none;box-shadow:none}
+    .feature-card,.card,.price-card,.badge-link,.glass-btn,.nav-bar,.cta-panel,.category-chip{transition:none}
 }

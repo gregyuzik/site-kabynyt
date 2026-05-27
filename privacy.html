@@ -9,11 +9,11 @@
     <link rel="canonical" href="https://kabynyt.com/privacy.html">
     <meta name="theme-color" content="#0a1838" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#f3ecde" media="(prefers-color-scheme: light)">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=4">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png?v=4">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png?v=4">
-    <link rel="shortcut icon" href="/favicon.ico?v=4">
-    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png?v=4">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=5">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png?v=5">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png?v=5">
+    <link rel="shortcut icon" href="/favicon.ico?v=5">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png?v=5">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kabynyt.com/privacy.html">
     <meta property="og:title" content="Privacy Policy &middot; Kabynyt">
@@ -27,7 +27,7 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <link rel="stylesheet" href="/styles.css?v=4">
+    <link rel="stylesheet" href="/styles.css?v=5">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -51,7 +51,7 @@
 <header class="nav-wrap">
     <nav class="glass nav-bar" aria-label="Primary">
         <a href="/" class="nav-brand">
-            <img src="/assets/AppIcon.png?v=4" alt="Kabynyt" class="nav-icon" width="28" height="28">
+            <img src="/assets/AppIcon.png?v=5" alt="Kabynyt" class="nav-icon" width="28" height="28">
             <span>Kabynyt</span>
         </a>
         <div class="nav-links">
@@ -66,7 +66,7 @@
 <section class="section" style="padding-top:7rem">
     <div class="wrap tc">
         <h1 class="sec-title fade-up">Privacy Policy</h1>
-        <p class="hero-sub fade-up">Last Updated: May 26, 2026</p>
+        <p class="hero-sub fade-up">Last Updated: May 27, 2026</p>
     </div>
 </section>
 
@@ -97,26 +97,21 @@
         </div>
 
         <div class="glass legal-card fade-up">
-            <h2>AI Photo Identification</h2>
-            <p>When you ask Kabynyt to identify a collectible from a photo, the photo is sent to Google's Gemini 3.5 Flash model for analysis. Kabynyt does not see this traffic &mdash; the request goes from your device directly to Google with either the API key bundled in the app or your own key (if you supplied one in Settings &rarr; Kabynyt+). Google's privacy policy governs how Gemini processes the request. Photos are not retained by Kabynyt and are not used to train any model.</p>
-        </div>
-
-        <div class="glass legal-card fade-up">
-            <h2>Barcode Deep-Lookup</h2>
-            <p>When you scan a barcode, the barcode value is sent to Google's Gemini 3.5 Flash for a deep lookup that returns title, manufacturer, year, and market price range in one request. No identifying information about you or your device is sent &mdash; only the barcode digits.</p>
-        </div>
-
-        <div class="glass legal-card fade-up">
-            <h2>Catalog Enrichment</h2>
-            <p>To fill in titles, covers, and metadata after a barcode scan, a name search, or a CSV import, Kabynyt queries public catalogs:</p>
-            <ul>
-                <li><strong>iTunes Search API</strong> &mdash; movies, TV, music, podcasts</li>
-                <li><strong>Open Library</strong> &mdash; books</li>
-                <li><strong>MusicBrainz</strong> and <strong>Cover Art Archive</strong> &mdash; music</li>
-                <li><strong>Discogs</strong> &mdash; vinyl</li>
-                <li><strong>Wikipedia</strong> &mdash; general entries</li>
-            </ul>
-            <p>Only the title, identifier, or barcode being looked up is sent &mdash; never your collection, your other items, or anything that identifies you.</p>
+            <h2 id="data-providers-title">Data Providers</h2>
+            <p id="data-providers-intro">Some Kabynyt features query external services to identify items, look up barcodes, or fill in covers and metadata. Each request carries only what's needed for that lookup &mdash; never your collection, your other items, your name, your email, or anything that identifies you or your device. The table below lists every provider Kabynyt may contact and what each one receives.</p>
+            <table class="legal-table" aria-labelledby="data-providers-title" aria-describedby="data-providers-intro">
+                <thead><tr><th scope="col">Provider</th><th scope="col">Used for</th><th scope="col">What's sent</th></tr></thead>
+                <tbody>
+                    <tr><td><a href="https://policies.google.com/privacy">Google Gemini</a></td><td>Photo identification, barcode deep-lookup, AI-assisted name search</td><td>The photo, barcode digits, or text query you initiated</td></tr>
+                    <tr><td><a href="https://www.apple.com/legal/privacy/">Apple iTunes Search</a></td><td>Movies, TV, music, podcasts</td><td>Your title query or an Apple catalog ID</td></tr>
+                    <tr><td><a href="https://openlibrary.org/about/policies">Open Library</a></td><td>Books</td><td>Your title query, ISBN, or work identifier</td></tr>
+                    <tr><td><a href="https://metabrainz.org/privacy">MusicBrainz</a></td><td>Music releases and metadata</td><td>Your artist/title query or a MusicBrainz release ID</td></tr>
+                    <tr><td><a href="https://metabrainz.org/privacy">Cover Art Archive</a></td><td>Music cover images</td><td>A MusicBrainz release ID</td></tr>
+                    <tr><td><a href="https://support.discogs.com/hc/en-us/articles/4419948222983">Discogs</a></td><td>Vinyl records</td><td>Your title query or a Discogs release ID</td></tr>
+                    <tr><td><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy">Wikipedia</a></td><td>General catalog entries</td><td>Your title query or a Wikipedia page slug</td></tr>
+                </tbody>
+            </table>
+            <p>Each provider's privacy policy governs how it handles the request after it leaves your device. Kabynyt does not retain photos, queries, or any other lookup data, and we do not see this traffic &mdash; requests go from your device directly to the provider.</p>
         </div>
 
         <div class="glass legal-card fade-up">
@@ -189,7 +184,7 @@
         <div class="glass legal-card fade-up">
             <h3>Description of Service</h3>
             <p>Kabynyt is a universal collectibles inventory tracker available on iPhone and iPad (iOS 26).</p>
-            <p>Kabynyt+ uses Google's Gemini 3.5 Flash to identify collectibles from photos and barcodes. Kabynyt+ requires an internet connection.</p>
+            <p>Kabynyt+ uses Google Gemini to identify collectibles from photos and barcodes. Kabynyt+ requires an internet connection.</p>
         </div>
 
         <div class="glass legal-card fade-up"><h3>Your Privacy Comes First</h3><p>Your collection belongs to you and only you. Kabynyt is architected so that <strong>we never collect, access, or store any of your personal information.</strong></p></div>
@@ -205,7 +200,7 @@
                 <li>Your account will be charged for renewal within 24 hours prior to the end of the current period.</li>
                 <li>You can manage and cancel subscriptions in your Apple ID account settings at any time.</li>
             </ul>
-            <p>Kabynyt+ includes 5 free identifications before billing begins. You may also supply your own Gemini API key in Settings &rarr; Kabynyt+ and bypass the subscription entirely, paying Google directly per request.</p>
+            <p>Kabynyt+ includes 5 free identifications before billing begins. You may also supply your own API key in Settings &rarr; Kabynyt+ and bypass the subscription entirely, paying the provider directly per request.</p>
         </div>
 
         <div class="glass legal-card fade-up"><h3>Intellectual Property</h3><p>The App, including its design, code, features, and branding, is our intellectual property.</p></div>
@@ -244,7 +239,7 @@
     </div>
 </footer>
 
-<script src="/reveal.js?v=4"></script>
-<script src="/icons.js?v=4"></script>
+<script src="/reveal.js?v=5"></script>
+<script src="/icons.js?v=5"></script>
 </body>
 </html>

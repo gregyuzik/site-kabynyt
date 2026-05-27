@@ -37,12 +37,15 @@
 }
 
 /* Base painted on <html>: fills Safari's chrome, overscroll zone, and
-   safe-area insets uniformly. Layered radial gradient gives the hero a
-   soft emerald halo that fades into indigo night by ~70vh. */
+   safe-area insets uniformly. Vertical green→indigo gradient is the
+   brand spine — emerald at the top, deep indigo at the bottom — with a
+   warm halo behind the hero so the icon's amber bloom has a ground. */
 html{
     background:#0a0712;
     background:
-        radial-gradient(ellipse 1100px 720px at 50% -10%, #1a2e4a 0%, transparent 60%),
+        radial-gradient(ellipse 1400px 800px at 50% 0%, rgba(45,180,150,.42) 0%, transparent 55%),
+        radial-gradient(ellipse 1200px 1000px at 50% 110%, rgba(80,55,200,.55) 0%, transparent 60%),
+        linear-gradient(180deg, #062018 0%, #0a0a24 45%, #0a0822 75%, #150d2e 100%),
         #0a0712;
 }
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
@@ -58,21 +61,22 @@ body{
     line-height:1.55;
 }
 
-/* Aurora layer: emerald + cyan + indigo + warm-amber wash as pure radial
-   gradients. No filter:blur anywhere — the browser rasterizes once.
-   position:fixed keeps it behind scrolling content without inflating
-   page height, and pointer-events:none keeps it out of hit-testing. */
+/* Aurora layer: emerald + cyan + violet-indigo + warm-amber wash as
+   pure radial gradients on top of the html green→indigo spine. No
+   filter:blur — the browser rasterizes once. position:fixed keeps it
+   behind scrolling content without inflating page height. */
 body::before{
     content:'';
     position:fixed;
     inset:-10%;
     pointer-events:none;
     background:
-        radial-gradient(ellipse 50% 40% at 18% 22%, rgba(45,180,150,.22) 0%, transparent 65%),
-        radial-gradient(ellipse 55% 45% at 82% 18%, rgba(60,170,210,.18) 0%, transparent 65%),
-        radial-gradient(ellipse 60% 50% at 50% 85%, rgba(80,55,180,.26) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 35% at 10% 92%, rgba(244,185,66,.06) 0%, transparent 70%),
-        radial-gradient(ellipse 45% 40% at 88% 70%, rgba(95,75,210,.14) 0%, transparent 65%);
+        radial-gradient(ellipse 55% 45% at 12% 18%, rgba(77,219,168,.36) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 88% 22%, rgba(60,170,230,.32) 0%, transparent 60%),
+        radial-gradient(ellipse 65% 55% at 50% 95%, rgba(110,75,220,.42) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 40% at 6% 88%, rgba(244,185,66,.22) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 45% at 92% 70%, rgba(160,100,235,.30) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 35% at 30% 55%, rgba(77,219,168,.16) 0%, transparent 70%);
     z-index:0;
 }
 /* Noise overlay — breaks 8-bit gradient banding in the radial washes.
@@ -182,42 +186,31 @@ body > *{position:relative;z-index:1}
     text-align:center;
     padding:calc(112px + env(safe-area-inset-top)) calc(1.5rem + env(safe-area-inset-right)) calc(64px + env(safe-area-inset-bottom)) calc(1.5rem + env(safe-area-inset-left));
 }
-.hero-inner{max-width:720px}
-.hero-icon-wrap{
-    position:relative;
-    width:140px;height:140px;
-    margin:0 auto 2rem;
-}
-.hero-icon-wrap::before{
-    content:'';
-    position:absolute;inset:-40%;
-    background:radial-gradient(circle, rgba(77,219,168,.30) 0%, transparent 60%);
-    z-index:-1;
-    border-radius:50%;
-}
+.hero-inner{max-width:680px}
 .hero-icon{
-    width:140px;height:140px;border-radius:32px;
-    display:block;
+    width:128px;height:128px;border-radius:30px;
+    display:block;margin:0 auto 2rem;
     /* Dual bloom — emerald dominant with an amber halo underneath so
        the brand's green+gold pair reads as intentional from the hero. */
     box-shadow:
         0 30px 80px rgba(0,0,0,.45),
-        0 0 110px rgba(77,219,168,.32),
-        0 0 180px rgba(244,185,66,.12),
+        0 0 110px rgba(77,219,168,.34),
+        0 0 180px rgba(244,185,66,.14),
         0 0 0 1px rgba(255,255,255,.06);
 }
 .hero h1{
     font-family:var(--font-display);
-    font-size:clamp(2.6rem,6.5vw,4.6rem);
-    /* Heavy weight + tight tracking is the Apple.com hero recipe. */
-    font-weight:800;letter-spacing:-.035em;line-height:1.05;
+    font-size:clamp(2.8rem,7vw,5rem);
+    /* Heavy weight + tight tracking is the Apple.com hero recipe. SF Pro
+       Display has optical sizing baked in at these sizes. */
+    font-weight:700;letter-spacing:-.035em;line-height:1.08;
     margin-bottom:1.25rem;
     padding-bottom:.1em;
     text-wrap:balance;
     font-feature-settings:"kern","liga","ss01";
-    /* Gradient text wash — white at top, emerald glow center, warm
-       amber at the tail for the gold tie-in. */
-    background:linear-gradient(170deg,#fff 0%,#cfe2ff 50%,#ffe8a8 100%);
+    /* Gradient text wash — white at top, cool blue mid, warm amber at
+       the tail for the gold tie-in. */
+    background:linear-gradient(170deg,#fff 0%,#cfe2ff 55%,#ffe8a8 100%);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
@@ -232,18 +225,12 @@ body > *{position:relative;z-index:1}
     .hero h1,.hero h1 .accent{color:#fff;-webkit-text-fill-color:initial}
 }
 .hero-sub{
-    font-size:clamp(1.05rem,2.2vw,1.25rem);
-    color:var(--text-2);line-height:1.6;
-    margin-bottom:2rem;
-    max-width:580px;margin-left:auto;margin-right:auto;
+    font-size:clamp(1rem,2.2vw,1.2rem);
+    color:var(--text-2);line-height:1.65;
+    margin-bottom:2.5rem;
+    max-width:44ch;margin-left:auto;margin-right:auto;
 }
 .hero-devices{margin-top:1.25rem;font-size:.85rem;color:var(--text-3);font-weight:500;letter-spacing:.02em}
-.hero-meta{
-    color:var(--text-3);
-    font-size:.92rem;
-    margin-top:1.25rem;
-    letter-spacing:.005em;
-}
 
 /* ── CTA buttons (hero + 404) ── */
 .cta-row{
@@ -417,95 +404,116 @@ h1.sec-title{
     transform:translateY(-1px);
 }
 
-/* ── Pricing — twin cards. Free is plain glass; Smart Add gets a
-   gold-bordered premium frame matching the hero icon's warm halo. ── */
-.pricing-grid{
-    display:grid;grid-template-columns:1fr;
-    gap:1.25rem;max-width:880px;margin:0 auto;
+/* ── Highlights ribbon — 4-up strip mirroring Klosyt's whats-new ── */
+.highlights .sec-head{
+    display:flex;flex-direction:column;align-items:center;gap:.9rem;
 }
-@media(min-width:760px){
-    .pricing-grid{grid-template-columns:1fr 1fr}
+.highlights-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:.85rem;max-width:1100px;margin:0 auto;
 }
+@media(min-width:900px){
+    .highlights-grid{grid-template-columns:repeat(4,1fr)}
+}
+.highlight-card{
+    padding:1.3rem 1.15rem;border-radius:var(--radius);
+    display:flex;flex-direction:column;gap:.55rem;
+    /* justify-content:center so a short description doesn't leave empty
+       space below while row neighbors stretch the card. */
+    justify-content:flex-start;
+    --card-accent:var(--c, rgba(255,255,255,.22));
+    transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.highlight-card:hover{
+    background:var(--panel-hover);
+    border-color:var(--border-hover);
+    transform:translateY(-4px);
+    box-shadow:0 16px 40px rgba(0,0,0,.28), 0 0 50px -20px var(--card-accent);
+}
+.highlight-icon{
+    width:40px;height:40px;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--bg);color:var(--c);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.1), 0 6px 16px -8px var(--c);
+    margin-bottom:.35rem;
+}
+.highlight-icon svg{width:20px;height:20px;display:block}
+.highlight-card h3{font-family:var(--font-display);font-size:1rem;font-weight:700;letter-spacing:-.01em;color:var(--text-1)}
+.highlight-card p{font-size:.9rem;color:var(--text-2);line-height:1.45}
+
+/* ── Pricing — single dominant gold-bordered card ── */
 .price-card{
+    max-width:520px;width:100%;margin:0 auto;
     border-radius:var(--radius-lg);overflow:hidden;
-    display:flex;flex-direction:column;
-    transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
-}
-.price-card--featured{
     background:
         linear-gradient(rgba(255,255,255,.06),rgba(255,255,255,.03)) padding-box,
         linear-gradient(135deg,rgba(244,185,66,.55),rgba(255,149,0,.2) 30%,rgba(255,255,255,.08) 60%,rgba(244,185,66,.4)) border-box;
     border:1px solid transparent;
+    /* Second shadow is a wide amber halo without needing a wrapper. */
     box-shadow:
         0 30px 80px rgba(0,0,0,.35),
         0 0 120px -20px rgba(244,185,66,.18);
+    transition:transform .3s var(--ease),box-shadow .3s var(--ease);
 }
-.price-card--featured:hover{
+.price-card:hover{
     transform:translateY(-3px);
     box-shadow:
         0 40px 100px rgba(0,0,0,.45),
         0 0 140px -20px rgba(244,185,66,.3);
 }
-.price-card:not(.price-card--featured){
-    background:var(--panel);
-    border:1px solid var(--border);
-    box-shadow:0 12px 40px rgba(0,0,0,.25);
-}
-.price-card:not(.price-card--featured):hover{
-    transform:translateY(-3px);
-    border-color:var(--border-hover);
-    background:var(--panel-hover);
-}
-.price-head{padding:2rem 1.75rem 1.5rem;text-align:center;border-bottom:1px solid var(--border)}
+.price-head{padding:2.5rem 2rem 2rem;text-align:center;border-bottom:1px solid var(--border)}
 .price-badge{
     display:inline-flex;align-items:center;gap:6px;
-    padding:5px 14px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.14);
-    border-radius:var(--radius-pill);
-    font-size:.78rem;font-weight:700;
-    color:var(--text-2);letter-spacing:.06em;text-transform:uppercase;
-    margin-bottom:1rem;
-}
-.price-card--featured .price-badge{
+    padding:6px 16px;
     background:linear-gradient(135deg,rgba(244,185,66,.22),rgba(255,149,0,.18));
     border:1px solid rgba(244,185,66,.4);
-    color:#ffd47a;
+    border-radius:var(--radius-pill);
+    font-size:.85rem;font-weight:700;
+    color:#ffd84a;letter-spacing:.04em;
+    margin-bottom:1.25rem;
     box-shadow:0 4px 16px rgba(244,185,66,.18);
 }
 .price-amt{display:flex;align-items:baseline;justify-content:center;gap:6px;margin-bottom:.5rem}
 .price-num{
     font-family:var(--font-display);
-    font-size:3rem;font-weight:700;letter-spacing:-.035em;line-height:1.1;
+    font-size:3.8rem;font-weight:700;letter-spacing:-.035em;line-height:1.1;
     padding-bottom:.04em;
     font-feature-settings:"kern","liga","lnum","tnum";
-    color:var(--text-1);
-}
-.price-card--featured .price-num{
     background:linear-gradient(180deg,#ffe27a 0%,#ffb000 100%);
     -webkit-background-clip:text;background-clip:text;
     color:transparent;
     -webkit-text-fill-color:transparent;
 }
 @supports not ((-webkit-background-clip:text) or (background-clip:text)){
-    .price-card--featured .price-num{color:#ffcc00;-webkit-text-fill-color:initial}
+    .price-num{color:#ffcc00;-webkit-text-fill-color:initial}
 }
 .price-per{font-size:1rem;color:var(--text-2);font-weight:500}
-.price-sub{margin-top:.25rem;font-size:.88rem;color:var(--text-3);line-height:1.45}
-.price-list{list-style:none;padding:1.5rem 1.75rem 2rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.price-trial{font-size:1rem;font-weight:600;color:var(--text-1);letter-spacing:-.01em}
+.price-trial-sub{margin-top:.2rem;font-size:.84rem;color:var(--text-3)}
+.price-list{list-style:none;padding:1.5rem 2rem;display:flex;flex-direction:column;gap:4px}
 .price-list li{
-    display:flex;align-items:flex-start;gap:10px;
-    color:var(--text-2);font-size:.95rem;line-height:1.5;
-    padding:2px 0;
+    display:flex;align-items:center;gap:12px;
+    padding:10px 12px;border-radius:12px;
+    color:var(--text-2);font-size:.95rem;line-height:1.4;
+    transition:background .15s;
 }
-.price-list li::before{
-    content:'';flex-shrink:0;
-    width:14px;height:14px;margin-top:.4em;
-    border-radius:50%;
-    background:radial-gradient(circle,var(--accent) 0%,rgba(77,219,168,.2) 70%,transparent 100%);
+.price-list li:hover{background:rgba(255,255,255,.04)}
+.pl-ico{
+    width:32px;height:32px;border-radius:8px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--bg);color:var(--c);
 }
-.price-card--featured .price-list li::before{
-    background:radial-gradient(circle,var(--accent-warm) 0%,rgba(244,185,66,.25) 70%,transparent 100%);
+.pl-ico svg{width:18px;height:18px;display:block}
+.price-list li span:last-child{font-size:.92rem;font-weight:500}
+.price-foot{padding:1.5rem 2rem 2rem;text-align:center;border-top:1px solid var(--border)}
+.price-note{
+    margin-top:.85rem;font-size:.88rem;font-weight:600;
+    color:rgba(72,219,109,.95);
+    letter-spacing:.01em;
+}
+.price-fineprint{
+    margin-top:.55rem;font-size:.76rem;color:var(--text-3);
+    line-height:1.45;letter-spacing:.01em;
 }
 
 /* ── Bottom CTA — framed panel ── */
@@ -644,6 +652,7 @@ h1.sec-title{
     .step{padding:1rem 0}
     .step-div{width:100%;height:1px;align-self:stretch}
     .features-grid{grid-template-columns:1fr;gap:.85rem}
+    .highlights-grid{grid-template-columns:1fr;gap:.7rem}
     .faq-grid-2{grid-template-columns:1fr;gap:1rem}
     .legal-card{padding:1.5rem}
     .bottom-cta{padding:4rem 0 5rem}
@@ -653,9 +662,8 @@ h1.sec-title{
     .nav-links a{font-size:.82rem;padding:0 8px}
 }
 @media(max-width:480px){
-    .hero h1{font-size:2.4rem}
-    .hero-icon-wrap{width:112px;height:112px;margin-bottom:1.5rem}
-    .hero-icon{width:112px;height:112px;border-radius:26px}
+    .hero h1{font-size:2.6rem}
+    .hero-icon{width:104px;height:104px;border-radius:24px;margin-bottom:1.5rem}
     .nav-brand span{font-size:.9rem}
     .nav-icon{height:24px;width:24px}
     .nav-bar{border-radius:22px;height:48px}
@@ -685,23 +693,25 @@ h1.sec-title{
         --accent-cool:#3a5fbf;
         --accent-warm:#8a6300;
     }
-    /* Warm paper-cream base with cyan→warm aurora gradient. The warmth
-       ties the page palette to the pricing card's gold frame; emerald
-       halo at top keeps the hero's brand identity. */
+    /* Pastel green→indigo spine — emerald at the top of the page,
+       violet/lavender at the bottom — with a warm amber halo behind
+       the hero so the palette stays grounded. */
     html{
-        background:#fbf6ec;
+        background:#f3f0e6;
         background:
-            radial-gradient(ellipse 1200px 780px at 50% -10%, #d8eee2 0%, transparent 62%),
-            radial-gradient(ellipse 900px 600px at 85% 30%, #fbeecc 0%, transparent 70%),
-            #fbf6ec;
+            radial-gradient(ellipse 1400px 800px at 50% 0%, rgba(120,220,180,.55) 0%, transparent 55%),
+            radial-gradient(ellipse 1200px 1000px at 50% 110%, rgba(170,140,235,.55) 0%, transparent 60%),
+            linear-gradient(180deg, #e8f5ee 0%, #f3ece8 45%, #efe6ee 75%, #ece4f0 100%),
+            #f3f0e6;
     }
     body::before{
         background:
-            radial-gradient(ellipse 50% 40% at 18% 22%, rgba(120,210,180,.30) 0%, transparent 65%),
-            radial-gradient(ellipse 55% 45% at 82% 18%, rgba(140,200,230,.22) 0%, transparent 65%),
-            radial-gradient(ellipse 60% 50% at 50% 85%, rgba(190,170,235,.28) 0%, transparent 65%),
-            radial-gradient(ellipse 40% 35% at 10% 92%, rgba(244,185,66,.08) 0%, transparent 70%),
-            radial-gradient(ellipse 45% 40% at 88% 70%, rgba(170,150,235,.18) 0%, transparent 65%);
+            radial-gradient(ellipse 55% 45% at 12% 18%, rgba(80,200,160,.40) 0%, transparent 60%),
+            radial-gradient(ellipse 55% 45% at 88% 22%, rgba(120,190,230,.36) 0%, transparent 60%),
+            radial-gradient(ellipse 65% 55% at 50% 95%, rgba(160,120,235,.36) 0%, transparent 60%),
+            radial-gradient(ellipse 45% 40% at 6% 88%, rgba(244,185,66,.22) 0%, transparent 60%),
+            radial-gradient(ellipse 50% 45% at 92% 70%, rgba(190,130,240,.30) 0%, transparent 60%),
+            radial-gradient(ellipse 40% 35% at 30% 55%, rgba(80,200,160,.18) 0%, transparent 70%);
     }
     .hero h1,h1.sec-title{
         background:linear-gradient(170deg,#1a0f2a 0%,#1a4f3a 55%,#7a5500 100%);
@@ -721,9 +731,6 @@ h1.sec-title{
     }
     .sec-eyebrow{color:rgba(26,15,42,.62)}
     .sec-eyebrow::before,.sec-eyebrow::after{background:linear-gradient(90deg,transparent,rgba(8,102,76,.5),transparent)}
-    .hero-icon-wrap::before{
-        background:radial-gradient(circle, rgba(8,102,76,.18) 0%, transparent 60%);
-    }
     .hero-icon{
         box-shadow:
             0 24px 64px rgba(20,12,40,.16),
@@ -741,33 +748,28 @@ h1.sec-title{
         .nav-bar{background:rgba(251,246,236,.95)}
         .nav-bar:hover{background:rgba(251,246,236,.98)}
     }
-    .price-card--featured{
+    .price-card{
         background:
             linear-gradient(rgba(255,253,245,.92),rgba(255,249,235,.72)) padding-box,
             linear-gradient(135deg,rgba(138,99,0,.55),rgba(244,185,66,.3) 30%,rgba(20,12,40,.05) 60%,rgba(138,99,0,.4)) border-box;
         box-shadow:0 30px 80px rgba(20,12,40,.14), 0 0 120px -20px rgba(138,99,0,.18);
     }
-    .price-card--featured:hover{box-shadow:0 40px 100px rgba(20,12,40,.2), 0 0 140px -20px rgba(138,99,0,.28)}
-    .price-card:not(.price-card--featured){
-        background:rgba(255,255,255,.6);
-        box-shadow:0 12px 40px rgba(20,12,40,.08);
-    }
-    .price-card:not(.price-card--featured):hover{background:rgba(255,255,255,.78)}
-    .price-badge{background:rgba(20,12,40,.04);border:1px solid rgba(20,12,40,.12);color:rgba(26,15,42,.7)}
-    .price-card--featured .price-badge{
+    .price-card:hover{box-shadow:0 40px 100px rgba(20,12,40,.2), 0 0 140px -20px rgba(138,99,0,.28)}
+    .price-badge{
         color:#6e3f00;
         background:linear-gradient(135deg,rgba(244,185,66,.3),rgba(255,149,0,.28));
         border:1px solid rgba(138,99,0,.4);
         box-shadow:0 4px 16px rgba(138,99,0,.18);
     }
-    .price-card--featured .price-num{
+    .price-num{
         background:linear-gradient(180deg,#a87800 0%,#6e4f00 100%);
         -webkit-background-clip:text;background-clip:text;
         -webkit-text-fill-color:transparent;color:transparent;
     }
     .price-head,.price-foot{border-color:rgba(20,12,40,.08)}
-    .price-list li::before{background:radial-gradient(circle,#08664c 0%,rgba(8,102,76,.2) 70%,transparent 100%)}
-    .price-card--featured .price-list li::before{background:radial-gradient(circle,#8a6300 0%,rgba(138,99,0,.25) 70%,transparent 100%)}
+    .price-list li:hover{background:rgba(0,0,0,.03)}
+    .price-note{color:rgba(0,108,56,.95)}
+    .pl-ico{box-shadow:inset 0 0 0 1px rgba(20,12,40,.06), 0 6px 16px -8px var(--c)}
     .cta-panel{
         background:
             linear-gradient(rgba(255,253,245,.72),rgba(255,249,235,.52)) padding-box,

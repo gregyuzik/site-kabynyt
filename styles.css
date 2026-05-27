@@ -1,10 +1,10 @@
 /* ═══════════════════════════════════════════
-   KLOSYT — Aurora Glass
-   Dark navy base + one static gradient halo at the top and a single
-   fixed aurora wash behind content. Pure gradients (no filter:blur,
-   no animation) — GPU-cheap and safe for iOS Safari scroll. Only the
-   nav uses backdrop-filter; stacking many was what broke iOS
-   compositor in PR #62/#63.
+   Kabynyt — Deepened Aurora Glass (2026)
+   Evolved from the original Aurora Glass foundation.
+   Dark navy + green→indigo aurora canvas. Pure gradients, one
+   backdrop-filter (nav only), excellent iOS Safari scroll.
+   Expanded token system, container queries, refined layering,
+   and disciplined motion primitives for a modern product site.
    ═══════════════════════════════════════════ */
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}

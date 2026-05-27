@@ -4,30 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
-    <title>Privacy &middot; Kabynyt</title>
+    <title>Privacy Policy &middot; Kabynyt</title>
     <meta name="description" content="Kabynyt's privacy policy. The short version: your collection stays on your devices.">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta name="theme-color" content="#0a0712" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#fbf6ec" media="(prefers-color-scheme: light)">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kabynyt.com/privacy.html">
-    <meta property="og:title" content="Privacy &middot; Kabynyt">
-    <meta property="og:description" content="Kabynyt's privacy policy. The short version: your collection stays on your devices.">
-    <meta property="og:image" content="https://kabynyt.com/assets/AppIcon.png">
-    <meta property="og:locale" content="en_US">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Privacy &middot; Kabynyt">
-    <meta name="twitter:description" content="Kabynyt's privacy policy. The short version: your collection stays on your devices.">
-    <meta name="twitter:image" content="https://kabynyt.com/assets/AppIcon.png">
-
+    <link rel="canonical" href="https://kabynyt.com/privacy.html">
+    <meta name="theme-color" content="#0a1838" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f3ecde" media="(prefers-color-scheme: light)">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png">
-    <link rel="canonical" href="https://kabynyt.com/privacy.html">
-    <link rel="stylesheet" href="/styles.css">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kabynyt.com/privacy.html">
+    <meta property="og:title" content="Privacy Policy &middot; Kabynyt">
+    <meta property="og:description" content="Kabynyt's privacy policy. The short version: your collection stays on your devices.">
+    <meta property="og:image" content="https://kabynyt.com/assets/AppIcon.png">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Privacy Policy &middot; Kabynyt">
+    <meta name="twitter:description" content="Kabynyt's privacy policy.">
+    <meta name="twitter:image" content="https://kabynyt.com/assets/AppIcon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <link rel="stylesheet" href="/styles.css?v=1">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Privacy Policy, Kabynyt",
+        "url": "https://kabynyt.com/privacy.html",
+        "description": "Kabynyt's privacy policy. Your collection stays on your devices.",
+        "inLanguage": "en",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Kabynyt",
+            "url": "https://kabynyt.com/"
+        }
+    }
+    </script>
 </head>
 <body>
 
@@ -36,67 +51,183 @@
 <header class="nav-wrap">
     <nav class="glass nav-bar" aria-label="Primary">
         <a href="/" class="nav-brand">
-            <img src="/assets/AppIcon.png" alt="" class="nav-icon" width="28" height="28">
+            <img src="/assets/AppIcon.png" alt="Kabynyt" class="nav-icon" width="28" height="28">
             <span>Kabynyt</span>
         </a>
         <div class="nav-links">
-            <a href="/#features">Features</a>
-            <a href="/#pricing">Pricing</a>
+            <a href="/#pricing" data-icon="crown">Smart Add</a>
             <a href="/support.html">Support</a>
         </div>
     </nav>
 </header>
 
 <main id="main">
-
-<!-- Header -->
-<section class="section" style="padding-top:8rem">
+<!-- Privacy Policy -->
+<section class="section" style="padding-top:7rem">
     <div class="wrap tc">
-        <h1 class="sec-title fade-up"><em>Privacy</em></h1>
-        <p class="hero-sub fade-up" style="--i:1">Your collection stays on your devices. Last updated 2026-05-26.</p>
+        <h1 class="sec-title fade-up">Privacy Policy</h1>
+        <p class="hero-sub fade-up">Last Updated: May 26, 2026</p>
     </div>
 </section>
 
-<hr class="divider" aria-hidden="true">
+<section class="section" style="padding-top:0">
+    <div class="wrap legal-content">
 
-<section class="section">
-    <div class="wrap">
-        <div class="legal-content fade-up">
-            <div class="glass legal-card">
-                <h2>The short version</h2>
-                <p>Your collection stays on your devices. Kabynyt does not collect, transmit, or sell your data. There are no third-party trackers in the app.</p>
-            </div>
-
-            <div class="glass legal-card">
-                <h2>What stays on-device</h2>
-                <p>Every item you add &mdash; photos, notes, prices, metadata &mdash; is stored in SwiftData on your iPhone or iPad. If you have iCloud enabled, it syncs through your private CloudKit container to your other iOS devices. Apple cannot read this data; Kabynyt cannot read this data; nobody but you can read this data.</p>
-            </div>
-
-            <div class="glass legal-card">
-                <h2>AI photo identification</h2>
-                <p>When you ask Kabynyt to identify a collectible from a photo, the photo is sent to Google's Gemini 3.5 Flash model for analysis. Kabynyt does not see this traffic &mdash; the request goes from your device directly to Google with the Gemini API key bundled in the app (or your own key, if you supplied one in Settings). Google's privacy policy governs how Gemini processes the request. Photos are not retained by Kabynyt and are not used to train any model.</p>
-            </div>
-
-            <div class="glass legal-card">
-                <h2>Barcode lookups</h2>
-                <p>When you scan a barcode, the barcode value is sent to Google's Gemini 3.5 Flash model for a deep lookup that returns title, manufacturer, year, and market price range in one request. No identifying information about you or your device is sent &mdash; only the barcode digits.</p>
-            </div>
-
-            <div class="glass legal-card">
-                <h2>Catalog enrichment</h2>
-                <p>To fill in titles, covers, and metadata after a barcode scan or CSV import, Kabynyt queries public catalogs: the iTunes Search API (movies, TV, music, podcasts), Open Library (books), MusicBrainz and Cover Art Archive (music), Discogs (vinyl), and Wikipedia (general entries). Only the title, identifier, or barcode being looked up is sent &mdash; never your collection, your other items, or anything that identifies you.</p>
-            </div>
-
-            <div class="glass legal-card">
-                <h2>This website</h2>
-                <p>This website (kabynyt.com) is a static site, hosted on GitHub Pages and proxied through Cloudflare. It does not set cookies and loads no third-party scripts. Cloudflare and GitHub each maintain standard request logs (IP, user agent, page requested) per their own privacy policies; Cloudflare may also report aggregate page-load metrics through its built-in Web Analytics.</p>
-            </div>
-
-            <div class="glass legal-card">
-                <h2>Contact</h2>
-                <p>Questions? <a href="mailto:gregyuzik@icloud.com">gregyuzik@icloud.com</a></p>
-            </div>
+        <div class="glass legal-card fade-up">
+            <h2>Our Privacy Promise</h2>
+            <p>Kabynyt is owned, operated, and maintained by Gregory Yuzik (&ldquo;us&rdquo;, or &ldquo;we&rdquo;).</p>
+            <p>Your collection isn't just a feature of Kabynyt &mdash; it's the foundation. <strong>Kabynyt does not collect, store, transmit, or have access to your collection.</strong></p>
+            <p>Every item you add &mdash; photos, notes, prices, metadata &mdash; lives in SwiftData on your iPhone or iPad. If you have iCloud enabled, it syncs through your private CloudKit container to your other Apple devices. Apple cannot read this data; Kabynyt cannot read this data; nobody but you can read this data.</p>
         </div>
+
+        <div class="glass legal-card fade-up">
+            <h2 id="privacy-zero-title">What Kabynyt Collects</h2>
+            <p id="privacy-zero-intro">We want to be completely transparent: <strong>the app itself collects nothing about you.</strong> A few features hand specific data to third-party services on your behalf &mdash; those are listed below the table.</p>
+            <table class="legal-table" aria-labelledby="privacy-zero-title" aria-describedby="privacy-zero-intro">
+                <thead><tr><th scope="col">Data Type</th><th scope="col">Collected by Kabynyt?</th><th scope="col">Details</th></tr></thead>
+                <tbody>
+                    <tr><td>Your collection</td><td>❌ No</td><td>Stored only on your device and your personal iCloud account.</td></tr>
+                    <tr><td>Photos</td><td>❌ No</td><td>Photos you attach to items stay in your private CloudKit container.</td></tr>
+                    <tr><td>Names or emails</td><td>❌ No</td><td>Kabynyt does not collect any personally identifiable information.</td></tr>
+                    <tr><td>Usage analytics</td><td>❌ No</td><td>Kabynyt does not track how you use the app.</td></tr>
+                    <tr><td>Advertising data</td><td>❌ No</td><td>There are no ads in Kabynyt and no advertising SDKs.</td></tr>
+                    <tr><td>Location</td><td>❌ No</td><td>Kabynyt does not request location.</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="glass legal-card fade-up">
+            <h2>AI Photo Identification</h2>
+            <p>When you ask Kabynyt to identify a collectible from a photo, the photo is sent to Google's Gemini 3.5 Flash model for analysis. Kabynyt does not see this traffic &mdash; the request goes from your device directly to Google with either the API key bundled in the app or your own key (if you supplied one in Settings &rarr; Smart Add). Google's privacy policy governs how Gemini processes the request. Photos are not retained by Kabynyt and are not used to train any model.</p>
+        </div>
+
+        <div class="glass legal-card fade-up">
+            <h2>Barcode Deep-Lookup</h2>
+            <p>When you scan a barcode, the barcode value is sent to Google's Gemini 3.5 Flash for a deep lookup that returns title, manufacturer, year, and market price range in one request. No identifying information about you or your device is sent &mdash; only the barcode digits.</p>
+        </div>
+
+        <div class="glass legal-card fade-up">
+            <h2>Catalog Enrichment</h2>
+            <p>To fill in titles, covers, and metadata after a barcode scan, a name search, or a CSV import, Kabynyt queries public catalogs:</p>
+            <ul>
+                <li><strong>iTunes Search API</strong> &mdash; movies, TV, music, podcasts</li>
+                <li><strong>Open Library</strong> &mdash; books</li>
+                <li><strong>MusicBrainz</strong> and <strong>Cover Art Archive</strong> &mdash; music</li>
+                <li><strong>Discogs</strong> &mdash; vinyl</li>
+                <li><strong>Wikipedia</strong> &mdash; general entries</li>
+            </ul>
+            <p>Only the title, identifier, or barcode being looked up is sent &mdash; never your collection, your other items, or anything that identifies you.</p>
+        </div>
+
+        <div class="glass legal-card fade-up">
+            <h2>Your Data Stays Yours</h2>
+            <p>All of your content is stored <strong>exclusively</strong> on your device and in your personal iCloud account using Apple's CloudKit. Your iCloud data is governed by <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a> and protected by Apple's encryption.</p>
+        </div>
+
+        <div class="glass legal-card fade-up">
+            <h2>Device Permissions</h2>
+            <p>Kabynyt may request the following device permissions. No data from these permissions is ever sent to Kabynyt:</p>
+            <ul>
+                <li><strong>Camera</strong> &mdash; Used to photograph collectibles and scan barcodes.</li>
+                <li><strong>Photo Library</strong> &mdash; Used to pick existing photos for items.</li>
+                <li><strong>Files</strong> &mdash; Used to pick CSV files for import and to write JSON snapshots for backup.</li>
+            </ul>
+        </div>
+
+        <div class="glass legal-card fade-up">
+            <h2>Apple Platform Services</h2>
+            <ul>
+                <li><strong>CloudKit</strong> &mdash; Syncs your collection through your personal iCloud account.</li>
+                <li><strong>StoreKit</strong> &mdash; Handles the Smart Add subscription. Kabynyt never receives your payment details.</li>
+            </ul>
+            <p>For more information, see <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>.</p>
+        </div>
+
+        <div class="glass legal-card fade-up"><h2>Subscriptions</h2><p>Smart Add is an optional auto-renewable subscription processed entirely by Apple through the App Store. Kabynyt does not have access to your payment information.</p></div>
+
+        <div class="glass legal-card fade-up"><h2>Children's Privacy</h2><p>Kabynyt does not knowingly collect personal information from anyone, including children under 13.</p></div>
+
+        <div class="glass legal-card fade-up">
+            <h2>Your Rights (International)</h2>
+            <p>Regardless of where you live, Kabynyt's privacy-first architecture means your rights are inherently protected:</p>
+            <ul>
+                <li><strong>Right of Access</strong> &mdash; All your data is on your device and in your personal iCloud account.</li>
+                <li><strong>Right to Rectification</strong> &mdash; You can edit or update any item directly within the app.</li>
+                <li><strong>Right to Erasure</strong> &mdash; Delete items within the app or delete the app itself.</li>
+                <li><strong>Right to Data Portability</strong> &mdash; Settings &rarr; Backup &amp; Restore exports a JSON snapshot of your entire collection.</li>
+                <li><strong>Right to Object</strong> &mdash; Since Kabynyt performs no processing of your data, there is nothing to object to.</li>
+            </ul>
+            <p>For EEA users, these rights are guaranteed under the GDPR. For Brazilian users, under the LGPD.</p>
+            <p>For any privacy-related inquiries, contact us at <a href="mailto:support@kabynyt.com">support@kabynyt.com</a>.</p>
+        </div>
+
+        <div class="glass legal-card fade-up">
+            <h2>Website Analytics</h2>
+            <p>This website (kabynyt.com) is a static site hosted on GitHub Pages and served through Cloudflare. It does not use cookies and does not run any analytics. Standard server logs (IP, user agent, page requested) are retained by GitHub and Cloudflare on their standard retention schedules. The Kabynyt app itself does not include analytics either.</p>
+        </div>
+
+        <div class="glass legal-card fade-up"><h2>Changes to This Policy</h2><p>We may update this Privacy Policy from time to time. Changes will be reflected by updating the &ldquo;Last Updated&rdquo; date above.</p></div>
+
+        <div class="glass legal-card fade-up"><h2>Contact Us</h2><p>If you have any questions, please contact Kabynyt at <a href="mailto:support@kabynyt.com">support@kabynyt.com</a>.</p></div>
+
+    </div>
+</section>
+
+<!-- Terms of Use -->
+<section class="section">
+    <div class="wrap tc">
+        <h2 class="sec-title fade-up" id="terms">Terms of Use (EULA)</h2>
+        <p class="hero-sub fade-up">Last Updated: May 26, 2026</p>
+    </div>
+</section>
+
+<section class="section" style="padding-top:0">
+    <div class="wrap legal-content">
+
+        <div class="glass legal-card fade-up"><h3>Acceptance of Terms</h3><p>By downloading, installing, or using Kabynyt (&ldquo;the App&rdquo;), you agree to be bound by these Terms. If you do not agree, do not use the App.</p></div>
+
+        <div class="glass legal-card fade-up">
+            <h3>Description of Service</h3>
+            <p>Kabynyt is a universal collectibles inventory tracker available on iPhone and iPad (iOS 26).</p>
+            <p>Smart Add uses Google's Gemini 3.5 Flash to identify collectibles from photos and barcodes. Smart Add requires an internet connection.</p>
+        </div>
+
+        <div class="glass legal-card fade-up"><h3>Your Privacy Comes First</h3><p>Your collection belongs to you and only you. Kabynyt is architected so that <strong>we never collect, access, or store any of your personal information.</strong></p></div>
+
+        <div class="glass legal-card fade-up"><h3>Your Content, Your Ownership</h3><p>Everything you add to Kabynyt &mdash; items, photos, notes, ratings, prices &mdash; <strong>belongs entirely to you.</strong> We do not access, collect, or claim any rights to your content.</p></div>
+
+        <div class="glass legal-card fade-up">
+            <h3>Subscriptions</h3>
+            <p>Kabynyt offers an optional auto-renewable subscription (&ldquo;Smart Add&rdquo;). <strong>The free tier provides unlimited manual entry, 41 categories, photos, notes, CSV import, and iCloud sync forever.</strong></p>
+            <ul>
+                <li>Payment is charged to your Apple ID account at confirmation of purchase.</li>
+                <li>Subscriptions automatically renew unless canceled at least 24 hours before the end of the current billing period.</li>
+                <li>Your account will be charged for renewal within 24 hours prior to the end of the current period.</li>
+                <li>You can manage and cancel subscriptions in your Apple ID account settings at any time.</li>
+            </ul>
+            <p>Smart Add includes 5 free identifications before billing begins. You may also supply your own Gemini API key in Settings &rarr; Smart Add and bypass the subscription entirely, paying Google directly per request.</p>
+        </div>
+
+        <div class="glass legal-card fade-up"><h3>Intellectual Property</h3><p>The App, including its design, code, features, and branding, is our intellectual property.</p></div>
+
+        <div class="glass legal-card fade-up">
+            <h3>Acceptable Use</h3>
+            <p>You agree not to:</p>
+            <ul>
+                <li>Use the App for any unlawful purpose</li>
+                <li>Attempt to reverse-engineer, decompile, or disassemble the App</li>
+                <li>Circumvent any security or access controls</li>
+                <li>Redistribute or resell the App or any part of it</li>
+            </ul>
+        </div>
+
+        <div class="glass legal-card fade-up"><h3>Disclaimer of Warranties</h3><p>The App is provided &ldquo;as is&rdquo; without warranties of any kind. Catalog data returned by third-party services may be incomplete or inaccurate.</p></div>
+        <div class="glass legal-card fade-up"><h3>Limitation of Liability</h3><p>To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, or consequential damages.</p></div>
+        <div class="glass legal-card fade-up"><h3>Third-Party Services</h3><p>The App uses Apple services (iCloud / CloudKit, StoreKit), Google Gemini for Smart Add, and public catalog APIs (iTunes, Open Library, MusicBrainz, Cover Art Archive, Discogs, Wikipedia).</p></div>
+        <div class="glass legal-card fade-up"><h3>Termination</h3><p>We reserve the right to terminate or suspend access to the App at our discretion.</p></div>
+        <div class="glass legal-card fade-up"><h3>Changes to Terms</h3><p>We may update these Terms from time to time.</p></div>
+        <div class="glass legal-card fade-up"><h3>Governing Law</h3><p>These Terms shall be governed by the laws of the United States.</p></div>
+
     </div>
 </section>
 
@@ -113,6 +244,7 @@
     </div>
 </footer>
 
-<script src="/reveal.js"></script>
+<script src="/reveal.js?v=1"></script>
+<script src="/icons.js?v=1"></script>
 </body>
 </html>

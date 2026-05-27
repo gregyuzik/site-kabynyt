@@ -1,11 +1,10 @@
 /* ═══════════════════════════════════════════
-   KABYNYT — Aurora Glass
-   Indigo night-sky base with a multi-layer emerald + cyan + indigo aurora
-   mesh and a single warm-amber wash for depth. Only the nav uses
-   backdrop-filter — stacking many would break iOS compositor. Glass
-   surfaces are pure translucent fills with hairline borders. GPU-cheap
-   gradients only, no filter:blur on scrolling content.
-   Design language ported from site-klosyt; brand palette kept emerald.
+   KLOSYT — Aurora Glass
+   Dark navy base + one static gradient halo at the top and a single
+   fixed aurora wash behind content. Pure gradients (no filter:blur,
+   no animation) — GPU-cheap and safe for iOS Safari scroll. Only the
+   nav uses backdrop-filter; stacking many was what broke iOS
+   compositor in PR #62/#63.
    ═══════════════════════════════════════════ */
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -13,39 +12,35 @@
 :root{
     --panel:rgba(255,255,255,.045);
     --panel-hover:rgba(255,255,255,.085);
-    --border:rgba(255,255,255,.10);
+    --border:rgba(255,255,255,.1);
     --border-hover:rgba(255,255,255,.22);
     --text-1:#fff;
     --text-2:rgba(255,255,255,.78);
-    --text-3:rgba(255,255,255,.5);
-    --accent:#4ddba8;
-    --accent-glow:#7be8c4;
-    --accent-cool:#8ba8e8;
-    --accent-warm:#f4b942;
+    --text-3:rgba(255,255,255,.55);
+    --accent-color:#5ac8fa;
+    --accent-warm:#ffcc00;
     --radius:20px;
     --radius-lg:28px;
-    --radius-pill:100px;
     --ease:cubic-bezier(.16,1,.3,1);
     /* SF Pro Display for marketing-scale titles so the site reads as a
        first-party extension of the app (which uses San Francisco throughout).
        `-apple-system` and `BlinkMacSystemFont` resolve to SF on every Apple
        device; `system-ui` catches Linux/Windows system UIs; generic sans-serif
-       is the final fallback. */
+       is the final fallback. Display gets heavier weights and tighter
+       tracking applied at the rule level. */
     --font-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,"Segoe UI",sans-serif;
     --font-body:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",system-ui,sans-serif;
     color-scheme:dark light;
 }
 
 /* Base painted on <html>: fills Safari's chrome, overscroll zone, and
-   safe-area insets uniformly. Klosyt-pattern restraint — one quiet
-   emerald halo behind the hero on a deep navy base. The "colorful"
-   energy lives in the per-card chips and the gold pricing card, NOT
-   the page canvas. */
+   safe-area insets uniformly. Layered gradient gives the hero a soft
+   sky halo that fades into flat navy by ~70vh. */
 html{
-    background:#0a1428;
+    background:#0a1838;
     background:
-        radial-gradient(ellipse 1100px 720px at 50% -10%, #15384a 0%, transparent 60%),
-        #0a1428;
+        radial-gradient(ellipse 1100px 720px at 50% -10%, #1a2f6e 0%, transparent 60%),
+        #0a1838;
 }
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
@@ -57,26 +52,26 @@ body{
     min-height:100svh;
     position:relative;
     overflow-x:hidden;
-    line-height:1.55;
 }
 
-/* Aurora layer: two SOFT washes — emerald bottom-left, amber top-right
-   — mirroring Klosyt's restraint. No vivid multi-color stack; the page
-   reads navy with hints, and color comes from the cards. */
+/* Aurora layer: two soft color washes as pure radial gradients.
+   No filter:blur anywhere — the browser rasterizes these once.
+   position:fixed keeps it behind scrolling content without inflating
+   page height, and pointer-events:none keeps it out of hit-testing. */
 body::before{
     content:'';
     position:fixed;
     inset:0;
     pointer-events:none;
     background:
-        radial-gradient(circle 600px at 18% 88%, rgba(77,219,168,.10) 0%, transparent 70%),
-        radial-gradient(circle 500px at 88% 36%, rgba(244,185,66,.06) 0%, transparent 70%);
+        radial-gradient(circle 600px at 18% 88%, rgba(90,200,250,.08) 0%, transparent 70%),
+        radial-gradient(circle 500px at 88% 36%, rgba(212,165,40,.05) 0%, transparent 70%);
     z-index:0;
 }
-/* Noise overlay — breaks 8-bit gradient banding in the radial washes.
-   Inline SVG data URI, no extra request. Kept pointer-events:none and
-   z-index:0 so it never blocks interaction; very low opacity so it
-   reads as atmospheric texture rather than grain. */
+/* Noise overlay — breaks 8-bit gradient banding in the radial washes. Inline
+   SVG data URI, no extra request. Kept pointer-events:none and z-index:0 so
+   it never blocks interaction; very low opacity so it reads as atmospheric
+   texture rather than grain. */
 body::after{
     content:'';
     position:fixed;
@@ -85,7 +80,7 @@ body::after{
     z-index:0;
     opacity:.04;
     mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
     background-size:160px 160px;
 }
 body > *{position:relative;z-index:1}
@@ -94,7 +89,7 @@ body > *{position:relative;z-index:1}
 .skip-link{
     position:absolute;top:-100%;left:50%;transform:translateX(-50%);
     padding:12px 24px;background:var(--text-1);color:#050508;
-    border-radius:var(--radius-pill);font-weight:600;font-size:.9rem;
+    border-radius:100px;font-weight:600;font-size:.9rem;
     text-decoration:none;z-index:200;transition:top .2s;
 }
 .skip-link:focus{top:16px}
@@ -108,7 +103,7 @@ body > *{position:relative;z-index:1}
 :focus-visible{outline:2px solid rgba(255,255,255,.85);outline-offset:2px;border-radius:8px}
 @media(prefers-color-scheme:light){:focus-visible{outline-color:rgba(0,0,0,.85)}}
 
-/* ── Panel utility ──
+/* ── Panel utility (was .glass) ──
    Solid translucent fill + hairline border. No backdrop-filter here:
    native scroll stays smooth even with many panels. */
 .glass{
@@ -127,8 +122,9 @@ body > *{position:relative;z-index:1}
 
 /* ── Nav ──
    The only backdrop-filter element on the page. A single glass layer
-   is cheap on the compositor. @supports fallback keeps a solid navy
-   tint for browsers without backdrop-filter. */
+   is cheap on the compositor; the 12-element version in PR #62 was
+   what broke iOS scroll. @supports fallback keeps a solid navy tint
+   for browsers without backdrop-filter. */
 .nav-wrap{
     position:fixed;top:calc(env(safe-area-inset-top) + 16px);left:0;width:100%;
     display:flex;justify-content:center;z-index:100;
@@ -139,8 +135,8 @@ body > *{position:relative;z-index:1}
 .nav-bar{
     pointer-events:auto;
     width:90%;max-width:720px;height:52px;
-    border-radius:var(--radius-pill);
-    background:rgba(14,10,28,.55);
+    border-radius:100px;
+    background:rgba(255,255,255,.07);
     backdrop-filter:blur(40px) saturate(1.6);
     -webkit-backdrop-filter:blur(40px) saturate(1.6);
     border:1px solid rgba(255,255,255,.14);
@@ -150,10 +146,10 @@ body > *{position:relative;z-index:1}
     transition:background .3s var(--ease),border-color .3s var(--ease);
     overflow:visible;
 }
-.nav-bar:hover{background:rgba(20,16,38,.7);border-color:rgba(255,255,255,.2)}
+.nav-bar:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-    .nav-bar{background:rgba(10,7,18,.92)}
-    .nav-bar:hover{background:rgba(20,14,34,.98)}
+    .nav-bar{background:rgba(10,24,56,.92)}
+    .nav-bar:hover{background:rgba(14,32,72,.98)}
 }
 
 .nav-brand{
@@ -171,8 +167,8 @@ body > *{position:relative;z-index:1}
     font-weight:500;font-size:.9rem;
     transition:color .2s;
 }
-.nav-links a:hover,.nav-links a:focus-visible{color:var(--text-1)}
-.nav-links a[aria-current="page"]{color:var(--text-1)}
+.nav-links a:hover{color:var(--text-1)}
+.nav-links a svg{flex-shrink:0}
 
 /* ── Hero ── */
 .hero{
@@ -183,40 +179,36 @@ body > *{position:relative;z-index:1}
 .hero-inner{max-width:680px}
 .hero-icon{
     width:128px;height:128px;border-radius:30px;
-    display:block;margin:0 auto 2rem;
-    /* Dual bloom — emerald dominant with an amber halo underneath so
-       the brand's green+gold pair reads as intentional from the hero. */
+    /* Dual bloom — cyan dominant with a gold halo underneath so the brand's
+       cyan+amber pair reads as intentional from the hero, not just pricing. */
     box-shadow:
         0 30px 80px rgba(0,0,0,.45),
-        0 0 110px rgba(77,219,168,.34),
-        0 0 180px rgba(244,185,66,.14),
+        0 0 110px rgba(90,200,250,.34),
+        0 0 180px rgba(255,204,0,.14),
         0 0 0 1px rgba(255,255,255,.06);
+    margin-bottom:2rem;
 }
 .hero h1{
     font-family:var(--font-display);
     font-size:clamp(2.8rem,7vw,5rem);
     /* Heavy weight + tight tracking is the Apple.com hero recipe. SF Pro
-       Display has optical sizing baked in at these sizes. */
+       Display has optical sizing baked in at these sizes, so heavy weights
+       render crisply without going shouty. */
     font-weight:700;letter-spacing:-.035em;line-height:1.08;
     margin-bottom:1.25rem;
     padding-bottom:.1em;
     text-wrap:balance;
     font-feature-settings:"kern","liga","ss01";
-    /* Gradient text wash — white at top, cool blue mid, warm amber at
-       the tail for the gold tie-in. */
+    /* Gradient text wash — cooler at top, warmer at bottom for the gold tie-in. */
     background:linear-gradient(170deg,#fff 0%,#cfe2ff 55%,#ffe8a8 100%);
     -webkit-background-clip:text;
     background-clip:text;
     color:transparent;
     -webkit-text-fill-color:transparent;
 }
-.hero h1 .accent{
-    background:linear-gradient(135deg,var(--accent) 0%,var(--accent-glow) 50%,var(--accent-cool) 100%);
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;color:transparent;
-}
+.hero h1 em{font-style:italic;font-weight:600}
 @supports not ((-webkit-background-clip:text) or (background-clip:text)){
-    .hero h1,.hero h1 .accent{color:#fff;-webkit-text-fill-color:initial}
+    .hero h1{color:#fff;-webkit-text-fill-color:initial}
 }
 .hero-sub{
     font-size:clamp(1rem,2.2vw,1.2rem);
@@ -224,51 +216,31 @@ body > *{position:relative;z-index:1}
     margin-bottom:2.5rem;
     max-width:44ch;margin-left:auto;margin-right:auto;
 }
+.badge-link{display:inline-block;transition:transform .2s,opacity .2s;opacity:.95}
+.badge-link:hover{opacity:1;transform:translateY(-2px)}
+.badge-img{height:48px}
 .hero-devices{margin-top:1.25rem;font-size:.85rem;color:var(--text-3);font-weight:500;letter-spacing:.02em}
 
-/* ── CTA buttons (hero + 404) ── */
-.cta-row{
-    display:flex;flex-wrap:wrap;gap:14px;justify-content:center;align-items:center;
-    margin-top:.5rem;
+/* ── Steps (support page Getting Started) ── */
+.steps{display:flex;align-items:flex-start;padding:2.5rem;border-radius:var(--radius);gap:0}
+.step{flex:1;display:flex;gap:1rem;align-items:flex-start;padding:0 1.5rem}
+.step h3{font-size:1rem;font-weight:700;margin-bottom:.3rem;letter-spacing:-.01em}
+.step p{font-size:.88rem;color:var(--text-2);line-height:1.5}
+.step-n{
+    width:36px;height:36px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:.95rem;
+    background:rgba(0,122,255,.18);color:#7fb6ff;
+    border:1px solid rgba(0,122,255,.3);
+    box-shadow:0 0 24px rgba(0,122,255,.18);
 }
-.cta-primary,.cta-secondary{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:14px 30px;border-radius:var(--radius-pill);
-    text-decoration:none;font-weight:600;font-size:1rem;
-    transition:transform .2s var(--ease),background .2s var(--ease),
-               border-color .2s var(--ease),box-shadow .2s var(--ease),opacity .2s;
-}
-.cta-primary{
-    background:var(--accent-warm);color:#1a0f00;
-    border:1px solid var(--accent-warm);
-    box-shadow:0 8px 24px -8px rgba(244,185,66,.45);
-}
-.cta-primary:hover{
-    transform:translateY(-1px);
-    background:#ffc864;
-    box-shadow:0 12px 32px -8px rgba(244,185,66,.55);
-}
-.cta-primary--disabled,
-.cta-primary--disabled:hover{
-    cursor:default;opacity:.78;transform:none;
-    background:var(--accent-warm);
-    box-shadow:0 8px 24px -8px rgba(244,185,66,.3);
-}
-.cta-secondary{
-    background:var(--panel);color:var(--text-1);
-    border:1px solid var(--border);
-}
-.cta-secondary:hover{
-    background:var(--panel-hover);
-    border-color:var(--border-hover);
-    transform:translateY(-1px);
-}
+.step-div{width:1px;height:56px;flex-shrink:0;align-self:center;background:var(--border)}
 
-/* ── Section divider — centered glint; signature flourish. ── */
+/* ── Section divider — a centered glint; signature flourish. ── */
 .divider,hr.divider{
     width:100%;max-width:220px;height:1px;
     margin:0 auto;border:0;
-    background:linear-gradient(90deg,transparent,rgba(77,219,168,.65),rgba(244,185,66,.5),transparent);
+    background:linear-gradient(90deg,transparent,rgba(90,200,250,.65),rgba(255,204,0,.5),transparent);
     opacity:.9;
     position:relative;
 }
@@ -277,11 +249,11 @@ body > *{position:relative;z-index:1}
     position:absolute;left:50%;top:50%;
     width:7px;height:7px;border-radius:50%;
     transform:translate(-50%,-50%);
-    background:radial-gradient(circle,#fff 0%,rgba(77,219,168,.9) 55%,rgba(77,219,168,0) 100%);
-    box-shadow:0 0 14px rgba(77,219,168,.7),0 0 28px rgba(244,185,66,.25);
+    background:radial-gradient(circle,#fff 0%,rgba(90,200,250,.9) 55%,rgba(90,200,250,0) 100%);
+    box-shadow:0 0 14px rgba(90,200,250,.7),0 0 28px rgba(255,204,0,.25);
 }
 
-/* ── Section title (eyebrow + headline) ── */
+/* ── Section title (editorial eyebrow + serif headline) ── */
 .sec-head{
     text-align:center;
     margin:0 auto 3rem;
@@ -298,8 +270,15 @@ body > *{position:relative;z-index:1}
 }
 .sec-eyebrow::before,.sec-eyebrow::after{
     content:'';width:28px;height:1px;
-    background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    background:linear-gradient(90deg,transparent,var(--accent-color),transparent);
     opacity:.65;
+}
+.sec-eyebrow .num{
+    font-family:var(--font-display);
+    font-style:italic;font-weight:600;
+    font-size:1rem;letter-spacing:-.01em;
+    color:var(--accent-color);
+    text-transform:none;
 }
 .sec-title{
     font-family:var(--font-display);
@@ -312,24 +291,11 @@ body > *{position:relative;z-index:1}
     padding-bottom:.08em;
     font-feature-settings:"kern","liga","ss01";
 }
-.sec-title em,.sec-title .accent{
-    font-style:normal;font-weight:700;
-    background:linear-gradient(135deg,var(--accent) 0%,var(--accent-glow) 50%,var(--accent-cool) 100%);
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;color:transparent;
-}
-@supports not ((-webkit-background-clip:text) or (background-clip:text)){
-    .sec-title em,.sec-title .accent{color:var(--accent);-webkit-text-fill-color:initial}
-}
+.sec-title em{font-style:italic;font-weight:600;color:var(--accent-color)}
+/* Inside .sec-head the eyebrow+title are spaced together — drop the default
+   bottom margin so the pairing is tight. */
 .sec-head .sec-title{margin-bottom:0}
-.sec-kicker{
-    margin-top:.75rem;
-    color:var(--text-2);
-    font-size:1rem;line-height:1.6;
-    max-width:56ch;margin-left:auto;margin-right:auto;
-}
-
-/* Support / privacy / 404 hero-style H1 gets the hero gradient wash. */
+/* Support page H1 gets the hero-style gradient wash. */
 h1.sec-title{
     font-size:clamp(2.5rem,6vw,4rem);
     background:linear-gradient(170deg,#fff 0%,#cfe2ff 55%,#ffe8a8 100%);
@@ -337,9 +303,93 @@ h1.sec-title{
     color:transparent;-webkit-text-fill-color:transparent;
     margin-bottom:1rem;
 }
-@supports not ((-webkit-background-clip:text) or (background-clip:text)){
-    h1.sec-title{color:#fff;-webkit-text-fill-color:initial}
+.sec-kicker{
+    margin-top:.75rem;
+    color:var(--text-2);
+    font-size:1rem;line-height:1.6;
+    max-width:52ch;margin-left:auto;margin-right:auto;
 }
+
+/* ── Bottom CTA — framed panel, differentiated from hero ── */
+.bottom-cta{padding:5rem 0 6rem}
+.cta-panel{
+    max-width:640px;margin:0 auto;
+    padding:3.5rem 2.5rem;
+    border-radius:var(--radius-lg);
+    text-align:center;
+    /* Dual background-clip paints a subtle gradient frame: a translucent
+       fill over padding-box, a blue→gold sheen over border-box. */
+    background:
+        linear-gradient(rgba(255,255,255,.05),rgba(255,255,255,.02)) padding-box,
+        linear-gradient(135deg,rgba(90,200,250,.45),rgba(255,255,255,.06) 35%,rgba(255,255,255,.06) 65%,rgba(212,165,40,.4)) border-box;
+    border:1px solid transparent;
+    box-shadow:0 30px 80px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.bottom-cta h2{
+    font-family:var(--font-display);
+    font-size:clamp(2rem,4.6vw,3rem);
+    font-weight:700;letter-spacing:-.035em;line-height:1.1;
+    margin-bottom:.85rem;
+    padding-bottom:.08em;
+    text-wrap:balance;
+}
+.bottom-cta h2 em{font-style:italic;font-weight:600;color:var(--accent-color)}
+.bottom-cta p{
+    color:var(--text-2);font-size:1rem;line-height:1.55;
+    margin:0 auto 2rem;max-width:480px;
+}
+
+/* ── Section title (layout override — sizing + tracking come from the
+   detailed rule above; this block just re-centers and restates size so
+   cascade order is predictable) ── */
+.sec-title{
+    text-align:center;margin-bottom:3.5rem;
+    font-size:clamp(2rem,4.5vw,3rem);
+    font-weight:700;letter-spacing:-.035em;line-height:1.1;
+}
+
+/* ── What's New ribbon (4-up strip under the hero) ── */
+.whats-new .sec-head{
+    display:flex;flex-direction:column;align-items:center;gap:.9rem;
+}
+.whats-new-badge{
+    display:inline-block;
+    padding:.3rem .7rem;border-radius:999px;
+    font-family:var(--font-body);
+    font-size:.72rem;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#ffcc00;background:rgba(255,204,0,.12);
+    border:1px solid rgba(255,204,0,.28);
+}
+.whats-new-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);
+    gap:.85rem;max-width:1100px;margin:0 auto;
+}
+@media(min-width:900px){
+    .whats-new-grid{grid-template-columns:repeat(4,1fr)}
+}
+.wn-card{
+    padding:1.3rem 1.15rem;border-radius:var(--radius);
+    display:flex;flex-direction:column;gap:.55rem;
+    /* justify-content:center so a short description (e.g. "Share Tab" at
+       15 words) doesn't leave empty space below while its row neighbors
+       — which stretch the card to match row height — run twice as long. */
+    justify-content:center;
+    --card-accent:var(--c, rgba(255,255,255,.22));
+    transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.wn-card:hover{
+    background:var(--panel-hover);
+    border-color:var(--border-hover);
+    /* Matches .feature-card:hover translateY(-4px) — consistency when the
+       eye travels between the two card grids stacked directly above and
+       below each other. */
+    transform:translateY(-4px);
+    box-shadow:0 16px 40px rgba(0,0,0,.28), 0 0 50px -20px var(--card-accent);
+}
+.wn-icon{font-size:1.55rem;line-height:1;color:var(--c)}
+.wn-card h3{font-size:1rem;font-weight:700;letter-spacing:-.01em}
+.wn-card p{font-size:.9rem;color:var(--text-2);line-height:1.45}
 
 /* ── Features grid ── */
 .features-grid{
@@ -352,6 +402,8 @@ h1.sec-title{
 .feature-card{
     display:flex;gap:1.1rem;align-items:flex-start;
     padding:1.5rem;border-radius:var(--radius);
+    /* Per-card accent pulled from the inline `--c` the card already sets
+       on its icon span; falls back to neutral if absent. */
     --card-accent:var(--c, rgba(255,255,255,.22));
     transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);
 }
@@ -359,6 +411,7 @@ h1.sec-title{
     background:var(--panel-hover);
     border-color:var(--border-hover);
     transform:translateY(-4px);
+    /* Colored halo matches the icon hue on each card. */
     box-shadow:0 20px 50px rgba(0,0,0,.3), 0 0 60px -20px var(--card-accent);
 }
 .feature-icon{
@@ -368,104 +421,68 @@ h1.sec-title{
     background:var(--bg);color:var(--c);
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.1), 0 8px 20px -8px var(--c);
 }
-/* Inline SVG (Phosphor sprite) inherits container color via currentColor.
-   Sized below the box so the stroked icons read at ~22px on a 48px chip. */
-.feature-icon svg,.card-ico svg,.cta-secondary svg,.cta-primary svg{
-    width:22px;height:22px;display:block;flex-shrink:0;
-}
+.feature-icon svg,.pl-ico svg,.card-ico svg{display:block}
+/* Inline Apple logo in "Real-Time Apple Weather" inherits the parent text
+   color via currentColor so it reads in both light (dark brown on cream)
+   and dark (white on navy) modes. The JS builds the logo with a gradient
+   fallback; this rule overrides the gradient stops to track text color. */
+[data-i18n="pricing.weatherData"] svg stop{stop-color:currentColor}
 .feature-text{min-width:0}
-.feature-text h3{font-family:var(--font-display);font-size:1.05rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.01em;color:var(--text-1)}
-.feature-text p{font-size:.9rem;color:var(--text-2);line-height:1.55}
+.feature-text h3{font-size:1.05rem;font-weight:700;margin-bottom:.4rem;letter-spacing:-.01em}
+.feature-text p{font-size:.88rem;color:var(--text-2);line-height:1.55}
 
-/* ── Categories chips ── */
-.categories{
-    display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
-    max-width:920px;margin:0 auto;
-}
-.category-chip{
-    display:inline-flex;align-items:center;
-    min-height:38px;padding:0 16px;
-    background:var(--panel);border:1px solid var(--border);
-    border-radius:var(--radius-pill);
-    color:var(--text-2);
-    font-size:.88rem;font-weight:500;
-    transition:background .2s var(--ease),border-color .2s var(--ease),color .2s var(--ease),transform .2s var(--ease);
-}
-.category-chip:hover{
-    background:var(--panel-hover);
-    border-color:var(--border-hover);
-    color:var(--text-1);
-    transform:translateY(-1px);
-}
-
-/* ── Highlights ribbon — 4-up strip mirroring Klosyt's whats-new ── */
-.highlights .sec-head{
-    display:flex;flex-direction:column;align-items:center;gap:.9rem;
-}
-.highlights-grid{
-    display:grid;grid-template-columns:repeat(2,1fr);
-    gap:.85rem;max-width:1100px;margin:0 auto;
-}
-@media(min-width:900px){
-    .highlights-grid{grid-template-columns:repeat(4,1fr)}
-}
-.highlight-card{
-    padding:1.3rem 1.15rem;border-radius:var(--radius);
-    display:flex;flex-direction:column;gap:.55rem;
-    /* justify-content:center so a short description doesn't leave empty
-       space below while row neighbors stretch the card. */
-    justify-content:flex-start;
+/* Legacy .card (support page FAQ cards) */
+.card{
+    padding:2rem;border-radius:var(--radius);
     --card-accent:var(--c, rgba(255,255,255,.22));
     transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);
 }
-.highlight-card:hover{
+.card:hover{
     background:var(--panel-hover);
     border-color:var(--border-hover);
     transform:translateY(-4px);
-    box-shadow:0 16px 40px rgba(0,0,0,.28), 0 0 50px -20px var(--card-accent);
+    box-shadow:0 20px 50px rgba(0,0,0,.3), 0 0 60px -20px var(--card-accent);
 }
-.highlight-icon{
-    width:40px;height:40px;border-radius:12px;
+.card-ico{
+    width:48px;height:48px;border-radius:14px;
     display:flex;align-items:center;justify-content:center;
+    font-size:1.25rem;margin-bottom:1.25rem;
     background:var(--bg);color:var(--c);
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.1), 0 6px 16px -8px var(--c);
-    margin-bottom:.35rem;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.1), 0 8px 20px -8px var(--c);
 }
-.highlight-icon svg{width:20px;height:20px;display:block}
-.highlight-card h3{font-family:var(--font-display);font-size:1rem;font-weight:700;letter-spacing:-.01em;color:var(--text-1)}
-.highlight-card p{font-size:.9rem;color:var(--text-2);line-height:1.45}
+.card h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.01em}
+.card p{font-size:.88rem;color:var(--text-2);line-height:1.55}
 
-/* ── Pricing — single dominant gold-bordered card ── */
+/* ── Pricing — premium card. Halo softened so the hero stays dominant,
+   per-section gold-cyan balance now shared with hero icon bloom. ── */
 .price-card{
     max-width:520px;width:100%;margin:0 auto;
     border-radius:var(--radius-lg);overflow:hidden;
     background:
         linear-gradient(rgba(255,255,255,.06),rgba(255,255,255,.03)) padding-box,
-        linear-gradient(135deg,rgba(244,185,66,.55),rgba(255,149,0,.2) 30%,rgba(255,255,255,.08) 60%,rgba(244,185,66,.4)) border-box;
+        linear-gradient(135deg,rgba(255,204,0,.55),rgba(255,149,0,.2) 30%,rgba(255,255,255,.08) 60%,rgba(255,204,0,.4)) border-box;
     border:1px solid transparent;
-    /* Second shadow is a wide amber halo without needing a wrapper. */
+    /* Second shadow acts as a wide amber halo without needing a wrapper. */
     box-shadow:
         0 30px 80px rgba(0,0,0,.35),
-        0 0 120px -20px rgba(244,185,66,.18);
+        0 0 120px -20px rgba(255,204,0,.18);
     transition:transform .3s var(--ease),box-shadow .3s var(--ease);
 }
 .price-card:hover{
     transform:translateY(-3px);
     box-shadow:
         0 40px 100px rgba(0,0,0,.45),
-        0 0 140px -20px rgba(244,185,66,.3);
+        0 0 140px -20px rgba(255,204,0,.3);
 }
 .price-head{padding:2.5rem 2rem 2rem;text-align:center;border-bottom:1px solid var(--border)}
 .price-badge{
     display:inline-flex;align-items:center;gap:6px;
     padding:6px 16px;
-    background:linear-gradient(135deg,rgba(244,185,66,.22),rgba(255,149,0,.18));
-    border:1px solid rgba(244,185,66,.4);
-    border-radius:var(--radius-pill);
-    font-size:.85rem;font-weight:700;
-    color:#ffd84a;letter-spacing:.04em;
-    margin-bottom:1.25rem;
-    box-shadow:0 4px 16px rgba(244,185,66,.18);
+    background:linear-gradient(135deg,rgba(255,204,0,.22),rgba(255,149,0,.18));
+    border:1px solid rgba(255,204,0,.4);
+    border-radius:100px;font-size:.85rem;font-weight:700;
+    color:#ffd84a;letter-spacing:.04em;margin-bottom:1.25rem;
+    box-shadow:0 4px 16px rgba(255,204,0,.18);
 }
 .price-amt{display:flex;align-items:baseline;justify-content:center;gap:6px;margin-bottom:.5rem}
 .price-num{
@@ -488,16 +505,14 @@ h1.sec-title{
 .price-list li{
     display:flex;align-items:center;gap:12px;
     padding:10px 12px;border-radius:12px;
-    color:var(--text-2);font-size:.95rem;line-height:1.4;
     transition:background .15s;
 }
 .price-list li:hover{background:rgba(255,255,255,.04)}
 .pl-ico{
     width:32px;height:32px;border-radius:8px;flex-shrink:0;
     display:flex;align-items:center;justify-content:center;
-    background:var(--bg);color:var(--c);
+    font-size:1rem;background:var(--bg);color:var(--c);
 }
-.pl-ico svg{width:18px;height:18px;display:block}
 .price-list li span:last-child{font-size:.92rem;font-weight:500}
 .price-foot{padding:1.5rem 2rem 2rem;text-align:center;border-top:1px solid var(--border)}
 .price-note{
@@ -510,113 +525,41 @@ h1.sec-title{
     line-height:1.45;letter-spacing:.01em;
 }
 
-/* ── Bottom CTA — framed panel ── */
-.bottom-cta{padding:5rem 0 6rem}
-.cta-panel{
-    max-width:640px;margin:0 auto;
-    padding:3.5rem 2.5rem;
-    border-radius:var(--radius-lg);
-    text-align:center;
-    /* Dual background-clip paints a subtle gradient frame. */
-    background:
-        linear-gradient(rgba(255,255,255,.05),rgba(255,255,255,.02)) padding-box,
-        linear-gradient(135deg,rgba(77,219,168,.45),rgba(255,255,255,.06) 35%,rgba(255,255,255,.06) 65%,rgba(244,185,66,.4)) border-box;
-    border:1px solid transparent;
-    box-shadow:0 30px 80px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+/* ── Languages ── */
+.lang-label{
+    font-size:.78rem;color:var(--text-3);font-weight:700;
+    text-transform:uppercase;letter-spacing:.12em;margin-bottom:1.25rem;
 }
-.cta-panel h2{
-    font-family:var(--font-display);
-    font-size:clamp(2rem,4.6vw,3rem);
-    font-weight:700;letter-spacing:-.035em;line-height:1.1;
-    margin-bottom:.85rem;
-    padding-bottom:.08em;
-    text-wrap:balance;
+.lang-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:680px;margin:0 auto;padding:0;list-style:none}
+.lang-row li{display:contents}
+.lang-row a{
+    display:inline-flex;align-items:center;
+    min-height:44px;padding:0 14px;
+    background:var(--panel);border:1px solid var(--border);
+    border-radius:100px;font-size:.78rem;color:var(--text-2);font-weight:500;
+    text-decoration:none;
+    transition:background .15s,color .15s,border-color .15s,transform .15s;
 }
-.cta-panel h2 em,.cta-panel h2 .accent{
-    font-style:normal;font-weight:700;
-    background:linear-gradient(135deg,var(--accent) 0%,var(--accent-glow) 100%);
-    -webkit-background-clip:text;background-clip:text;
-    -webkit-text-fill-color:transparent;color:transparent;
-}
-.cta-panel p{
-    color:var(--text-2);font-size:1rem;line-height:1.55;
-    margin:0 auto 1.75rem;max-width:480px;
+.lang-row a:hover{background:var(--panel-hover);color:var(--text-1);transform:translateY(-1px);border-color:var(--border-hover)}
+.lang-row a.active{
+    background:linear-gradient(135deg,rgba(90,200,250,.22),rgba(0,122,255,.18));
+    border-color:rgba(90,200,250,.4);
+    color:#fff;font-weight:700;
+    box-shadow:0 4px 16px rgba(90,200,250,.18);
 }
 
-/* ── Steps (support page Getting Started) ── */
-.steps{display:flex;align-items:flex-start;padding:2.5rem;border-radius:var(--radius);gap:0;flex-wrap:wrap}
-.step{flex:1;min-width:200px;display:flex;gap:1rem;align-items:flex-start;padding:0 1.25rem}
-.step h3{font-family:var(--font-display);font-size:1rem;font-weight:700;margin-bottom:.3rem;letter-spacing:-.01em;color:var(--text-1)}
-.step p{font-size:.88rem;color:var(--text-2);line-height:1.5}
-.step-n{
-    width:36px;height:36px;border-radius:50%;flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-    font-weight:700;font-size:.95rem;
-    background:rgba(77,219,168,.18);color:var(--accent-glow);
-    border:1px solid rgba(77,219,168,.3);
-    box-shadow:0 0 24px rgba(77,219,168,.18);
-}
-.step-div{width:1px;height:56px;flex-shrink:0;align-self:center;background:var(--border)}
-
-/* ── Generic card (support FAQ, tips, etc.) ── */
-.card{
-    padding:1.75rem;border-radius:var(--radius);
-    --card-accent:var(--c, rgba(255,255,255,.22));
-    transition:background .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease);
-}
-.card:hover{
-    background:var(--panel-hover);
-    border-color:var(--border-hover);
-    transform:translateY(-4px);
-    box-shadow:0 20px 50px rgba(0,0,0,.3), 0 0 60px -20px var(--card-accent);
-}
-.card-ico{
-    width:48px;height:48px;border-radius:14px;
-    display:flex;align-items:center;justify-content:center;
-    font-size:1.25rem;margin-bottom:1.1rem;
-    background:var(--bg);color:var(--c);
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.1), 0 8px 20px -8px var(--c);
-}
-.card h3{font-family:var(--font-display);font-size:1.05rem;font-weight:700;margin-bottom:.5rem;letter-spacing:-.01em;color:var(--text-1)}
-.card p{font-size:.92rem;color:var(--text-2);line-height:1.55}
-
-.faq-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;max-width:1100px;margin:0 auto}
-
-/* ── Troubleshooting ── */
-.troubleshoot-item summary{
-    cursor:pointer;font-weight:600;font-size:1.05rem;
-    padding:1rem 0;color:var(--text-1);list-style:none;
-    display:flex;align-items:center;gap:.75rem;
-    border-bottom:1px solid var(--border);
-    transition:color .2s;
-}
-.troubleshoot-item:last-child summary{border-bottom:0}
-.troubleshoot-item[open]:not(:last-child) summary{border-bottom:0}
-.troubleshoot-item summary::-webkit-details-marker{display:none}
-.troubleshoot-item summary::before{content:'▸';font-size:.9rem;color:var(--text-3);transition:transform .2s}
-.troubleshoot-item[open] summary::before{transform:rotate(90deg)}
-.troubleshoot-item summary:hover{color:rgba(255,255,255,.9)}
-.troubleshoot-answer{padding:.5rem 0 1.25rem 1.65rem;color:var(--text-2);font-size:.95rem;line-height:1.6}
-
-/* ── Glass button (Support contact) ── */
-.glass-btn{
-    display:inline-flex;align-items:center;justify-content:center;
-    padding:14px 32px;font-size:1rem;font-weight:600;
-    border-radius:var(--radius-pill);text-decoration:none;
-    background:var(--text-1);color:#050508;
-    transition:transform .2s,box-shadow .2s;
-}
-.glass-btn:hover{transform:scale(1.02);box-shadow:0 8px 30px rgba(255,255,255,.2)}
-
-/* ── Legal / Doc body ── */
+/* ── Legal / Support ── */
 .legal-content{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:1.25rem}
 .legal-card{border-radius:var(--radius);padding:2rem}
-.legal-card h2{font-family:var(--font-display);font-size:1.2rem;font-weight:700;margin-bottom:.75rem;letter-spacing:-.01em;color:var(--text-1)}
-.legal-card p{color:var(--text-2);line-height:1.65;font-size:.95rem}
+.legal-card h2,.legal-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.75rem}
+.legal-card p{color:var(--text-2);line-height:1.7;font-size:.95rem}
 .legal-card p+p{margin-top:.75rem}
-.legal-card ul{color:var(--text-2);line-height:1.7;padding-left:1.5rem;margin-top:.5rem;font-size:.95rem}
-.legal-card a{color:var(--accent-glow);text-decoration:none;border-bottom:1px solid rgba(123,232,196,.3);transition:border-color .2s var(--ease)}
-.legal-card a:hover{border-bottom-color:var(--accent-glow)}
+.legal-card ul{color:var(--text-2);line-height:1.8;padding-left:1.5rem;margin-top:.5rem;font-size:.95rem}
+.legal-card a{color:#5ac8fa}
+.legal-table{width:100%;border-collapse:collapse;font-size:.88rem;color:var(--text-2);margin-top:.75rem}
+.legal-table th{text-align:left;padding:8px 12px;color:var(--text-1);border-bottom:1px solid var(--border)}
+.legal-table td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.04)}
+.faq-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
 
 /* ── Footer ── */
 .foot{padding:4rem 0 calc(4rem + env(safe-area-inset-bottom))}
@@ -627,7 +570,7 @@ h1.sec-title{
     color:var(--text-2);text-decoration:none;
     font-size:.9rem;font-weight:500;transition:color .2s;
 }
-.foot-links a:hover,.foot-links a:focus-visible{color:var(--text-1)}
+.foot-links a:hover{color:var(--text-1)}
 .foot-copy{color:var(--text-3);font-size:.82rem}
 
 /* ── Scroll reveal ── */
@@ -639,6 +582,28 @@ h1.sec-title{
 .fade-up.in{opacity:1;transform:translateY(0)}
 @media(scripting:none){.fade-up{opacity:1;transform:none;transition:none}}
 
+/* ── Support page extras ── */
+.glass-btn{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:14px 32px;font-size:1rem;font-weight:600;
+    border-radius:100px;text-decoration:none;
+    background:var(--text-1);color:#050508;
+    transition:transform .2s,box-shadow .2s;
+}
+.glass-btn:hover{transform:scale(1.02);box-shadow:0 8px 30px rgba(255,255,255,.2)}
+.troubleshoot-item summary{
+    cursor:pointer;font-weight:600;font-size:1.05rem;
+    padding:1rem 0;color:var(--text-1);list-style:none;
+    display:flex;align-items:center;gap:.75rem;
+    border-bottom:1px solid var(--border);
+    transition:color .2s;
+}
+.troubleshoot-item summary::-webkit-details-marker{display:none}
+.troubleshoot-item summary::before{content:'▸';font-size:.9rem;color:var(--text-3);transition:transform .2s}
+.troubleshoot-item[open] summary::before{transform:rotate(90deg)}
+.troubleshoot-item summary:hover{color:rgba(255,255,255,.9)}
+.troubleshoot-answer{padding:.75rem 0 1.25rem 1.65rem;color:var(--text-2);font-size:.95rem;line-height:1.6}
+
 /* ── Responsive ── */
 @media(max-width:768px){
     .section{padding:3.5rem 0}
@@ -646,28 +611,30 @@ h1.sec-title{
     .step{padding:1rem 0}
     .step-div{width:100%;height:1px;align-self:stretch}
     .features-grid{grid-template-columns:1fr;gap:.85rem}
-    .highlights-grid{grid-template-columns:1fr;gap:.7rem}
-    .faq-grid-2{grid-template-columns:1fr;gap:1rem}
+    .whats-new-grid{grid-template-columns:1fr;gap:.7rem}
+    .faq-grid-2{grid-template-columns:1fr}
     .legal-card{padding:1.5rem}
     .bottom-cta{padding:4rem 0 5rem}
     .cta-panel{padding:2.5rem 1.75rem}
     .nav-bar{width:94%;padding:0 1rem;height:48px}
-    .nav-links{gap:.4rem}
-    .nav-links a{font-size:.82rem;padding:0 8px}
+    .nav-links{gap:.6rem}
+    .nav-links a{font-size:.82rem}
 }
 @media(max-width:480px){
-    .hero h1{font-size:2.6rem}
+    .hero h1{font-size:2.4rem}
     .hero-icon{width:104px;height:104px;border-radius:24px;margin-bottom:1.5rem}
     .nav-brand span{font-size:.9rem}
     .nav-icon{height:24px;width:24px}
     .nav-bar{border-radius:22px;height:48px}
+    .nav-links{gap:.4rem}
+    .nav-links a{padding:0 8px}
     .wrap{padding-left:max(1rem,env(safe-area-inset-left));padding-right:max(1rem,env(safe-area-inset-right))}
     .feature-card{padding:1.25rem;gap:.9rem}
     .feature-icon{width:42px;height:42px}
     .card{padding:1.5rem}
     .section{padding:2.5rem 0}
     .price-card{border-radius:20px}
-    .price-num{font-size:2.4rem}
+    .price-num{font-size:2.8rem}
     .cta-panel{padding:2rem 1.25rem;border-radius:20px}
     .divider{max-width:80px}
 }
@@ -675,129 +642,123 @@ h1.sec-title{
 /* ── Light mode ── */
 @media(prefers-color-scheme:light){
     :root{
-        --panel:rgba(20,12,40,.04);
-        --panel-hover:rgba(20,12,40,.08);
-        --border:rgba(20,12,40,.12);
-        --border-hover:rgba(20,12,40,.22);
-        --text-1:#1a0f2a;
-        --text-2:rgba(26,15,42,.72);
-        --text-3:rgba(26,15,42,.56);
-        --accent:#08664c;
-        --accent-glow:#0d8a64;
-        --accent-cool:#3a5fbf;
-        --accent-warm:#8a6300;
+        --panel:rgba(255,255,255,.72);
+        --panel-hover:rgba(255,255,255,.92);
+        --border:rgba(60,40,10,.1);
+        --border-hover:rgba(60,40,10,.2);
+        --text-1:#241a0c;
+        --text-2:rgba(36,26,12,.74);
+        --text-3:rgba(36,26,12,.52);
+        --accent-color:#0068cc;
+        --accent-warm:#b8791a;
     }
-    /* Warm cream paper base with a soft emerald halo behind the hero
-       and a quiet amber wash mid-page. Klosyt-pattern restraint —
-       single mood color on the canvas, color lives in the cards. */
+    /* Warm paper-white base with cyan→warm aurora gradient. The warmth ties
+       the page palette to the pricing card's gold frame; cyan halo at top
+       keeps the hero's blue identity. */
     html{
-        background:#f4ede0;
+        background:#f3ecde;
         background:
-            radial-gradient(ellipse 1200px 780px at 50% -10%, #e0eee5 0%, transparent 62%),
+            radial-gradient(ellipse 1200px 780px at 50% -10%, #dfe8f5 0%, transparent 62%),
             radial-gradient(ellipse 900px 600px at 85% 30%, #fbeecc 0%, transparent 70%),
-            #f4ede0;
+            #f3ecde;
     }
     body::before{
         background:
-            radial-gradient(circle 600px at 18% 88%, rgba(8,102,76,.10) 0%, transparent 70%),
-            radial-gradient(circle 500px at 88% 36%, rgba(138,99,0,.06) 0%, transparent 70%);
+            radial-gradient(circle 700px at 15% 85%, rgba(0,104,204,.14) 0%, transparent 70%),
+            radial-gradient(circle 560px at 85% 32%, rgba(184,121,26,.14) 0%, transparent 70%);
     }
     .hero h1,h1.sec-title{
-        background:linear-gradient(170deg,#1a0f2a 0%,#1a4f3a 55%,#7a5500 100%);
+        background:linear-gradient(170deg,#241a0c 0%,#2e4b82 55%,#8a5a12 100%);
         -webkit-background-clip:text;background-clip:text;
         -webkit-text-fill-color:transparent;color:transparent;
     }
-    .hero h1 .accent{
-        background:linear-gradient(135deg,#08664c 0%,#0d8a64 50%,#3a5fbf 100%);
-        -webkit-background-clip:text;background-clip:text;
-        -webkit-text-fill-color:transparent;color:transparent;
-    }
-    .sec-title{color:#1a0f2a}
-    .sec-title em,.sec-title .accent{
-        background:linear-gradient(135deg,#08664c 0%,#0d8a64 50%,#3a5fbf 100%);
-        -webkit-background-clip:text;background-clip:text;
-        -webkit-text-fill-color:transparent;color:transparent;
-    }
-    .sec-eyebrow{color:rgba(26,15,42,.62)}
-    .sec-eyebrow::before,.sec-eyebrow::after{background:linear-gradient(90deg,transparent,rgba(8,102,76,.5),transparent)}
+    .sec-title{color:#241a0c}
+    .sec-title em{color:#2e4b82}
+    .sec-eyebrow{color:rgba(36,26,12,.58)}
+    .sec-eyebrow .num{color:#2e4b82}
+    .sec-eyebrow::before,.sec-eyebrow::after{background:linear-gradient(90deg,transparent,rgba(46,75,130,.5),transparent)}
     .hero-icon{
         box-shadow:
-            0 24px 64px rgba(20,12,40,.16),
-            0 0 110px rgba(8,102,76,.18),
-            0 0 180px rgba(138,99,0,.16),
-            0 0 0 1px rgba(20,12,40,.05);
+            0 24px 64px rgba(36,26,12,.18),
+            0 0 110px rgba(0,104,204,.18),
+            0 0 180px rgba(184,121,26,.16),
+            0 0 0 1px rgba(36,26,12,.05);
     }
-    .nav-bar{
-        background:rgba(255,249,235,.6);
-        border:1px solid rgba(20,12,40,.1);
-        box-shadow:0 10px 40px rgba(20,12,40,.1), inset 0 1px 0 rgba(255,255,255,.7);
-    }
-    .nav-bar:hover{background:rgba(255,249,235,.78);border-color:rgba(20,12,40,.18)}
+    .nav-bar{background:rgba(255,249,235,.6);border:1px solid rgba(60,40,10,.1);box-shadow:0 10px 40px rgba(36,26,12,.1), inset 0 1px 0 rgba(255,255,255,.7)}
+    .nav-bar:hover{background:rgba(255,249,235,.78)}
     @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-        .nav-bar{background:rgba(251,246,236,.95)}
-        .nav-bar:hover{background:rgba(251,246,236,.98)}
+        .nav-bar{background:rgba(243,236,222,.95)}
+        .nav-bar:hover{background:rgba(243,236,222,.98)}
     }
+    .price-badge{color:#6e3f00;background:linear-gradient(135deg,rgba(255,204,0,.32),rgba(255,149,0,.32));border:1px solid rgba(184,121,26,.45);box-shadow:0 4px 16px rgba(184,121,26,.18)}
+    .price-num{background:linear-gradient(180deg,#b8791a 0%,#7a4a00 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
     .price-card{
         background:
-            linear-gradient(rgba(255,253,245,.92),rgba(255,249,235,.72)) padding-box,
-            linear-gradient(135deg,rgba(138,99,0,.55),rgba(244,185,66,.3) 30%,rgba(20,12,40,.05) 60%,rgba(138,99,0,.4)) border-box;
-        box-shadow:0 30px 80px rgba(20,12,40,.14), 0 0 120px -20px rgba(138,99,0,.18);
+            linear-gradient(rgba(255,253,245,.9),rgba(255,249,235,.72)) padding-box,
+            linear-gradient(135deg,rgba(184,121,26,.6),rgba(255,204,0,.3) 30%,rgba(60,40,10,.05) 60%,rgba(184,121,26,.4)) border-box;
+        box-shadow:0 30px 80px rgba(60,40,10,.14), 0 0 120px -20px rgba(184,121,26,.18);
     }
-    .price-card:hover{box-shadow:0 40px 100px rgba(20,12,40,.2), 0 0 140px -20px rgba(138,99,0,.28)}
-    .price-badge{
-        color:#6e3f00;
-        background:linear-gradient(135deg,rgba(244,185,66,.3),rgba(255,149,0,.28));
-        border:1px solid rgba(138,99,0,.4);
-        box-shadow:0 4px 16px rgba(138,99,0,.18);
-    }
-    .price-num{
-        background:linear-gradient(180deg,#a87800 0%,#6e4f00 100%);
-        -webkit-background-clip:text;background-clip:text;
-        -webkit-text-fill-color:transparent;color:transparent;
-    }
-    .price-head,.price-foot{border-color:rgba(20,12,40,.08)}
-    .price-list li:hover{background:rgba(0,0,0,.03)}
-    .price-note{color:rgba(0,108,56,.95)}
-    .pl-ico{box-shadow:inset 0 0 0 1px rgba(20,12,40,.06), 0 6px 16px -8px var(--c)}
+    .price-card:hover{box-shadow:0 40px 100px rgba(60,40,10,.2), 0 0 140px -20px rgba(184,121,26,.28)}
     .cta-panel{
         background:
             linear-gradient(rgba(255,253,245,.72),rgba(255,249,235,.52)) padding-box,
-            linear-gradient(135deg,rgba(8,102,76,.4),rgba(20,12,40,.05) 35%,rgba(20,12,40,.05) 65%,rgba(138,99,0,.4)) border-box;
-        box-shadow:0 30px 80px rgba(20,12,40,.12), inset 0 1px 0 rgba(255,255,255,.6);
+            linear-gradient(135deg,rgba(0,104,204,.4),rgba(60,40,10,.05) 35%,rgba(60,40,10,.05) 65%,rgba(184,121,26,.4)) border-box;
+        box-shadow:0 30px 80px rgba(60,40,10,.12), inset 0 1px 0 rgba(255,255,255,.6);
     }
-    .cta-panel h2 em,.cta-panel h2 .accent{
-        background:linear-gradient(135deg,#08664c 0%,#0d8a64 100%);
-        -webkit-background-clip:text;background-clip:text;
-        -webkit-text-fill-color:transparent;color:transparent;
+    .feature-card:hover, .card:hover{
+        box-shadow:0 16px 40px rgba(60,40,10,.12), 0 0 60px -20px var(--card-accent);
     }
-    .feature-card:hover,.card:hover{
-        box-shadow:0 16px 40px rgba(20,12,40,.12), 0 0 60px -20px var(--card-accent);
-    }
-    .divider,hr.divider{
-        background:linear-gradient(90deg,transparent,rgba(8,102,76,.55),rgba(138,99,0,.5),transparent);
-        opacity:.8;
-    }
+    .divider,hr.divider{background:linear-gradient(90deg,transparent,rgba(0,104,204,.5),rgba(184,121,26,.5),transparent);opacity:.8}
     .divider::after{
-        background:radial-gradient(circle,#fff 0%,rgba(8,102,76,.9) 55%,rgba(8,102,76,0) 100%);
-        box-shadow:0 0 14px rgba(8,102,76,.55),0 0 28px rgba(138,99,0,.3);
+        background:radial-gradient(circle,#fff 0%,rgba(0,104,204,.9) 55%,rgba(0,104,204,0) 100%);
+        box-shadow:0 0 14px rgba(0,104,204,.55),0 0 28px rgba(184,121,26,.3);
     }
-    .step-n{background:rgba(8,102,76,.12);color:#08664c;border:1px solid rgba(8,102,76,.25);box-shadow:0 0 24px rgba(8,102,76,.12)}
+    .bottom-cta h2 em{color:#0068cc}
+    .step-n{background:rgba(0,122,255,.12);color:#007aff;border:1px solid rgba(0,122,255,.25);box-shadow:0 0 24px rgba(0,122,255,.12)}
     .glass-btn{background:var(--text-1);color:#fff}
-    .glass-btn:hover{box-shadow:0 8px 30px rgba(20,12,40,.18)}
-    .troubleshoot-item summary{border-bottom:1px solid rgba(20,12,40,.1)}
+    .glass-btn:hover{box-shadow:0 8px 30px rgba(0,0,0,.12)}
+    .troubleshoot-item summary{border-bottom:1px solid rgba(0,0,0,.08)}
     .troubleshoot-item summary:hover{color:rgba(0,0,0,.85)}
-    .category-chip{background:rgba(255,255,255,.6);border:1px solid rgba(20,12,40,.1)}
-    .category-chip:hover{background:rgba(255,255,255,.85);color:var(--text-1);border-color:rgba(20,12,40,.2)}
-    .feature-icon,.card-ico{box-shadow:inset 0 0 0 1px rgba(20,12,40,.06), 0 6px 16px -8px var(--c)}
-    .cta-primary{color:#fff;background:var(--accent-warm);border-color:var(--accent-warm)}
-    .cta-primary:hover{background:#6e4f00}
-    .cta-primary--disabled,.cta-primary--disabled:hover{background:var(--accent-warm)}
-    .legal-card a{color:#08664c;border-bottom-color:rgba(8,102,76,.4)}
-    .legal-card a:hover{border-bottom-color:#08664c}
+    .price-list li:hover{background:rgba(0,0,0,.03)}
+    .lang-row a{background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.08)}
+    .lang-row a:hover{background:rgba(255,255,255,.92);color:var(--text-1);border-color:rgba(0,0,0,.16)}
+    .lang-row a.active{
+        background:linear-gradient(135deg,rgba(0,122,255,.18),rgba(90,200,250,.14));
+        border-color:rgba(0,122,255,.32);
+        color:#003d8f;font-weight:700;
+        box-shadow:0 4px 16px rgba(0,122,255,.12);
+    }
+    .price-note{color:rgba(0,108,56,.95)}
+    .feature-icon,.card-ico{box-shadow:inset 0 0 0 1px rgba(0,0,0,.06), 0 6px 16px -8px var(--c)}
+    .price-foot,.price-head{border-color:rgba(0,0,0,.08)}
 }
+
+/* ── Category chips (Kabynyt categories section) ── */
+.categories{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:.55rem;
+    max-width:980px;margin:0 auto;
+}
+.category-chip{
+    display:inline-flex;align-items:center;
+    min-height:36px;padding:0 14px;
+    background:var(--panel);border:1px solid var(--border);
+    border-radius:100px;
+    font-size:.86rem;font-weight:500;color:var(--text-2);
+    letter-spacing:-.005em;
+    transition:background .2s,color .2s,border-color .2s,transform .2s;
+}
+.category-chip:hover{
+    background:var(--panel-hover);color:var(--text-1);
+    border-color:var(--border-hover);
+    transform:translateY(-1px);
+}
+
+/* "Coming to the App Store" pill — uses .glass-btn as inert non-link */
+span.glass-btn{cursor:default}
+span.glass-btn:hover{transform:none;box-shadow:none}
 
 /* ── Reduced motion ── */
 @media(prefers-reduced-motion:reduce){
     .fade-up{opacity:1;transform:none;transition:none}
-    .feature-card,.card,.price-card,.cta-secondary,.glass-btn,.nav-bar,.cta-panel{transition:none}
+    .feature-card,.card,.price-card,.badge-link,.glass-btn,.nav-bar,.cta-panel,.category-chip{transition:none}
 }

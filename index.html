@@ -5,31 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
     <title>Kabynyt &middot; Universal Collectibles Tracker</title>
-    <meta name="description" content="Catalog anything — trading cards, books, movies, wine, LEGO, watches, coins — in one app. AI photo identification, barcode scanning, iCloud sync across your devices.">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <meta name="theme-color" content="#0a0712" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#fbf6ec" media="(prefers-color-scheme: light)">
-
+    <meta name="description" content="Catalog anything &mdash; trading cards, books, movies, wine, LEGO, watches, coins &mdash; in one app. AI photo identification, barcode scanning, iCloud sync across iPhone and iPad.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kabynyt.com/">
     <meta property="og:title" content="Kabynyt &middot; Universal Collectibles Tracker">
-    <meta property="og:description" content="Catalog anything — trading cards, books, movies, wine, LEGO, watches, coins — in one app. AI photo identification, barcode scanning, iCloud sync across your devices.">
+    <meta property="og:description" content="Catalog anything &mdash; trading cards, books, movies, wine, LEGO, watches, coins &mdash; in one app. AI photo identification, barcode scanning, iCloud sync across iPhone and iPad.">
     <meta property="og:image" content="https://kabynyt.com/assets/AppIcon.png">
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Kabynyt &middot; Universal Collectibles Tracker">
-    <meta name="twitter:description" content="Catalog anything — trading cards, books, movies, wine, LEGO, watches, coins — in one app.">
+    <meta name="twitter:description" content="Catalog anything &mdash; trading cards, books, movies, wine, LEGO, watches, coins &mdash; in one app.">
     <meta name="twitter:image" content="https://kabynyt.com/assets/AppIcon.png">
     <link rel="canonical" href="https://kabynyt.com/">
-
+    <meta name="theme-color" content="#0a1838" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f3ecde" media="(prefers-color-scheme: light)">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png">
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="/styles.css">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
+    <link rel="stylesheet" href="/styles.css?v=1">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -37,12 +35,32 @@
         "name": "Kabynyt",
         "applicationCategory": "UtilitiesApplication",
         "operatingSystem": "iOS 26",
-        "description": "Universal collectibles inventory tracker. Catalog anything — trading cards, books, movies, wine, LEGO, watches, coins — in one app.",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        }
+        "offers": [
+            {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD",
+                "description": "Free tier with unlimited manual entry, 41 categories, photos, notes, CSV import, and iCloud sync"
+            },
+            {
+                "@type": "Offer",
+                "price": "0.99",
+                "priceCurrency": "USD",
+                "priceSpecification": {
+                    "@type": "UnitPriceSpecification",
+                    "billingDuration": "P1M"
+                },
+                "description": "Smart Add: unlimited AI photo identification and barcode deep-lookup"
+            }
+        ],
+        "description": "Universal collectibles inventory tracker. Catalog anything &mdash; trading cards, books, movies, wine, LEGO, watches, coins &mdash; in one app, with AI photo identification, barcode deep-lookup, and iCloud sync.",
+        "url": "https://kabynyt.com/",
+        "image": "https://kabynyt.com/assets/AppIcon.png",
+        "author": {
+            "@type": "Person",
+            "name": "Gregory Yuzik"
+        },
+        "inLanguage": "en"
     }
     </script>
 </head>
@@ -50,15 +68,15 @@
 
 <a href="#main" class="skip-link">Skip to content</a>
 
+<!-- Nav -->
 <header class="nav-wrap">
     <nav class="glass nav-bar" aria-label="Primary">
         <a href="/" class="nav-brand">
-            <img src="/assets/AppIcon.png" alt="" class="nav-icon" width="28" height="28">
+            <img src="/assets/AppIcon.png" alt="Kabynyt" class="nav-icon" width="28" height="28">
             <span>Kabynyt</span>
         </a>
         <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#pricing">Pricing</a>
+            <a href="#pricing" data-icon="crown">Smart Add</a>
             <a href="/support.html">Support</a>
         </div>
     </nav>
@@ -70,11 +88,9 @@
 <section class="hero" aria-labelledby="hero-title">
     <div class="hero-inner">
         <img src="/assets/AppIcon.png" alt="" class="hero-icon fade-up" style="--i:0" width="128" height="128" fetchpriority="high">
-        <h1 id="hero-title" class="fade-up" style="--i:1">Catalog <span class="accent">anything</span>.</h1>
+        <h1 id="hero-title" class="fade-up" style="--i:1">Catalog <em>anything</em>.</h1>
         <p class="hero-sub fade-up" style="--i:2">Every collection in one app. AI photo identification and barcode scanning do the data entry for you.</p>
-        <div class="cta-row fade-up" style="--i:3">
-            <span class="cta-primary cta-primary--disabled" role="text" aria-label="Coming soon to the App Store">Coming to the App Store</span>
-        </div>
+        <span class="glass-btn fade-up" style="--i:3" role="text" aria-label="Coming soon to the App Store">Coming to the App Store</span>
         <p class="hero-devices fade-up" style="--i:4">iPhone &middot; iPad</p>
     </div>
 </section>
@@ -82,30 +98,30 @@
 <hr class="divider" aria-hidden="true">
 
 <!-- Highlights -->
-<section class="section highlights" aria-labelledby="highlights-title">
+<section class="section whats-new" aria-labelledby="highlights-title">
     <div class="wrap">
         <div class="sec-head fade-up">
-            <span class="sec-eyebrow">Highlights</span>
+            <span class="whats-new-badge" aria-hidden="true">Highlights</span>
             <h2 id="highlights-title" class="sec-title">The shortcuts that <em>matter</em></h2>
         </div>
-        <div class="highlights-grid">
-            <div class="glass highlight-card fade-up" style="--i:0;--c:#af52de;--bg:rgba(175,82,222,.14)">
-                <span class="highlight-icon" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#magic-wand"/></svg></span>
+        <div class="whats-new-grid">
+            <div class="glass wn-card fade-up" style="--i:0">
+                <span class="wn-icon" style="--c:#af52de" aria-hidden="true">✨</span>
                 <h3>AI photo identify</h3>
-                <p>Snap a collectible and Gemini 3.5 Flash reads packaging, set, edition, year &mdash; then fills the form.</p>
+                <p>Snap a collectible and Gemini 3.5 Flash reads packaging, set, edition, and year &mdash; then fills the form.</p>
             </div>
-            <div class="glass highlight-card fade-up" style="--i:1;--c:#34c759;--bg:rgba(52,199,89,.14)">
-                <span class="highlight-icon" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#barcode"/></svg></span>
+            <div class="glass wn-card fade-up" style="--i:1">
+                <span class="wn-icon" style="--c:#34c759" aria-hidden="true">📊</span>
                 <h3>Barcode deep-lookup</h3>
                 <p>ISBN, UPC, EAN. One round trip returns title, manufacturer, year, and market price range.</p>
             </div>
-            <div class="glass highlight-card fade-up" style="--i:2;--c:#5ac8fa;--bg:rgba(90,200,250,.14)">
-                <span class="highlight-icon" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#squares-four"/></svg></span>
+            <div class="glass wn-card fade-up" style="--i:2">
+                <span class="wn-icon" style="--c:#5ac8fa" aria-hidden="true">📦</span>
                 <h3>41 categories</h3>
                 <p>Each understands its own field set, so the data you capture matches the thing you collect.</p>
             </div>
-            <div class="glass highlight-card fade-up" style="--i:3;--c:#4ddba8;--bg:rgba(77,219,168,.14)">
-                <span class="highlight-icon" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#cloud-arrow-up"/></svg></span>
+            <div class="glass wn-card fade-up" style="--i:3">
+                <span class="wn-icon" style="--c:#5ac8fa" aria-hidden="true">☁️</span>
                 <h3>iCloud sync</h3>
                 <p>CloudKit keeps every iPhone and iPad in sync, automatically, in your private container.</p>
             </div>
@@ -119,90 +135,88 @@
 <section class="section" id="features" aria-labelledby="features-title">
     <div class="wrap">
         <div class="sec-head fade-up">
-            <span class="sec-eyebrow">What it does</span>
-            <h2 id="features-title" class="sec-title">Made for the way you actually <em>collect</em></h2>
-            <p class="sec-kicker">A home tab that knows the date, five ways to add an item, every record field a collector wants &mdash; all native to iOS&nbsp;26.</p>
+            <h2 id="features-title" class="sec-title">Features</h2>
         </div>
         <div class="features-grid">
             <div class="glass feature-card fade-up" style="--i:0">
-                <span class="feature-icon" style="--c:#ff9500;--bg:rgba(255,149,0,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#house"/></svg></span>
+                <span class="feature-icon" style="--c:#ff9500;--bg:rgba(255,149,0,.14)" aria-hidden="true">🏠</span>
                 <div class="feature-text">
                     <h3>Today, at a glance</h3>
-                    <p>A date-aware home tab with Recently Added, Pick of the Day, holiday-tinted picks, and live sync status.</p>
+                    <p>A date-aware home tab with Recently Added, Pick of the Day, holiday-tinted picks, and live iCloud sync status.</p>
                 </div>
             </div>
             <div class="glass feature-card fade-up" style="--i:1">
-                <span class="feature-icon" style="--c:#ff453a;--bg:rgba(255,69,58,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#camera"/></svg></span>
+                <span class="feature-icon" style="--c:#ff453a;--bg:rgba(255,69,58,.14)" aria-hidden="true">📸</span>
                 <div class="feature-text">
                     <h3>Smart Add</h3>
                     <p>The camera-first &laquo;+&raquo; opens straight to capture, then runs Identify on the photo before you tap save.</p>
                 </div>
             </div>
             <div class="glass feature-card fade-up" style="--i:2">
-                <span class="feature-icon" style="--c:#5ac8fa;--bg:rgba(90,200,250,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#magnifying-glass"/></svg></span>
+                <span class="feature-icon" style="--c:#5ac8fa;--bg:rgba(90,200,250,.14)" aria-hidden="true">🔎</span>
                 <div class="feature-text">
                     <h3>Search by name</h3>
                     <p>For digital media without a barcode &mdash; type a title and pick from up to fifteen iTunes matches.</p>
                 </div>
             </div>
             <div class="glass feature-card fade-up" style="--i:3">
-                <span class="feature-icon" style="--c:#8e8e93;--bg:rgba(142,142,147,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#pencil-simple"/></svg></span>
+                <span class="feature-icon" style="--c:#8e8e93;--bg:rgba(142,142,147,.14)" aria-hidden="true">✏️</span>
                 <div class="feature-text">
                     <h3>Type it</h3>
                     <p>A plain manual form when you'd rather just enter what you know &mdash; every field optional except the title.</p>
                 </div>
             </div>
             <div class="glass feature-card fade-up" style="--i:4">
-                <span class="feature-icon" style="--c:#007aff;--bg:rgba(0,122,255,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#file-csv"/></svg></span>
+                <span class="feature-icon" style="--c:#007aff;--bg:rgba(0,122,255,.14)" aria-hidden="true">📥</span>
                 <div class="feature-text">
                     <h3>Import a CSV</h3>
                     <p>Goodreads for books, Letterboxd for movies, Discogs for vinyl. Pick the file &mdash; covers back-fill automatically.</p>
                 </div>
             </div>
             <div class="glass feature-card fade-up" style="--i:5">
-                <span class="feature-icon" style="--c:#a2845e;--bg:rgba(162,132,94,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#images-square"/></svg></span>
+                <span class="feature-icon" style="--c:#a2845e;--bg:rgba(162,132,94,.14)" aria-hidden="true">🎨</span>
                 <div class="feature-text">
                     <h3>Cover-art fetch</h3>
                     <p>iTunes, Open Library, MusicBrainz, Discogs, and Wikipedia fill in covers and metadata after import.</p>
                 </div>
             </div>
             <div class="glass feature-card fade-up" style="--i:6">
-                <span class="feature-icon" style="--c:#ff2d55;--bg:rgba(255,45,85,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#heart"/></svg></span>
+                <span class="feature-icon" style="--c:#ff2d55;--bg:rgba(255,45,85,.14)" aria-hidden="true">❤️</span>
                 <div class="feature-text">
                     <h3>Wishlist &amp; loans</h3>
                     <p>Flag items as wanted, log who borrowed what, and mark anything opened, loaned, or retired.</p>
                 </div>
             </div>
             <div class="glass feature-card fade-up" style="--i:7">
-                <span class="feature-icon" style="--c:#ffcc00;--bg:rgba(255,204,0,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#star"/></svg></span>
+                <span class="feature-icon" style="--c:#ffcc00;--bg:rgba(255,204,0,.14)" aria-hidden="true">⭐</span>
                 <div class="feature-text">
                     <h3>Ratings &amp; value</h3>
                     <p>Five-star ratings, purchase price, MSRP, and estimated value &mdash; the numbers that matter to a collector.</p>
                 </div>
             </div>
             <div class="glass feature-card fade-up" style="--i:8">
-                <span class="feature-icon" style="--c:#af52de;--bg:rgba(175,82,222,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#tag"/></svg></span>
+                <span class="feature-icon" style="--c:#af52de;--bg:rgba(175,82,222,.14)" aria-hidden="true">🏷️</span>
                 <div class="feature-text">
                     <h3>Tags &amp; subcategories</h3>
-                    <p>Free-form tags and subcategories ("Pok&eacute;mon" inside Trading Cards, "Hot Wheels" inside Toys) you extend as you go.</p>
+                    <p>Free-form tags and subcategories (&ldquo;Pok&eacute;mon&rdquo; inside Trading Cards, &ldquo;Hot Wheels&rdquo; inside Toys) you extend as you go.</p>
                 </div>
             </div>
             <div class="glass feature-card fade-up" style="--i:9">
-                <span class="feature-icon" style="--c:#5856d6;--bg:rgba(88,86,214,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#funnel"/></svg></span>
+                <span class="feature-icon" style="--c:#5856d6;--bg:rgba(88,86,214,.14)" aria-hidden="true">🔍</span>
                 <div class="feature-text">
                     <h3>Sort &amp; filter</h3>
                     <p>Filter by status, photos, rating, or price; sort by date, title, value, or rating &mdash; across every category.</p>
                 </div>
             </div>
             <div class="glass feature-card fade-up" style="--i:10">
-                <span class="feature-icon" style="--c:#636366;--bg:rgba(99,99,102,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#trash-simple"/></svg></span>
+                <span class="feature-icon" style="--c:#636366;--bg:rgba(99,99,102,.14)" aria-hidden="true">🗑️</span>
                 <div class="feature-text">
                     <h3>30-day trash</h3>
                     <p>Deleted items wait 30 days in Recently Deleted before they're purged, so an accidental swipe is recoverable.</p>
                 </div>
             </div>
             <div class="glass feature-card fade-up" style="--i:11">
-                <span class="feature-icon" style="--c:#5be0c0;--bg:rgba(91,224,192,.14)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#shield-check"/></svg></span>
+                <span class="feature-icon" style="--c:#34c759;--bg:rgba(52,199,89,.14)" aria-hidden="true">🔐</span>
                 <div class="feature-text">
                     <h3>Private by design</h3>
                     <p>SwiftData on-device, your private CloudKit container, no analytics, no trackers. Your collection is yours.</p>
@@ -218,9 +232,7 @@
 <section class="section" aria-labelledby="categories-title">
     <div class="wrap">
         <div class="sec-head fade-up">
-            <span class="sec-eyebrow">Categories</span>
             <h2 id="categories-title" class="sec-title">41 ways to think about <em>your stuff</em></h2>
-            <p class="sec-kicker">Each category understands its own field set &mdash; books get an ISBN, wine gets a vintage, LEGO gets a set number &mdash; so the data you capture actually matches the thing you collect.</p>
         </div>
         <div class="categories fade-up" aria-label="Supported collectible categories">
             <span class="category-chip">Movies</span>
@@ -255,7 +267,6 @@
 <section id="pricing" class="section" aria-labelledby="pricing-title">
     <div class="wrap tc">
         <div class="sec-head fade-up">
-            <span class="sec-eyebrow">Pricing</span>
             <h2 id="pricing-title" class="sec-title">Smart Add Pricing</h2>
         </div>
         <div class="glass price-card fade-up">
@@ -266,14 +277,14 @@
                 <p class="price-trial-sub">Then $0.99 a month for unlimited Smart Add. Cancel anytime.</p>
             </div>
             <ul class="price-list">
-                <li><span class="pl-ico" style="--c:#af52de;--bg:rgba(175,82,222,.15)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#magic-wand"/></svg></span><span>Photo identification &mdash; Gemini 3.5 Flash</span></li>
-                <li><span class="pl-ico" style="--c:#34c759;--bg:rgba(52,199,89,.15)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#barcode"/></svg></span><span>Barcode deep-lookup (ISBN, UPC, EAN)</span></li>
-                <li><span class="pl-ico" style="--c:#5ac8fa;--bg:rgba(90,200,250,.15)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#magnifying-glass"/></svg></span><span>Title search via iTunes</span></li>
-                <li><span class="pl-ico" style="--c:#a2845e;--bg:rgba(162,132,94,.15)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#images-square"/></svg></span><span>Cover-art fetch on imports</span></li>
-                <li><span class="pl-ico" style="--c:#ffcc00;--bg:rgba(255,204,0,.15)" aria-hidden="true"><svg viewBox="0 0 256 256" width="32" height="32"><use href="/assets/icons.svg#star"/></svg></span><span>First 5 identifications free</span></li>
+                <li style="--i:0"><span class="pl-ico" style="--c:#af52de;--bg:rgba(175,82,222,.15)" aria-hidden="true">✨</span><span>Photo identification &mdash; Gemini 3.5 Flash</span></li>
+                <li style="--i:1"><span class="pl-ico" style="--c:#34c759;--bg:rgba(52,199,89,.15)" aria-hidden="true">📊</span><span>Barcode deep-lookup (ISBN, UPC, EAN)</span></li>
+                <li style="--i:2"><span class="pl-ico" style="--c:#5ac8fa;--bg:rgba(90,200,250,.15)" aria-hidden="true">🔎</span><span>Title search via iTunes</span></li>
+                <li style="--i:3"><span class="pl-ico" style="--c:#a2845e;--bg:rgba(162,132,94,.15)" aria-hidden="true">🎨</span><span>Cover-art fetch on imports</span></li>
+                <li style="--i:4"><span class="pl-ico" style="--c:#ffcc00;--bg:rgba(255,204,0,.15)" aria-hidden="true">⭐</span><span>First 5 identifications free</span></li>
             </ul>
             <div class="price-foot">
-                <span class="cta-primary cta-primary--disabled" role="text" aria-label="Coming soon to the App Store">Coming to the App Store</span>
+                <span class="glass-btn" role="text" aria-label="Coming soon to the App Store">Coming to the App Store</span>
                 <p class="price-note">Kabynyt is always free, including all 41 categories, unlimited manual entry, photos, notes, CSV import, and iCloud sync.</p>
                 <p class="price-fineprint">Smart Add requires an internet connection. You can supply your own Gemini API key in Settings, or use the bundled key after the first 5 free identifications.</p>
             </div>
@@ -289,15 +300,14 @@
         <div class="cta-panel fade-up">
             <h2>Ready to <em>catalog</em> everything?</h2>
             <p>Free to download. Unlimited manual entry. Always private.</p>
-            <div class="cta-row">
-                <span class="cta-primary cta-primary--disabled" role="text" aria-label="Coming soon to the App Store">Coming to the App Store</span>
-            </div>
+            <span class="glass-btn" role="text" aria-label="Coming soon to the App Store">Coming to the App Store</span>
         </div>
     </div>
 </section>
 
 </main>
 
+<!-- Footer -->
 <footer class="foot">
     <div class="wrap tc">
         <div class="foot-links">
@@ -309,6 +319,7 @@
     </div>
 </footer>
 
-<script src="/reveal.js"></script>
+<script src="/reveal.js?v=1"></script>
+<script src="/icons.js?v=1"></script>
 </body>
 </html>

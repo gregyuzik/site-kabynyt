@@ -1,12 +1,12 @@
 {
   "name": "Kabynyt",
   "short_name": "Kabynyt",
-  "description": "Universal collectibles inventory tracker for iPhone and iPad. Catalog anything — trading cards, books, movies, wine, LEGO, watches, coins — in one app.",
+  "description": "Universal collectibles inventory tracker for iPhone and iPad. Catalog anything in one app, with AI photo identification, barcode deep-lookup, and iCloud sync.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0a0712",
-  "theme_color": "#0a0712",
+  "background_color": "#0a1838",
+  "theme_color": "#0a1838",
   "icons": [
     {
       "src": "/assets/favicon-192.png",

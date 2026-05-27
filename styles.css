@@ -37,16 +37,15 @@
 }
 
 /* Base painted on <html>: fills Safari's chrome, overscroll zone, and
-   safe-area insets uniformly. Vertical green→indigo gradient is the
-   brand spine — emerald at the top, deep indigo at the bottom — with a
-   warm halo behind the hero so the icon's amber bloom has a ground. */
+   safe-area insets uniformly. Klosyt-pattern restraint — one quiet
+   emerald halo behind the hero on a deep navy base. The "colorful"
+   energy lives in the per-card chips and the gold pricing card, NOT
+   the page canvas. */
 html{
-    background:#0a0712;
+    background:#0a1428;
     background:
-        radial-gradient(ellipse 1400px 800px at 50% 0%, rgba(45,180,150,.42) 0%, transparent 55%),
-        radial-gradient(ellipse 1200px 1000px at 50% 110%, rgba(80,55,200,.55) 0%, transparent 60%),
-        linear-gradient(180deg, #062018 0%, #0a0a24 45%, #0a0822 75%, #150d2e 100%),
-        #0a0712;
+        radial-gradient(ellipse 1100px 720px at 50% -10%, #15384a 0%, transparent 60%),
+        #0a1428;
 }
 @media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
@@ -61,22 +60,17 @@ body{
     line-height:1.55;
 }
 
-/* Aurora layer: emerald + cyan + violet-indigo + warm-amber wash as
-   pure radial gradients on top of the html green→indigo spine. No
-   filter:blur — the browser rasterizes once. position:fixed keeps it
-   behind scrolling content without inflating page height. */
+/* Aurora layer: two SOFT washes — emerald bottom-left, amber top-right
+   — mirroring Klosyt's restraint. No vivid multi-color stack; the page
+   reads navy with hints, and color comes from the cards. */
 body::before{
     content:'';
     position:fixed;
-    inset:-10%;
+    inset:0;
     pointer-events:none;
     background:
-        radial-gradient(ellipse 55% 45% at 12% 18%, rgba(77,219,168,.36) 0%, transparent 60%),
-        radial-gradient(ellipse 55% 45% at 88% 22%, rgba(60,170,230,.32) 0%, transparent 60%),
-        radial-gradient(ellipse 65% 55% at 50% 95%, rgba(110,75,220,.42) 0%, transparent 60%),
-        radial-gradient(ellipse 45% 40% at 6% 88%, rgba(244,185,66,.22) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 45% at 92% 70%, rgba(160,100,235,.30) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 35% at 30% 55%, rgba(77,219,168,.16) 0%, transparent 70%);
+        radial-gradient(circle 600px at 18% 88%, rgba(77,219,168,.10) 0%, transparent 70%),
+        radial-gradient(circle 500px at 88% 36%, rgba(244,185,66,.06) 0%, transparent 70%);
     z-index:0;
 }
 /* Noise overlay — breaks 8-bit gradient banding in the radial washes.
@@ -693,25 +687,20 @@ h1.sec-title{
         --accent-cool:#3a5fbf;
         --accent-warm:#8a6300;
     }
-    /* Pastel green→indigo spine — emerald at the top of the page,
-       violet/lavender at the bottom — with a warm amber halo behind
-       the hero so the palette stays grounded. */
+    /* Warm cream paper base with a soft emerald halo behind the hero
+       and a quiet amber wash mid-page. Klosyt-pattern restraint —
+       single mood color on the canvas, color lives in the cards. */
     html{
-        background:#f3f0e6;
+        background:#f4ede0;
         background:
-            radial-gradient(ellipse 1400px 800px at 50% 0%, rgba(120,220,180,.55) 0%, transparent 55%),
-            radial-gradient(ellipse 1200px 1000px at 50% 110%, rgba(170,140,235,.55) 0%, transparent 60%),
-            linear-gradient(180deg, #e8f5ee 0%, #f3ece8 45%, #efe6ee 75%, #ece4f0 100%),
-            #f3f0e6;
+            radial-gradient(ellipse 1200px 780px at 50% -10%, #e0eee5 0%, transparent 62%),
+            radial-gradient(ellipse 900px 600px at 85% 30%, #fbeecc 0%, transparent 70%),
+            #f4ede0;
     }
     body::before{
         background:
-            radial-gradient(ellipse 55% 45% at 12% 18%, rgba(80,200,160,.40) 0%, transparent 60%),
-            radial-gradient(ellipse 55% 45% at 88% 22%, rgba(120,190,230,.36) 0%, transparent 60%),
-            radial-gradient(ellipse 65% 55% at 50% 95%, rgba(160,120,235,.36) 0%, transparent 60%),
-            radial-gradient(ellipse 45% 40% at 6% 88%, rgba(244,185,66,.22) 0%, transparent 60%),
-            radial-gradient(ellipse 50% 45% at 92% 70%, rgba(190,130,240,.30) 0%, transparent 60%),
-            radial-gradient(ellipse 40% 35% at 30% 55%, rgba(80,200,160,.18) 0%, transparent 70%);
+            radial-gradient(circle 600px at 18% 88%, rgba(8,102,76,.10) 0%, transparent 70%),
+            radial-gradient(circle 500px at 88% 36%, rgba(138,99,0,.06) 0%, transparent 70%);
     }
     .hero h1,h1.sec-title{
         background:linear-gradient(170deg,#1a0f2a 0%,#1a4f3a 55%,#7a5500 100%);

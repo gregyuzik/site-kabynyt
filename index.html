@@ -27,7 +27,7 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <link rel="stylesheet" href="/styles.css?v=5">
+    <link rel="stylesheet" href="/styles.css?v=6">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -99,8 +99,13 @@
 <hr class="divider" aria-hidden="true">
 
 <!-- Highlights -->
-<section class="section whats-new" aria-label="Highlights">
+<section class="section whats-new" aria-labelledby="highlights-title">
     <div class="wrap">
+        <div class="sec-head fade-up">
+            <span class="sec-eyebrow"><span class="num">01</span> Highlights</span>
+            <h2 id="highlights-title" class="sec-title">The app does the busywork</h2>
+            <p class="sec-kicker">Snap or scan and the details fill themselves in. The home screen resurfaces what's worth a look, and iCloud keeps every device in step.</p>
+        </div>
         <div class="whats-new-grid">
             <div class="glass wn-card fade-up" style="--i:0">
                 <span class="wn-icon" style="--c:#af52de" aria-hidden="true">✨</span>
@@ -132,7 +137,9 @@
 <section class="section" id="features" aria-labelledby="features-title">
     <div class="wrap">
         <div class="sec-head fade-up">
-            <h2 id="features-title" class="sec-title">Features</h2>
+            <span class="sec-eyebrow"><span class="num">02</span> Features</span>
+            <h2 id="features-title" class="sec-title">Everything in one app</h2>
+            <p class="sec-kicker">From camera-first capture to CSV import, wishlists, loans, ratings, and a 30-day safety net &mdash; the full toolkit for a serious collection.</p>
         </div>
         <div class="features-grid">
             <div class="glass feature-card fade-up" style="--i:0">
@@ -205,13 +212,6 @@
                     <p>Deleted items wait 30 days in Recently Deleted before they're purged, so an accidental swipe is recoverable.</p>
                 </div>
             </div>
-            <div class="glass feature-card fade-up" style="--i:10">
-                <span class="feature-icon" style="--c:#34c759;--bg:rgba(52,199,89,.14)" aria-hidden="true">🔐</span>
-                <div class="feature-text">
-                    <h3>Private by design</h3>
-                    <p>SwiftData on-device, your private CloudKit container, no analytics, no trackers. Your collection is yours.</p>
-                </div>
-            </div>
         </div>
     </div>
 </section>
@@ -222,7 +222,9 @@
 <section class="section" aria-labelledby="categories-title">
     <div class="wrap">
         <div class="sec-head fade-up">
+            <span class="sec-eyebrow"><span class="num">03</span> Categories</span>
             <h2 id="categories-title" class="sec-title">42 ways to think about <em>your stuff</em></h2>
+            <p class="sec-kicker">Each category knows its own schema &mdash; the fields that matter for wine aren't the ones that matter for trading cards.</p>
         </div>
         <div class="categories fade-up" aria-label="Supported collectible categories">
             <span class="category-chip">Movies</span>
@@ -273,11 +275,28 @@
 
 <hr class="divider" aria-hidden="true">
 
+<!-- Privacy spotlight -->
+<section class="section" aria-labelledby="privacy-spot-title">
+    <div class="wrap">
+        <div class="glass spotlight fade-up">
+            <span class="spotlight-icon" style="--c:#34c759;--bg:rgba(52,199,89,.14)" aria-hidden="true">🔐</span>
+            <div class="spotlight-text">
+                <h2 id="privacy-spot-title">Your collection stays <em>yours</em></h2>
+                <p>Every item lives in SwiftData on your device and syncs through your own private CloudKit container. No analytics, no trackers, no account &mdash; Kabynyt never sees your collection. <a href="/privacy.html">Read the privacy policy &rarr;</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider" aria-hidden="true">
+
 <!-- Pricing -->
 <section id="pricing" class="section" aria-labelledby="pricing-title">
     <div class="wrap tc">
         <div class="sec-head fade-up">
+            <span class="sec-eyebrow"><span class="num">04</span> Pricing</span>
             <h2 id="pricing-title" class="sec-title">Kabynyt+</h2>
+            <p class="sec-kicker">The app is free forever. Kabynyt+ unlocks the AI that does the data entry for you.</p>
         </div>
         <div class="glass price-card fade-up">
             <div class="price-head">
@@ -318,17 +337,26 @@
 
 <!-- Footer -->
 <footer class="foot">
-    <div class="wrap tc">
-        <div class="foot-links">
-            <a href="/">Home</a>
-            <a href="/support.html">Support</a>
-            <a href="/privacy.html">Privacy</a>
+    <div class="wrap">
+        <div class="foot-inner">
+            <a href="/" class="foot-brand">
+                <img src="/assets/AppIcon.png?v=7" alt="" class="foot-icon" width="40" height="40">
+                <span>Kabynyt</span>
+            </a>
+            <p class="foot-tagline">Catalog everything &mdash; one app for every collection you keep.</p>
+            <nav class="foot-links" aria-label="Footer">
+                <a href="/">Home</a>
+                <a href="/support.html">Support</a>
+                <a href="/privacy.html">Privacy</a>
+                <a href="mailto:support@kabynyt.com">Contact</a>
+            </nav>
+            <p class="foot-meta">Made for iPhone &amp; iPad &middot; iOS 26</p>
+            <p class="foot-copy">&copy; 2026 Kabynyt. All rights reserved.</p>
         </div>
-        <p class="foot-copy">&copy; 2026 Kabynyt. All rights reserved.</p>
     </div>
 </footer>
 
 <script src="/reveal.js?v=5"></script>
-<script src="/icons.js?v=5"></script>
+<script src="/icons.js?v=6"></script>
 </body>
 </html>

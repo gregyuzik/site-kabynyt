@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   KLOSYT — Aurora Glass
+   KABYNYT — Aurora Glass
    Dark navy base + one static gradient halo at the top and a single
    fixed aurora wash behind content. Pure gradients (no filter:blur,
    no animation) — GPU-cheap and safe for iOS Safari scroll. Only the
@@ -373,6 +373,38 @@ h1.sec-title{
     margin:0 auto 2rem;max-width:480px;
 }
 
+/* ── Privacy spotlight — wide framed band that breaks the card-grid rhythm.
+   Shares the CTA's dual background-clip frame (green→indigo arc) so it reads
+   as a deliberate feature moment, distinct from the flat .glass cards. ── */
+.spotlight{
+    display:flex;align-items:center;gap:2rem;
+    max-width:920px;margin:0 auto;
+    padding:2.75rem 2.5rem;border-radius:var(--radius-lg);
+    background:
+        linear-gradient(rgba(255,255,255,.05),rgba(255,255,255,.02)) padding-box,
+        linear-gradient(135deg,rgba(52,199,89,.45),rgba(255,255,255,.06) 50%,rgba(110,72,214,.5)) border-box;
+    border:1px solid transparent;
+    box-shadow:0 30px 80px rgba(0,0,0,.32), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.spotlight-icon{
+    width:72px;height:72px;border-radius:20px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:2rem;
+    background:var(--bg);color:var(--c);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.1), 0 10px 28px -8px var(--c);
+}
+.spotlight-text h2{
+    font-family:var(--font-display);
+    font-size:clamp(1.5rem,3vw,2.1rem);
+    font-weight:700;letter-spacing:-.03em;line-height:1.14;
+    margin-bottom:.6rem;padding-bottom:.04em;
+    text-wrap:balance;
+}
+.spotlight-text h2 em{font-style:italic;font-weight:600;color:var(--accent-color)}
+.spotlight-text p{color:var(--text-2);font-size:1rem;line-height:1.6;max-width:62ch}
+.spotlight-text a{color:var(--accent-color);font-weight:600;text-decoration:none;white-space:nowrap}
+.spotlight-text a:hover{text-decoration:underline}
+
 /* ── Section title (layout override — sizing + tracking come from the
    detailed rule above; this block just re-centers and restates size so
    cascade order is predictable) ── */
@@ -596,8 +628,17 @@ h1.sec-title{
 .faq-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem}
 
 /* ── Footer ── */
-.foot{padding:4rem 0 calc(4rem + env(safe-area-inset-bottom))}
-.foot-links{display:flex;justify-content:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.foot{padding:4rem 0 calc(4rem + env(safe-area-inset-bottom));border-top:1px solid var(--border)}
+.foot-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem}
+.foot-brand{
+    display:inline-flex;align-items:center;gap:10px;
+    text-decoration:none;color:var(--text-1);
+    font-weight:700;font-size:1.1rem;letter-spacing:-.02em;
+    margin-bottom:.25rem;
+}
+.foot-icon{width:40px;height:40px;border-radius:10px}
+.foot-tagline{color:var(--text-2);font-size:.95rem;max-width:42ch;margin-bottom:.5rem}
+.foot-links{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap}
 .foot-links a{
     display:inline-flex;align-items:center;
     min-height:44px;padding:0 12px;
@@ -605,6 +646,7 @@ h1.sec-title{
     font-size:.9rem;font-weight:500;transition:color .2s;
 }
 .foot-links a:hover{color:var(--text-1)}
+.foot-meta{color:var(--text-3);font-size:.82rem;letter-spacing:.02em;margin-top:.25rem}
 .foot-copy{color:var(--text-3);font-size:.82rem}
 
 /* ── Scroll reveal ── */
@@ -650,6 +692,8 @@ h1.sec-title{
     .legal-card{padding:1.5rem}
     .bottom-cta{padding:4rem 0 5rem}
     .cta-panel{padding:2.5rem 1.75rem}
+    .spotlight{flex-direction:column;text-align:center;padding:2.25rem 1.75rem;gap:1.25rem}
+    .spotlight-text p{margin-left:auto;margin-right:auto}
     .nav-bar{width:94%;padding:0 1rem;height:48px}
     .nav-links{gap:.6rem}
     .nav-links a{font-size:.82rem}
@@ -747,6 +791,12 @@ h1.sec-title{
         background:
             linear-gradient(rgba(255,253,245,.72),rgba(255,249,235,.52)) padding-box,
             linear-gradient(135deg,rgba(14,122,82,.4),rgba(16,32,24,.05) 35%,rgba(16,32,24,.05) 65%,rgba(74,71,179,.4)) border-box;
+        box-shadow:0 30px 80px rgba(16,32,24,.12), inset 0 1px 0 rgba(255,255,255,.6);
+    }
+    .spotlight{
+        background:
+            linear-gradient(rgba(255,253,245,.72),rgba(255,249,235,.52)) padding-box,
+            linear-gradient(135deg,rgba(14,122,82,.4),rgba(16,32,24,.05) 50%,rgba(74,71,179,.4)) border-box;
         box-shadow:0 30px 80px rgba(16,32,24,.12), inset 0 1px 0 rgba(255,255,255,.6);
     }
     .feature-card:hover, .card:hover{

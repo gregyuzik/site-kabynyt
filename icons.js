@@ -127,7 +127,7 @@
     }
 
     function replaceEmoji() {
-        const targets = document.querySelectorAll('.feature-icon, .card-ico, .pl-ico, .wn-icon, .highlight-icon');
+        const targets = document.querySelectorAll('.feature-icon, .card-ico, .pl-ico, .wn-icon, .highlight-icon, .spotlight-icon');
         targets.forEach(function (el) {
             if (el.querySelector('svg')) return;
             const text = el.textContent.trim();
@@ -137,6 +137,7 @@
                 else if (el.classList.contains('feature-icon')) size = 24;
                 else if (el.classList.contains('wn-icon')) size = 26;
                 else if (el.classList.contains('highlight-icon')) size = 26;
+                else if (el.classList.contains('spotlight-icon')) size = 34;
                 el.textContent = '';
                 el.appendChild(buildSvg(icons[text], size));
             }

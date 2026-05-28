@@ -306,13 +306,6 @@ body > *{position:relative;z-index:1}
     background:linear-gradient(90deg,transparent,var(--accent-color),transparent);
     opacity:.65;
 }
-.sec-eyebrow .num{
-    font-family:var(--font-display);
-    font-style:italic;font-weight:600;
-    font-size:1rem;letter-spacing:-.01em;
-    color:var(--accent-color);
-    text-transform:none;
-}
 .sec-title{
     font-family:var(--font-display);
     font-size:clamp(2rem,4.5vw,3.2rem);
@@ -763,7 +756,6 @@ h1.sec-title{
     .sec-title{color:#102018}
     .sec-title em{color:#1e6346}
     .sec-eyebrow{color:rgba(16,32,24,.58)}
-    .sec-eyebrow .num{color:#1e6346}
     .sec-eyebrow::before,.sec-eyebrow::after{background:linear-gradient(90deg,transparent,rgba(14,122,82,.5),transparent)}
     .hero-icon{
         box-shadow:
